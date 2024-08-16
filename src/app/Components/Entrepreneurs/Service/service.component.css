@@ -1,0 +1,106 @@
+body{
+    margin: 00;
+    padding: 00;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Buenard:wght@400;700&display=swap');
+
+.titreService{
+    margin: 3rem;
+    font-size: 2.5rem;
+    font-family: 'buenard';
+    color:#007461;
+    
+}
+
+.titre2Service{
+    margin: 3rem;
+    font-size: 1.75rem;
+    font-family: 'buenard';
+    color:#000;
+}
+.ListeDomaine{
+    margin: auto 00;
+align-items: center;
+margin: 2rem 7rem;
+}
+h6{
+color: #007461;
+font-family: 'Poppins';
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+padding: 0.7rem;
+border: #007461 solid 0.1rem;
+border-radius: 1.5rem;
+}
+.domaineDescription{
+    margin: auto 00;
+    align-items: center;
+    margin: 2rem 7rem;
+}
+.domaineDescription img {
+    width: 27rem;
+height: 18rem;
+flex-shrink: 0;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+border: 0.1rem solid rgba(252, 151, 78, 0.30);
+}
+
+.domaineDescription p {
+    width: 29rem;
+color: var(--Schemes-Shadow, #000);
+/* Texte Principal et Paragraph */
+font-family: 'Poppins';
+font-size: 1.3rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin: 0.5rem 5rem;
+}
+.sousDomaine{
+    display: flex;
+    flex-wrap: wrap; 
+  gap: 5rem;
+    align-items: center;
+   margin: 3% 7%;
+}
+.cart{
+    width: 32rem;
+    height: 18rem;
+    flex-shrink: 0;
+    border: #007461 solid 0.1rem;
+    border-radius:1rem ;
+}
+
+.sousDomaine img {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0.4rem;
+    border-radius:1rem ;
+}
+.textButton{
+    padding: 01rem;
+}
+.textButton button {
+    float: right; 
+    align-items: end;
+    padding: 0.55rem;
+ border: #007461 solid;
+}
+@media (max-width: 768px) {
+    .sousDomaine{
+        display: flex;
+        flex-wrap: wrap; 
+      gap: rem;
+        align-items: center;
+       margin: 3% 0%;
+    }
+
+}
