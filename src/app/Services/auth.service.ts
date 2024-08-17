@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
 import { Observable } from "rxjs";
@@ -15,6 +15,7 @@ export class AuthService{
   @Injectable({
     providedIn: 'root'
   })
+
 
   // Decaration des methods
 
@@ -54,11 +55,12 @@ export class AuthService{
   }
 
 
-  // method to logout
-  logout() {
-    return this.http.get(`${apiUrl}/logout`);
-  }
-
+ // Method to logout
+ logout() {
+  const token = localStorage.getItem('access_token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${apiUrl}/logout`, { headers });
+}
 
 
 

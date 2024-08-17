@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { ConnexionComponent } from './Components/Portails/authentification/connexion/connexion.component';
 import { InscriptionComponent } from './Components/Portails/authentification/inscription/inscription.component';
 import { AdminComponent } from './Components/Administrateurs/Dashboard/admin/admin.component';
-import { AdministrationGuard } from './Guard/administration.guard';
+import { AdministrationGuard } from './Guard/administration-guard';
 import { DashboardAdminComponent } from './Components/Administrateurs/dashboard-admin/dashboard-admin.component';
 import { DashboardSuperAdminComponent } from './Components/Super-admin/dashboard-super-admin/dashboard-super-admin.component';
 import { DashboardEntrepreneurComponent } from './Components/Entrepreneurs/dashboard-entrepreneur/dashboard-entrepreneur.component';

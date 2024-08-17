@@ -61,9 +61,32 @@ export class ConnexionComponent {
     }
   }
 
+  // Fonction pour deconnexion
+  // logout() {
+  //   localStorage.removeItem('access_token');
+  //   localStorage.removeItem('user');
+  //   this.router.navigateByUrl('login');
+  // }gout
+
+
+  logout() {
+    return this.authService.logout().subscribe(
+      (response: any) => {
+        console.log(response);
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user');
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Erreur lors de la déconnexion:', error);
+      }
+    );
 
 
 
 
 
+
+
+}
 }

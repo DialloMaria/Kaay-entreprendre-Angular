@@ -1,1 +1,17 @@
 <p>dashboard-admin works!</p>
+<!-- LOGOUT -->
+ <!-- nom utlisateur connecte -->
+  {{ user?.nom }}
+  <!-- email utilisateur connecte -->
+   {{ user?.email }}
+   <!-- role -->
+<!-- Rôles de l'utilisateur connecté -->
+<p>Rôle(s):</p>
+<ul>
+  <li *ngFor="let role of user?.roles">{{ role.name }}</li>
+</ul>
+
+
+<button (click)="logout()" class="btn btn-danger">
+  Déconnexion
+</button>

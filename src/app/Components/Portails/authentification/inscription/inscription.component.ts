@@ -17,7 +17,7 @@ export class InscriptionComponent implements OnInit {
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
-  registrationForm: FormGroup;
+  registrationForm: FormGroup ;
   domaines: DomaineModel[] = []; // Utiliser le type Domaine
 
 
@@ -65,19 +65,36 @@ export class InscriptionComponent implements OnInit {
   register() {
     if (this.registrationForm.valid) {
       const userObject = this.registrationForm.value;
+
       this.authService.register(userObject).subscribe(
         (response: any) => {
-          console.log(response);
-          this.router.navigate(['/login']);
+          console.log('Inscription réussie:', response);
+
+          const loginObject = {
+            email: this.registrationForm.get('email')?.value,
+            password: this.registrationForm.get('password')?.value
+          };
+
+          this.authService.login(loginObject).subscribe(
+            (loginResponse: any) => {
+              console.log('Connexion réussie:', loginResponse);
+              this.router.navigate(['/dashboard/admin']);
+            },
+            (loginError) => {
+              console.error('Erreur lors de la connexion:', loginError);
+              this.router.navigate(['/login']);
+            }
+          );
         },
-        (error) => {
-          console.error('Erreur lors de l\'inscription:', error);
+        (registerError) => {
+          console.error('Erreur lors de l\'inscription:', registerError);
         }
       );
     } else {
       console.error('Le formulaire est invalide.');
     }
   }
+
 
 
   // registerAdmin() {
