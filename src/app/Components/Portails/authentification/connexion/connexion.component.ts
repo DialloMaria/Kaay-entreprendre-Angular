@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserModel } from '../../../../Models/users.model';
 import { AuthService } from '../../../../Services/auth.service';
+import { Role } from '../../../../Models/roles.model';
 
 @Component({
   selector: 'app-connexion',
@@ -24,41 +25,45 @@ export class ConnexionComponent {
   password: string = '';
 
 
-
-  // Declaeation des methods
   login() {
     if (this.userObject.email && this.userObject.password) {
-    this.authService.login(this.userObject).subscribe(
-      (response: any) => {
-        console.log(response.access_token);
-        console.log(response.user);
+      this.authService.login(this.userObject).subscribe(
+        (response: any) => {
+          console.log(response.access_token);
+          console.log(response.user);
 
+          if (response.user) {
+            localStorage.setItem('access_token', response.access_token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            console.log(localStorage.getItem('user'));
+            // si role = 'admin' ->dashboard/admin ou role = 'super_admin ->dashboard/super-admin ou role = 'entrepreneur ->dashboard/entrepreneur
 
-        // si reponse user
-        if (response.user) {
-
-        // Sauvegarde du token dans le local storage
-        localStorage.setItem('access_token', response.access_token);
-        localStorage.setItem('user', JSON.stringify(response.user));
-        // si est role admin
-          // Redirection vers la page d'accueil admin
-          // window.location.href = '/livre';
-          this.router.navigateByUrl('dashboard');
-
-        // else {
-        //   // Redirection vers la page d'accueil acc
-        //   // window.location.href = '/accuile';
-        //   this.router.navigateByUrl('/accuile');
-        // }
-
+            if (response.user.roles) {
+              if (response.user.roles.some((role: Role) => role.name === 'admin')) {
+                this.router.navigateByUrl('dashboard/admin');
+              }
+              else if (response.user.roles.some((role: Role) => role.name ==='super_admin')) {
+                this.router.navigateByUrl('dashboard/super-admin');
+              }
+              else if (response.user.roles.some((role: Role) => role.name === 'entrepreneur')) {
+                this.router.navigateByUrl('dashboard/entrepreneur');
+              }
+            }
+            else {
+              this.router.navigateByUrl('dashboard');
+            }
+          }
+        },
+        (error) => {
+          console.error(error);
         }
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
+      );
+    }
   }
 
-}
+
+
+
+
+
 }
