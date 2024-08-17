@@ -6,6 +6,7 @@ import { DashboardAdminComponent } from './Components/Administrateurs/dashboard-
 import { DashboardSuperAdminComponent } from './Components/Super-admin/dashboard-super-admin/dashboard-super-admin.component';
 import { DashboardEntrepreneurComponent } from './Components/Entrepreneurs/dashboard-entrepreneur/dashboard-entrepreneur.component';
 import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
+import { CategorieListComponent } from './Components/Super-admin/Categories/categorie-list/categorie-list.component';
 
 export const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -14,6 +15,8 @@ export const routes: Routes = [
   {path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard]},
   {path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [AdministrationGuard]},
   {path: 'dashboard/entrepreneur', component: DashboardEntrepreneurComponent, canActivate: [EntrepreneurGuard]},
+  {path: 'super-admin/gategories', component: CategorieListComponent, canActivate: [AdministrationGuard]},
+
 
   // {path: 'admin', component: AdministrationComponent, canActivate: [AdministrationGuard]},
   // {path: '**', component: PageNotFoundComponent}
