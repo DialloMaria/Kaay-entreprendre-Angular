@@ -1,1 +1,13 @@
-<p>guide-list works!</p>
+
+<div *ngFor="let guide of guides" class="guide-container">
+  <div class="guide-text">
+    <h2>{{ guide.titre }}</h2>
+    <p>{{ guide.contenu }}</p>
+    <p>Date de publication : {{ guide.datepublication | date }}</p>
+    <p>Auteur : {{ guide.auteur }}</p>
+  </div>
+  <div class="guide-image">
+    <img [src]="guide.media" alt="{{ guide.titre }}" />
+  </div>
+  
+</div>
