@@ -1,0 +1,45 @@
+<!-- Mobile Header -->
+<header class="bg-white shadow-md lg:hidden">
+  <div class="flex items-center justify-between p-4">
+    <div class="text-xl font-semibold text-green-700">Logo Kaay entreprendre</div>
+    <button id="menu-toggle" class="text-green-700 focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+
+<!-- Desktop Header -->
+<header class="hidden lg:flex justify-between items-center bg-[#007461] p-4 text-white">
+  <h1 class="text-xl ml-10">
+    Bienvenue,
+    <span *ngFor="let role of user?.roles">{{ role.name }}</span>
+  </h1>
+  <div class="flex items-center mx-20 flex-grow">
+    <input type="text" placeholder="Recherche" class="py-2 px-4  max-w-96 bg-white text-black rounded-lg flex-grow">
+  </div>
+  <div class="flex items-center space-x-4 mr-12">
+    <span>
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="7" fill="#2C353D"/>
+        <g clip-path="url(#clip0_164_6425)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M28.3325 23.0613H27.9128C29.069 23.0613 30 23.9747 30 25.1015V25.511C30 25.9648 29.6268 26.3266 29.1661 26.3266H10.8339C10.3729 26.3266 10 25.9613 10 25.511V25.1015C10 23.9752 10.9345 23.0613 12.0872 23.0613H11.6675C12.1255 23.0613 12.4999 22.6955 12.4999 22.2442V17.3469C12.4999 13.2875 15.8578 10 20.0001 10C24.1434 10 27.5003 13.2893 27.5003 17.3469V22.2442C27.5003 22.6983 27.8729 23.0613 28.3327 23.0613H28.3325ZM17.083 27.1429H22.9163C22.9163 28.7208 21.6104 30 19.9997 30C18.3889 30 17.083 28.7208 17.083 27.1429V27.1429Z" fill="#F4F6F8"/>
+          <circle cx="26.5" cy="13.5" r="3" fill="#FF6934" stroke="#262D34"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_164_6425">
+            <rect width="20" height="20" fill="white" transform="translate(10 10)"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </span>
+    <span class="w-12 rounded-full">
+      <img class="w-12 rounded-full" src="https://bdesign-julinho97.vercel.app/assets/img/BMB.png" alt="profile">
+    </span>
+    <span>
+      {{ user?.prenom }} {{ user?.nom }} ⌵
+    </span>
+  </div>
+</header>
