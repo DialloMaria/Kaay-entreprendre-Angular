@@ -9,6 +9,8 @@ import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
 import { CategorieListComponent } from './Components/Super-admin/Categories/categorie-list/categorie-list.component';
 import { CategorieServiceComponent } from './Components/Super-admin/Categories/categorie-service/categorie-service.component';
 import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categories/categorie-entrepreneur/categorie-entrepreneur.component';
+import { ListeAdminComponent } from './Components/Super-admin/Admin/liste-admin/liste-admin.component';
+import { EvenementListComponent } from './Components/Super-admin/Evenements/evenement-list/evenement-list.component';
 
 export const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -23,6 +25,9 @@ export const routes: Routes = [
   {path: 'super-admin/categories', component: CategorieListComponent, canActivate: [AdministrationGuard]},
   {path: 'super-admin/categories/:id', component: CategorieServiceComponent, canActivate: [AdministrationGuard]},
   {path: 'super-admin/categories/enntrpreneurs/:id', component: CategorieEntrepreneurComponent, canActivate: [AdministrationGuard]},
+  {path: 'super-admin/admins', component: ListeAdminComponent, canActivate: [AdministrationGuard]},
+  {path: 'super-admin/evenements', component: EvenementListComponent, canActivate: [AdministrationGuard]},
+
 
 
   // {path: 'admin', component: AdministrationComponent, canActivate: [AdministrationGuard]},
