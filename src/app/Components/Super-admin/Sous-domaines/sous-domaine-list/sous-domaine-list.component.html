@@ -1,1 +1,26 @@
-<p>sous-domaine-list works!</p>
+<div *ngIf="sousDomaines.length > 0" class="flex flex-col gap-6 mt-12 w-full">
+  <div class="flex flex-col bg-white rounded-2xl shadow-sm p-5 md:p-6 lg:p-10">
+    <div class="flex justify-between items-center">
+      <div class="text-lg font-bold text-gray-700">Sous domaine de {{ selectedDomaineName }}</div>
+      <a class="text-teal-700 text-5xl">
+        <i class="fas fa-plus-square"></i>
+      </a>
+    </div>
+
+    <!-- Sous domaine items -->
+    <div *ngFor="let sousDomaine of sousDomaines" class="flex flex-col md:flex-row justify-between mt-8 md:mt-6 gap-6">
+      <div class="flex items-start gap-5">
+        <div class="w-8 h-8 relative">
+          <img loading="lazy" src="image-url1" class="object-cover w-full h-full" />
+        </div>
+        <div class="text-sm font-bold text-gray-700">
+          <div class="leading-snug">{{ sousDomaine.nom }}</div>
+          <!-- <div class="mt-1 text-xs text-slate-400">{{ sousDomaine.description }}</div> -->
+        </div>
+      </div>
+      <div class="text-sm font-bold text-orange-400 self-center md:self-start">
+        <!-- {{ sousDomaine.entrepreneurs.length }} inscrits -->
+      </div>
+    </div>
+  </div>
+</div>

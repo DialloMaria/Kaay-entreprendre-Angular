@@ -1,35 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { SuperAdminLayoutComponent } from "../layouts/super-admin-layout/super-admin-layout.component";
-import { NavbarComponent } from '../../Administrateurs/layouts/navbar/navbar.component';
-import { SuperAdminService } from '../../../Services/super-admin.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { SuperAdminService } from '../../../Services/super-admin.service';
+import { NavbarComponent } from '../../Administrateurs/layouts/navbar/navbar.component';
+import { SuperAdminLayoutComponent } from '../layouts/super-admin-layout/super-admin-layout.component';
 
 @Component({
   selector: 'app-dashboard-super-admin',
   standalone: true,
-  imports: [NavbarComponent, SuperAdminLayoutComponent, CommonModule],
+  imports: [NavbarComponent, SuperAdminLayoutComponent, CommonModule, RouterLink],
   templateUrl: './dashboard-super-admin.component.html',
-  styleUrl: './dashboard-super-admin.component.css'
+  styleUrls: ['./dashboard-super-admin.component.css'] // corrected from 'styleUrl' to 'styleUrls'
 })
 export class DashboardSuperAdminComponent implements OnInit {
-  stats: any = {
+  stats: { entrepreneurs: number; admins: number; guides: number } = {
     entrepreneurs: 0,
     admins: 0,
     guides: 0
   };
 
-  categories: any
+  categories: any[] = []; // Initialize categories with an empty array
+
+  private router = inject(Router);
 
   constructor(private superAdminService: SuperAdminService) {}
 
-  
   ngOnInit(): void {
     this.getStats();
     this.getCategories();
   }
-  getStats() {
+
+  getStats(): void {
     this.superAdminService.getStats().subscribe(
-      (response: any) => {
+      (response: { entrepreneurs: number; admins: number; guides: number }) => {
         this.stats = response;
       },
       (error: any) => {
@@ -37,18 +40,23 @@ export class DashboardSuperAdminComponent implements OnInit {
       }
     );
   }
-  // Méthode pour obtenir la liste des categories
-getCategories(): void {
-  this.superAdminService.getCategories().subscribe(
-    (response: any) => {
-      this.categories = response;
-      
-      console.log('Liste des catégories:', response);
-    },
-    (error: any) => {
-      console.error('Erreur lors de la récupération des catégories:', error);
-    }
-  );
-}
 
+  getCategories(): void {
+    this.superAdminService.getCategories().subscribe(
+      (response: any[]) => {
+        this.categories = response;
+        console.log('Liste des catégories:', response);
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des catégories:', error);
+      }
+    );
+  }
+
+  viewDetails(categorie: any): void {
+    console.log('Détails de la catégorie:', categorie);
+    this.router.navigate(['/super-admin/categories', categorie.id]).catch(error => {
+      console.error('Erreur lors de la navigation:', error);
+    });
+  }
 }

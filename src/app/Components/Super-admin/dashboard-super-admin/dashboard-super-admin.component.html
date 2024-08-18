@@ -45,7 +45,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </section>
 
@@ -59,12 +59,12 @@
       <div class="flex justify-center items-center mb-4">
         <img class="w-full h-auto rounded-lg" src="../../../../assets/images/Graph.jpg" alt="Placeholder Image">
       </div>
-    
-      <!-- Content -->
-      <div class="mb-4">
+
+  
+      <div (click)="viewDetails(categorie)" class="mb-4">
         <h2 class="text-lg font-bold text-gray-700">{{ categorie.nom }}</h2>
       </div>
-    
+
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Card Item -->
@@ -77,7 +77,7 @@
           </div>
           <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.entrepreneurs }}</div>
         </div>
-    
+
         <!-- Card Item -->
         <div class="flex flex-col">
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
@@ -88,7 +88,7 @@
           </div>
           <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.guides }}</div>
         </div>
-    
+
         <!-- Card Item -->
         <div class="flex flex-col">
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
@@ -99,7 +99,7 @@
           </div>
           <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.guides }}</div>
         </div>
-    
+
         <!-- Card Item -->
         <div class="flex flex-col">
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    
+
 
   </div>
 </section>
