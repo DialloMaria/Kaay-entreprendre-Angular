@@ -15,12 +15,12 @@
             <div class="relative flex flex-col justify-center px-10 md:px-20">
               <div class="text-slate-100 text-sm font-medium mb-2">Entrepreneurs inscrits</div>
               <div class="block ml-6 md:ml-12">
-                <div class="text-slate-100 text-[28px] md:text-[34px] font-bold mb-2">1 000</div>
+                <div class="text-slate-100 text-[28px] md:text-[34px] font-bold mb-2">{{ stats.entrepreneurs }}</div>
                 <div class="flex items-center space-x-2">
                   <div class="w-3.5 h-3.5 bg-orange-400 rounded-full flex justify-center items-center">
                     <div class="w-[11px] h-[11px] bg-white rounded-full"></div>
                   </div>
-                  <div class="text-orange-400 text-sm font-bold">Incrits</div>
+                  <div class="text-orange-400 text-sm font-bold">Inscrits</div>
                 </div>
               </div>
             </div>
@@ -30,8 +30,8 @@
                   <div class="w-7 h-7 bg-white rounded-full"></div>
                 </div>
                 <div class="flex flex-col">
-                  <div class="text-emerald-700 text-sm font-medium mb-1">Guides</div>
-                  <div class="text-emerald-700 text-2xl font-bold">100</div>
+                  <div class="text-emerald-700 text-sm font-medium mb-1">Administrateurs</div>
+                  <div class="text-emerald-700 text-2xl font-bold">{{stats.admins }}</div>
                 </div>
               </div>
               <div class="bg-slate-50 w-full sm:w-[268px] h-[97px] rounded-[20px] p-4 flex items-center space-x-4">
@@ -39,12 +39,13 @@
                   <div class="w-7 h-7 bg-white rounded-full"></div>
                 </div>
                 <div class="flex flex-col">
-                  <div class="text-emerald-700 text-sm font-medium mb-1">Événements</div>
-                  <div class="text-emerald-700 text-2xl font-bold">4</div>
+                  <div class="text-emerald-700 text-sm font-medium mb-1">Guides</div>
+                  <div class="text-emerald-700 text-2xl font-bold">{{ stats.guides }}</div>
                 </div>
               </div>
             </div>
           </div>
+          
         </div>
       </section>
 
@@ -53,134 +54,66 @@
 <section class="guide w-full h-full my-6 md:my-10">
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 justify-items-center">
-
-    <div class="bg-white rounded-2xl shadow-lg w-full h-auto p-4">
+    <div *ngFor=" let categorie of categories " class="bg-white rounded-2xl shadow-lg w-full h-auto p-4">
       <!-- Image -->
       <div class="flex justify-center items-center mb-4">
         <img class="w-full h-auto rounded-lg" src="../../../../assets/images/Graph.jpg" alt="Placeholder Image">
       </div>
-
+    
       <!-- Content -->
       <div class="mb-4">
-        <h2 class="text-lg font-bold text-gray-700">Devenir entrepreneur</h2>
+        <h2 class="text-lg font-bold text-gray-700">{{ categorie.nom }}</h2>
       </div>
-
+    
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Card Item -->
         <div class="flex flex-col">
-          <!-- Icon Placeholder -->
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
             <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
               <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
             </div>
-            <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Entreprneurs</div>
+            <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Entrepreneurs</div>
           </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
+          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.entrepreneurs }}</div>
         </div>
+    
         <!-- Card Item -->
         <div class="flex flex-col">
-          <!-- Icon Placeholder -->
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
             <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
               <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
             </div>
             <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Domaines</div>
           </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
+          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.guides }}</div>
         </div>
+    
         <!-- Card Item -->
         <div class="flex flex-col">
-          <!-- Icon Placeholder -->
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
             <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
               <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
             </div>
             <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Guides</div>
           </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
+          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.guides }}</div>
         </div>
+    
         <!-- Card Item -->
         <div class="flex flex-col">
-          <!-- Icon Placeholder -->
           <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
             <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
               <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
             </div>
             <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Admin</div>
           </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
+          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">{{ stats.admins }}</div>
         </div>
       </div>
     </div>
+    
 
-    <div class="bg-white rounded-2xl shadow-lg w-full h-auto p-4">
-      <!-- Image -->
-      <div class="flex justify-center items-center mb-4">
-        <img class="w-full h-auto rounded-lg" src="assets/images/Graph.jpg" alt="Placeholder Image">
-      </div>
-
-      <!-- Content -->
-      <div class="mb-4">
-        <h2 class="text-lg font-bold text-gray-700">Devenir entrepreneur</h2>
-      </div>
-
-      <!-- Stats Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Card Item -->
-        <div class="flex flex-col">
-          <!-- Icon Placeholder -->
-          <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
-            <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
-              <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
-            </div>
-            <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Entreprneurs</div>
-          </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
-        </div>
-        <!-- Card Item -->
-        <div class="flex flex-col">
-          <!-- Icon Placeholder -->
-          <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
-            <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
-              <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
-            </div>
-            <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Domaines</div>
-          </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
-        </div>
-        <!-- Card Item -->
-        <div class="flex flex-col">
-          <!-- Icon Placeholder -->
-          <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
-            <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
-              <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
-            </div>
-            <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Guides</div>
-          </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
-        </div>
-        <!-- Card Item -->
-        <div class="flex flex-col">
-          <!-- Icon Placeholder -->
-          <div class="text-gray-700 text-lg font-bold font-['Buenard'] flex">
-            <div class="bg-orange-400 w-8 h-7 flex items-center justify-center mx-2 mb-2">
-              <!-- Icon Placeholder -->
-              <i class="text-white fa-solid fa-hat-cowboy-side mx-5"></i>
-            </div>
-            <div class="text-slate-400 text-xs mt-4 font-bold font-['Buenard'] leading-tight">Admin</div>
-          </div>
-          <div class="text-gray-700 text-lg mx-3 font-bold font-['Buenard'] leading-relaxed">3</div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
