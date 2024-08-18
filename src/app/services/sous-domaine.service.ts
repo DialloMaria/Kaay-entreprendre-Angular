@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SousDomaineService {
 
-  constructor() { }
+  private apiUrl = 'http://127.0.0.1:8000/api/sousdomaine';
+
+  constructor(private http: HttpClient) { }
 
   // Méthode pour obtenir la liste de tous les sous-domaines
   getSousDomaine(){
@@ -28,5 +32,18 @@ export class SousDomaineService {
   deleteSousDomaine(){
 
 }
+
+  // Méthode pour obtenir les statistiques (si applicable)
+  getStats(): Observable<any> {
+    // Récupération du token d'authentification depuis le stockage local
+    const token = localStorage.getItem('access_token');
+    // Création des en-têtes HTTP avec le token d'authentification
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    // Appel de l'API pour obtenir les statistiques avec les en-têtes d'authentification
+    return this.http.get<any>(`${this.apiUrl}/dashboard/super-admin`, { headers });
+  }
 
 }

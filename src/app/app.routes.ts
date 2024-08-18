@@ -29,14 +29,14 @@ export const routes: Routes = [
   { path: 'register', component: InscriptionComponent },
 
   // Dashboards avec des gardes pour sécuriser les routes
-  { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard] },                  
+  { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard] },
   { path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [AdministrationGuard] },
   { path: 'dashboard/entrepreneur', component: DashboardEntrepreneurComponent, canActivate: [EntrepreneurGuard] },
 
 
-  { path: 'sous-domaines', component: SousDomaineListComponent },
-  { path: 'sous-domaines/new', component: SousDomaineListComponent },
-  { path: 'sous-domaines/edit/:id', component: FormDomaineListComponent },
+  { path: 'sousdomaines', component: SousDomaineListComponent },
+  { path: 'sousdomaines/new', component: SousDomaineListComponent },
+  { path: 'sousomaines/edit/:id', component: FormDomaineListComponent },
 
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
