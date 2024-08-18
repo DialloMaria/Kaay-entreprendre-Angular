@@ -1,1 +1,17 @@
-<p>message-forum-list works!</p>
+<!-- Bannière de bienvenue -->
+<div class="banner">
+    <h1>Messages du Forum</h1>
+    <p>Interagissez avec les autres membres en envoyant et répondant aux messages.</p>
+  </div>
+  
+  <!-- Liste des messages -->
+  <div *ngFor="let message of messages" class="message-card">
+    <p><strong>{{ message.nom }}:</strong> {{ message.contenu }}</p>
+  </div>
+  
+  <!-- Formulaire pour envoyer un message -->
+  <div class="message-form">
+    <textarea [(ngModel)]="newMessage" placeholder="Écrivez votre message ici..."></textarea>
+    <button (click)="sendMessage()">Envoyer</button>
+  </div>
+  

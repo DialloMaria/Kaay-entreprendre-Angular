@@ -1,1 +1,13 @@
-<p>forum-list works!</p>
+<!-- Bannière de bienvenue -->
+<div class="banner">
+    <h1>Bienvenue sur le Forum</h1>
+    <p>Découvrez les forums disponibles et engagez-vous dans les discussions.</p>
+  </div>
+  
+  <!-- Liste des forums sous forme de cartes -->
+  <div *ngFor="let forum of forums" class="forum-card">
+    <h2>{{ forum.titre }}</h2>
+    <p>{{ forum.description }}</p>
+    <a [routerLink]="['/forums', forum.id, 'messages']">Voir les messages</a>
+  </div>
+  
