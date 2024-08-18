@@ -29,3 +29,124 @@
       color: #007461;
   }
   
+  .steps-container {
+    margin-bottom: 20px;
+    width: 80%;
+    height: auto;
+    margin-left: 4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+  
+  .step-button {
+    margin-right: 10px;
+    width: 5rem;
+    height: 2rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #007461;
+    color: #007461;
+    background-color: white;
+  }
+  
+  .step-button:hover {
+    background-color: #FC974E;
+    border: none;
+  }
+  
+  .resources-container {
+    margin-top: 20px;
+  }
+  .resources-container h3 {
+    margin-top: 20px;
+    color: #007461;
+    margin-left: 5rem;
+  }
+  
+  .resource-item {
+    margin-bottom: 15px;
+    cursor: pointer;
+    width: 80%;
+    height: 30px;
+    background-color: #007461;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-left: 5rem;
+  }
+  
+  .resource-content {
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #ffffff;
+  }
+  
+  .icon {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .complete-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #FC974E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+  }
+  
+  .complete-button:hover {
+    background-color: #007461;
+  }
+  
+
+  /* Style pour le conteneur du champ de commentaire */
+.comment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%; 
+  margin: 20px auto; 
+}
+
+/* Style pour le champ de texte */
+.comment-input {
+  flex: 1; 
+  padding: 10px;
+  border: 2px solid #007461; 
+  border-radius: 5px;
+  margin-right: 10px; 
+  font-size: 16px;
+}
+
+/* Style pour le bouton d'ajout de commentaire */
+.add-comment-button {
+  padding: 10px 15px;
+  background-color: #FC974E;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-comment-button:hover {
+  background-color:#007461 ;
+}
+
+/* Style pour la liste des commentaires */
+.comment-item {
+  padding: 10px;
+  margin: 5px 0;
+  border-bottom: 2px solid #FC974E;
+  width: 80%;
+  margin-left: 5rem;
+}
