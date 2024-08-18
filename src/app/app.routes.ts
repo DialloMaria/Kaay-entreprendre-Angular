@@ -29,7 +29,7 @@ export const routes: Routes = [
   { path: 'register', component: InscriptionComponent },
 
   // Dashboards avec des gardes pour sécuriser les routes
-  { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard] },
+  { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard] },                  
   { path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [AdministrationGuard] },
   { path: 'dashboard/entrepreneur', component: DashboardEntrepreneurComponent, canActivate: [EntrepreneurGuard] },
 
