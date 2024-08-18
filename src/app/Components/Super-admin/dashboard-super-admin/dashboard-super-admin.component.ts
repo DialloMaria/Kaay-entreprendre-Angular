@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from "../layouts/navbar/navbar.component";
 import { SuperAdminLayoutComponent } from "../layouts/super-admin-layout/super-admin-layout.component";
+import { NavbarComponent } from '../../Administrateurs/layouts/navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard-super-admin',

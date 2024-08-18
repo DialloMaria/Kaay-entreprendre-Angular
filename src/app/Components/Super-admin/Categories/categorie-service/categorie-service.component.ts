@@ -3,12 +3,13 @@ import { SuperAdminLayoutComponent } from "../../layouts/super-admin-layout/supe
 import { NavbarComponent } from "../../../Administrateurs/layouts/navbar/navbar.component";
 
 @Component({
-  selector: 'app-evenement-list',
+  selector: 'app-categorie-list',
   standalone: true,
   imports: [SuperAdminLayoutComponent, NavbarComponent],
-  templateUrl: './evenement-list.component.html',
-  styleUrl: './evenement-list.component.css'
+  templateUrl: './categorie-service.component.html',
+  styleUrl: './categorie-service.component.css'
 })
-export class EvenementListComponent {
+export class CategorieServiceComponent {
+  
 
 }

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-admin-layout',
   standalone: true,
   imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule],
+
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
 })
@@ -20,6 +21,7 @@ export class AdminLayoutComponent {
 
   ngAfterViewInit() {
     this.activeMenu();
+
   }
 
   activeMenu() {
