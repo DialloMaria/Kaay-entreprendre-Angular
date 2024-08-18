@@ -2,79 +2,152 @@ import { Component, OnInit } from '@angular/core';
 import { SuperAdminLayoutComponent } from "../../layouts/super-admin-layout/super-admin-layout.component";
 import { NavbarComponent } from "../../../Administrateurs/layouts/navbar/navbar.component";
 import { SuperAdminService } from '../../../../Services/super-admin.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SousDomaineListComponent } from '../../Sous-domaines/sous-domaine-list/sous-domaine-list.component';
+import { FormDomaineListComponent } from '../../Domaines/form-domaine-list/form-domaine-list.component';
+import { Domaine } from '../../../../Models/domaine.model';
+import { DomaineService } from '../../../../Services/domaine.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-categorie-list',
   standalone: true,
-  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule, SousDomaineListComponent],
+  imports: [
+    SuperAdminLayoutComponent,
+    FormsModule,
+    NavbarComponent,
+    CommonModule,
+    SousDomaineListComponent,
+    FormDomaineListComponent
+  ],
   templateUrl: './categorie-service.component.html',
-  styleUrl: './categorie-service.component.css'
+  styleUrls: ['./categorie-service.component.css']
 })
 export class CategorieServiceComponent implements OnInit {
-    // Méthode pour obtenir la details d'un categorie
-    category: any;
-    domaines: any[] = [];
-    sousDomaines :any[] = [];
-    selectedSousDomaines: any[] = [];
-    selectedDomaineName: string = '';
-    selectedDomaine: any = null;
+  category: any;
+  domaines: any[] = [];
+  domaine: Domaine = { nom: '', categorie_id: 0 };
+  isEditMode = false;
+  selectedDomaine: any = null;
 
+  constructor(
+    private superAdminService: SuperAdminService,
+    private domaineService: DomaineService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
-    constructor(
-      private route: ActivatedRoute,
-      private superAdminService: SuperAdminService,
-      private http: HttpClient
-    ) {}
-    ngOnInit(): void {
-      let id = this.route.snapshot.paramMap.get('id');
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      const categorieId = Number(params.get('categorie_id'));
+      const domaineId = Number(params.get('domaine_id'));
 
+      // Fetch category details
       if (id) {
-        this.getCategoryDetails(Number(id));
+        this.getCategoryDetails(id);
       }
 
-      this.loadSousDomaines(Number(id)); // Par défaut, on charge les sous-domaines du domaine avec l'id 1 (id = 1 correspond à l'id du domaine "Tous")
+      // Set the domaine's categorie_id
+      if (categorieId) {
+        this.domaine.categorie_id = categorieId;
+      }
 
+      // If in edit mode, fetch the specific domaine details
+      if (domaineId) {
+        this.isEditMode = true; // Ensure edit mode is set if domaineId is present
+        this.getDomaine(domaineId);
+      }
+    });
+  }
+
+  getCategoryDetails(id: number): void {
+    this.superAdminService.getCategoryById(id).subscribe(
+      (response: any) => {
+        this.category = response.categorie;
+        this.domaines = response.domaines;
+      },
+      error => {
+        console.error('Erreur lors de la récupération de la catégorie:', error);
+      }
+    );
+  }
+
+  getDomaine(id: number): void {
+    this.domaineService.getDomaine(id).subscribe(
+      (data: Domaine) => {
+        console.log('Fetched domaine:', data);
+        this.domaine = data;
+      },
+      error => {
+        console.error('Failed to fetch domain data', error);
+      }
+    );
+  }
+
+  saveDomaine(): void {
+    // Ensure domaine.categorie_id is set
+    if (this.domaine.categorie_id === 0) {
+      console.error('Categorie ID is not set.');
+      return;
     }
 
-
-
-    loadSousDomaines(domaineId: number): void {
-      this.superAdminService.loadSousDomaines(domaineId).subscribe((response: any) => {
-        this.selectedSousDomaines = response.sousDomaines;
-        console.log('Sous-domaines du domaine:', this.selectedSousDomaines);
-        this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom;
-
-           });
-    }
-
-
-  getCategoryDetails(id: number) {
-    if (id) {
-      this.superAdminService.getCategoryById(id).subscribe(
+    if (this.isEditMode) {
+      // Update existing domaine
+      if (this.domaine.id) {
+        this.domaineService.updateDomaine(this.domaine.id, this.domaine).subscribe(
+          () => {
+            // Redirect to the category page
+            this.router.navigate(['/super-admin/categories', this.domaine.categorie_id]);
+          },
+          error => {
+            console.error('Failed to update domain', error);
+          }
+        );
+      } else {
+        console.error('Domaine ID is undefined, cannot update domain');
+      }
+    } else {
+      // Create new domaine
+      this.domaineService.createDomaine(this.domaine).subscribe(
         (response: any) => {
-          this.category = response.categorie;
-          this.domaines = response.domaines;
-          this.sousDomaines = response.sousDomaines;
-          console.log('Détails de la catégorie:', this.category);
-          console.log('Domaines de la catégorie:', this.domaines);
-          console.log('Sous-domaines de la catégorie:', this.sousDomaines);
+          const createdDomaineId = response.id; // Adjust this based on your API response
+          if (createdDomaineId) {
+            // Redirect to the newly created domain page
+            this.router.navigate(['/domaines', createdDomaineId]);
+          } else {
+            console.error('Failed to retrieve the ID of the newly created domain');
+          }
+          // reset form
+          this.domaine = { nom: '', categorie_id: 0 };
+
         },
-        (error: any) => {
-          console.error('Erreur lors de la récupération de la catégorie:', error);
+        error => {
+          console.error('Failed to create domain', error);
         }
       );
     }
-
-    }
-    filterSousDomaines(domaine: any): void {
-      this.selectedDomaine = domaine;
-    }
-  
+  }
 
 
+  filterSousDomaines(domaine: any): void {
+    this.selectedDomaine = domaine;
+  }
 
+  editDomaine(id: number): void {
+    this.router.navigate(['/domaines/edit', id]);
+  }
+
+  deleteDomaine(id: number): void {
+    this.domaineService.deleteDomaine(id).subscribe(() => {
+      this.getDomaines();
+    });
+  }
+  getDomaines(): void {
+    this.domaineService.getDomaines().subscribe((response: any) => {
+      this.domaines = response.data; // ou selon la structure exacte de votre réponse
+    });
+  }
 }

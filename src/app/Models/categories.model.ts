@@ -1,8 +1,7 @@
-export interface DomaineModel {
+export interface Categorie {
 
   id?: string;
   nom?: string;
-  categorie_id?: string;
   created_at?: Date;
   updated_at?: Date;
 

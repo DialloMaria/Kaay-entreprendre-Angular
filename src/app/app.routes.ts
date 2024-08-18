@@ -12,6 +12,8 @@ import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categor
 import { ListeAdminComponent } from './Components/Super-admin/Admin/liste-admin/liste-admin.component';
 import { EvenementListComponent } from './Components/Super-admin/Evenements/evenement-list/evenement-list.component';
 import { ListEntrepreneurComponent } from './Components/Super-admin/Admin copy/liste-entrepreneur/liste-entrepreneur.component';
+import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
+import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
 
 export const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -31,7 +33,16 @@ export const routes: Routes = [
   {path: 'super-admin/evenements', component: EvenementListComponent, canActivate: [AdministrationGuard]},
 
 
+// Redirection par défaut vers la liste des domaines
+  { path: '', redirectTo: '/domaines', pathMatch: 'full' },
 
-  // {path: 'admin', component: AdministrationComponent, canActivate: [AdministrationGuard]},
-  // {path: '**', component: PageNotFoundComponent}
+  // Liste des domaines
+  { path: 'domaines', component: DomaineListComponent },
+
+ // Ajout d'un nouveau domaine
+  { path: 'domaines/new', component: FormDomaineListComponent },
+
+ // Modification d'un domaine existant
+  { path: 'domaines/edit/:id', component: FormDomaineListComponent },
+
 ];

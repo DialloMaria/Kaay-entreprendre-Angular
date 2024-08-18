@@ -1,1 +1,9 @@
-<p>domaine-list works!</p>
+<h2>Liste des Domaines</h2>
+<ul>
+  <li *ngFor="let domaine of domaines">
+    {{ domaine.nom }}
+    <button (click)="editDomaine(domaine.id!)">Modifier</button>
+    <button (click)="deleteDomaine(domaine.id!)">Supprimer</button>
+  </li>
+</ul>
+<button routerLink="/domaines/new">Ajouter un Domaine</button>

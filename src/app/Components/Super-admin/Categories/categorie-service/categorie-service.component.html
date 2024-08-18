@@ -35,19 +35,29 @@
         <div class="flex justify-between">
           <h2 class="text-lg font-semibold mb-4 md:mb-6">Domaines</h2>
 
-          <div class="flex">
-            <div id="">
-              <input type="text" placeholder="Ajouter un domaine"
-                class="max-w-56 rounded-[5px] border mt-1  px-4 h-10 border-solid border-teal-700 bg-white">
-            </div>
-            <div>
+            <!--  -->
+  <!-- Edit/Add Mode Toggle -->
+  <div class="flex justify-between items-center">
+    <h2>{{ isEditMode ? 'Modifier le Domaine' : 'Ajouter un Domaine' }}</h2>
+  </div>
 
-              <a class="relative text-teal-700   flex flex-col justify-center px-1 md:px-1">
+  <!-- Form for Adding/Editing a Domaine -->
+  <form (ngSubmit)="saveDomaine()" class="flex items-center space-x-4">
+    <!-- Hidden input for category ID, set default value -->
+    <input type="text" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
 
-                <i class="fas fa-plus-square text-5xl "></i>
-              </a>
-            </div>
-          </div>
+    <!-- Domaine Name Input -->
+    <input type="text" id="nom" [(ngModel)]="domaine.nom" name="nom" required placeholder="Ajouter un domaine"
+      class="w-full lg:max-w-xs rounded-[5px] border mt-1 px-4 h-10 border-solid border-teal-700 bg-white">
+
+    <!-- Submit Button -->
+    <button type="submit" class="relative text-teal-700 flex items-center justify-center">
+      <i class="fas fa-plus-square text-5xl"></i>
+    </button>
+  </form>
+
+
+            <!--  -->
 
         </div>
 
@@ -67,6 +77,8 @@
                   class="px-5 py-6 rounded-md text-center cursor-pointer"
                 >
                   {{ domaine.nom }}
+                  <button (click)="editDomaine(domaine.id!)">Modifier</button>
+                  <button (click)="deleteDomaine(domaine.id!)">Supprimer</button>
                 </div>
               </div>
 
