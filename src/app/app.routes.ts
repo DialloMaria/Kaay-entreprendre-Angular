@@ -8,6 +8,7 @@ import { DashboardAdminComponent } from './Components/Administrateurs/dashboard-
 import { DashboardSuperAdminComponent } from './Components/Super-admin/dashboard-super-admin/dashboard-super-admin.component';
 import { DashboardEntrepreneurComponent } from './Components/Entrepreneurs/dashboard-entrepreneur/dashboard-entrepreneur.component';
 import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
+import { SousDomaineListComponent } from './Components/Super-admin/Sous-domaines/sous-domaine-list/sous-domaine-list.component';
 
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
@@ -31,6 +32,11 @@ export const routes: Routes = [
   { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard] },
   { path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [AdministrationGuard] },
   { path: 'dashboard/entrepreneur', component: DashboardEntrepreneurComponent, canActivate: [EntrepreneurGuard] },
+
+
+  { path: 'sous-domaines', component: SousDomaineListComponent },
+  { path: 'sous-domaines/new', component: SousDomaineListComponent },
+  { path: 'sous-domaines/edit/:id', component: FormDomaineListComponent },
 
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
