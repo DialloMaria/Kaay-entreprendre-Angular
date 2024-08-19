@@ -35,8 +35,7 @@ export class ConnexionComponent {
           if (response.user) {
             localStorage.setItem('access_token', response.access_token);
             localStorage.setItem('user', JSON.stringify(response.user));
-            console.log(localStorage.getItem('user'));
-            // si role = 'admin' ->dashboard/admin ou role = 'super_admin ->dashboard/super-admin ou role = 'entrepreneur ->dashboard/entrepreneur
+             // si role = 'admin' ->dashboard/admin ou role = 'super_admin ->dashboard/super-admin ou role = 'entrepreneur ->dashboard/entrepreneur
 
             if (response.user.roles) {
               if (response.user.roles.some((role: Role) => role.name === 'admin')) {

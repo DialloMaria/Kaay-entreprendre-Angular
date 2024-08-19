@@ -1,0 +1,70 @@
+/* Styles du composant */
+
+:host {
+    display: block;
+    padding: 20px;
+    background-color: #ffffff; /* Blanc pour le fond du composant */
+  }
+  
+  h2 {
+    color: #2e8b57; /* Vert pour les titres */
+  }
+  
+  form {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #dcdcdc; /* Bordure grise claire */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Fond gris très clair pour le formulaire */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #dcdcdc; /* Bordure grise claire */
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #2e8b57; /* Vert pour les boutons */
+    color: #ffffff; /* Texte blanc */
+    border: none;
+    padding: 10px 15px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #1e6b4a; /* Vert plus foncé au survol */
+  }
+  
+  button.delete {
+    background-color: #ff4500; /* Orange pour le bouton de suppression */
+  }
+  
+  button.delete:hover {
+    background-color: #e03b00; /* Orange plus foncé au survol */
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc; /* Bordure grise claire pour les éléments de liste */
+  }
+  
+  li:last-child {
+    border-bottom: none;
+  }
+  

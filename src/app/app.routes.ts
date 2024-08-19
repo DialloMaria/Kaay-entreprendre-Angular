@@ -5,7 +5,6 @@ import { AdministrationGuard } from './Guard/administration-guard';
 import { DashboardAdminComponent } from './Components/Administrateurs/dashboard-admin/dashboard-admin.component';
 import { DashboardSuperAdminComponent } from './Components/Super-admin/dashboard-super-admin/dashboard-super-admin.component';
 import { DashboardEntrepreneurComponent } from './Components/Entrepreneurs/dashboard-entrepreneur/dashboard-entrepreneur.component';
-import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
 import { CategorieListComponent } from './Components/Super-admin/Categories/categorie-list/categorie-list.component';
 import { CategorieServiceComponent } from './Components/Super-admin/Categories/categorie-service/categorie-service.component';
 import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categories/categorie-entrepreneur/categorie-entrepreneur.component';
@@ -14,8 +13,13 @@ import { EvenementListComponent } from './Components/Super-admin/Evenements/even
 import { ListEntrepreneurComponent } from './Components/Super-admin/Admin copy/liste-entrepreneur/liste-entrepreneur.component';
 import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
+ import { EntrepreneurGuard } from './Guard/entrepreneur.guard'; 
+import { CommentairesGuidesListService } from './Services/commentaires-guides-list.service';
+
 
 export const routes: Routes = [
+    
+
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
   {path: 'login', component: ConnexionComponent},
   {path: 'register', component: InscriptionComponent},
@@ -44,5 +48,11 @@ export const routes: Routes = [
 
  // Modification d'un domaine existant
   { path: 'domaines/edit/:id', component: FormDomaineListComponent },
+  // {path: 'admin', component: AdministrationComponent, canActivate: [AdministrationGuard]},
+  // {path: '**', component: PageNotFoundComponent}
+
+  //la route LIST-COMMENTAIRES
+  {path:'commentaires',component:CommentairesGuidesListService},
+  //la route AJOUT-MODIFIER
 
 ];

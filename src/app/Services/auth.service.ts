@@ -80,4 +80,10 @@ export class AuthService{
 //   //   return true;
 //   // }
 // }
+
+//ACCESS AU TOKEN 
+  getToken(): string | null {
+    return localStorage.getItem('access_token'); // Exemple d'obtention du token
+  }
+
 }
