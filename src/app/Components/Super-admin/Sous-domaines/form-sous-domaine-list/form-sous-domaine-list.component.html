@@ -1,1 +1,11 @@
 <p>form-sous-domaine-list works!</p>
+<h2>{{ isEditMode ? 'Modifier le Sous-Domaine' : 'Ajouter un Sous-Domaine' }}</h2>
+<form (ngSubmit)="saveSousDomaine()">
+  <label for="nom">Nom:</label>
+  <input type="text" id="nom" [(ngModel)]="sousDomaine.nom" name="nom" required>
+
+  <label for="domaine">Domaine:</label>
+  <input type="number" id="domaine" [(ngModel)]="sousDomaine.domaine_id" name="domaine_id" required>
+
+  <button type="submit">Sauvegarder</button>
+</form>
