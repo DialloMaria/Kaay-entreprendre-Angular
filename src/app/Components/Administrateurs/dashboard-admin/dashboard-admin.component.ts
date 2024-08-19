@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../layouts/navbar/navbar.component';
-import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
+import { SuperAdminLayoutComponent } from '../layouts/super-admin-layout/super-admin-layout.component';
 
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, AdminLayoutComponent],
+  imports: [CommonModule, NavbarComponent, SuperAdminLayoutComponent],
+
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.css'
 })

@@ -1,11 +1,22 @@
-<h2>{{ isEditMode ? 'Modifier le Domaine' : 'Ajouter un Domaine' }}</h2>
-<form (ngSubmit)="saveDomaine()">
-  <label for="nom">Nom:</label>
-  <input type="text" id="nom" [(ngModel)]="domaine.nom" name="nom" required>
+  <!-- Edit/Add Mode Toggle -->
+  <div class="flex justify-between items-center">
+    <h2>{{ isEditMode ? 'Modifier le Domaine' : 'Ajouter un Domaine' }}</h2>
+  </div>
 
-  <label for="categorie">Catégorie:</label>
-  <input type="number" id="categorie" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
+  <!-- Form for Adding/Editing a Domaine -->
+  <form (ngSubmit)="saveDomaine()" class="flex items-center space-x-4">
+    <!-- Hidden input for category ID, set default value -->
+    <input type="text" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
 
   <button type="submit">Sauvegarder</button>
 </form>
+
+    <!-- Domaine Name Input -->
+    <input type="text" id="nom" [(ngModel)]="domaine.nom" name="nom" required placeholder="Ajouter un domaine"
+      class="w-full lg:max-w-xs rounded-[5px] border mt-1 px-4 h-10 border-solid border-teal-700 bg-white">
+
+    <!-- Submit Button -->
+    <button type="submit" class="relative text-teal-700 flex items-center justify-center">
+      <i class="fas fa-plus-square text-5xl"></i>
+    </button>
 

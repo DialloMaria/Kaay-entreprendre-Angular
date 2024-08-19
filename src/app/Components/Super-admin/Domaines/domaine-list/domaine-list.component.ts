@@ -1,9 +1,9 @@
-import { DomaineService } from './../../../../services/domaine.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Domaine } from '../../../../Models/domaine.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Importer CommonModule
+import { DomaineService } from '../../../../Services/domaine.service';
 
 
 @Component({

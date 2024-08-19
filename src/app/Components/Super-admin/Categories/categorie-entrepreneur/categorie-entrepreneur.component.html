@@ -1,0 +1,107 @@
+<div class="flex bg-gray-100 flex-col lg:flex-row overflow-hidden">
+  <!-- sideBar -->
+  <app-super-admin-layout />
+  <div class="flex flex-col flex-1">
+    <!-- Nav Bar -->
+    <app-navbar />
+
+    <main class="flex-1 mx-4 md:mx-10 p-4 md:p-6">
+      <!-- Statique -->
+      <section class="my-6 md:my-10">
+        <p class="text-lg font-semibold mb-4 md:mb-6">Dashboard Admin</p>
+        <div class="flex flex-col lg:flex-row gap-6">
+          <!-- Section des entrepreneurs -->
+          <div
+            class="bg-[#007461] justify-between w-full h-44 rounded-[20px] p-6 flex flex-col lg:flex-row items-center">
+            <div class="relative flex flex-col justify-center px-10 md:px-20">
+              <div class="block ml-6 md:ml-12">
+                <div class="text-slate-100 text-[28px] md:text-[34px] font-bold mb-2">
+                  Devenir entrepreneur
+                </div>
+                <div class="flex items-center space-x-2">
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide -->
+      <section class="guide w-full  my-6 md:my-10">
+        <div class="flex justify-between">
+          <h2 class="text-lg font-semibold mb-4 md:mb-6">Domaines</h2>
+
+
+
+        </div>
+
+
+      </section>
+      <!-- Guide -->
+      <section class="guide w-full my-6 md:my-10">
+        <div class="flex flex-col lg:flex-row  gap-8">
+          <!-- Left Content -->
+          <div class="block w-full ">
+            <div class="grid lg:w-3/4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  justify-items-center">
+              <!-- Categories -->
+              <div class="flex shadow-lg flex-col rounded-md h-[71px] w-full ">
+                <div class="px-5 py-6 bg-white rounded-md text-center">Agriculture</div>
+              </div>
+              <div class="flex shadow-lg flex-col rounded-md h-[71px] w-full ">
+                <div class="px-5 py-6 bg-white rounded-md text-center">Informatique</div>
+              </div>
+              <div class="flex shadow-lg flex-col rounded-md h-[71px] w-full ">
+                <div class="px-5 py-6 bg-white rounded-md text-center">Santé</div>
+              </div>
+            </div>
+
+            <!--  entrepreneurs -->
+            <div class="flex flex-col gap-6 mt-12 w-full">
+              <div class="text-lg font-bold text-gray-700">Listes des entrepreneurs inscrits</div>
+
+              <div class="flex flex-col bg-white rounded-2xl shadow-sm p-5 md:p-6 lg:p-10">
+                <!-- Header -->
+                <div class="block">
+                  <div
+                    class="flex bg-green-400 px-8 flex-wrap gap-10 justify-between items-center text-base font-semibold tracking-wide text-black whitespace-nowrap ">
+                    <div class="self-stretch my-auto">Nom</div>
+                    <div class="self-stretch my-auto">Prénom</div>
+                    <div class="self-stretch my-auto">Téléphone</div>
+                    <div class="self-stretch my-auto">email</div>
+                    <div class="self-stretch my-auto">Adresse</div>
+                  </div>
+                </div>
+
+                <!-- Body -->
+                <div class="flex flex-col text-base font-medium tracking-wide text-black max-w-[920px]">
+                  <div *ngFor="let entrepreneur of paginatedEntrepreneurs" class="flex flex-wrap gap-10 justify-between items-center mt-8 w-full max-md:max-w-full">
+                    <div class="self-stretch my-auto">{{ entrepreneur.nom }}</div>
+                    <div class="self-stretch my-auto">{{ entrepreneur.prenom }}</div>
+                    <div class="self-stretch my-auto">{{ entrepreneur.telephone }}</div>
+                    <div class="self-stretch my-auto">{{ entrepreneur.email }}</div>
+                    <div class="self-stretch my-auto">{{ entrepreneur.adresse }}</div>
+                  </div>
+                </div>
+
+                <!-- Pagination Controls -->
+                <div class="flex justify-end items-center mt-8">
+                  <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" class="px-4 py-2 bg-gray-300 rounded">Précédent</button>
+                  <span class="px-4">Page {{ currentPage }} of {{ totalPages }}</span>
+                  <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" class="px-4 py-2 bg-gray-300 rounded">Suivant</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </section>
+
+
+    </main>
+  </div>
+</div>

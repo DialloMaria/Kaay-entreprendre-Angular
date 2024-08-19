@@ -1,25 +1,17 @@
-import { Component } from '@angular/core';
-import { SuperAdminLayoutComponent } from "../super-admin-layout/super-admin-layout.component";
-import { NavbarComponent } from "../navbar/navbar.component";
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-layout',
+  selector: 'app-super-admin-layout',
   standalone: true,
-  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule],
-  templateUrl: './admin-layout.component.html',
-  styleUrl: './admin-layout.component.css'
+  templateUrl: './super-admin-layout.component.html',
+  styleUrls: ['./super-admin-layout.component.css']
 })
-export class AdminLayoutComponent {
+export class SuperAdminLayoutComponent implements AfterViewInit {
 
-  user: any;
-  ngOnInit(): void {
-    const userString = localStorage.getItem('user');
-    this.user = userString? JSON.parse(userString) : { username: '', roles: [] };
-  }
-
+  // Utilisation d'AfterViewInit pour s'assurer que le DOM est prêt
   ngAfterViewInit() {
     this.activeMenu();
+
   }
 
   activeMenu() {
@@ -38,4 +30,7 @@ export class AdminLayoutComponent {
         });
     });
   }
+
+
 }
+
