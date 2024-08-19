@@ -37,24 +37,24 @@ private http = inject(HttpClient);
     return this.http.get<GuideModel>(`${apiUrl}/guides/${id}`, { headers });
   }
 
-  createGuide(guide: GuideModel): Observable<GuideModel> {
+  createGuide(guide: FormData): Observable<any> {
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<GuideModel>(`${apiUrl}/guides`, guide, { headers });
-
+    return this.http.post<any>(`${apiUrl}/guides`, guide, { headers });
   }
 
-  updateGuide(id: number, guide: GuideModel): Observable<GuideModel> {
+
+  updateGuide(id: number, guide: FormData): Observable<any> {
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.put<GuideModel>(`${apiUrl}/guides/${id}`, guide, { headers });
-  }
 
+    return this.http.post(`${apiUrl}/guides/${id}`, guide, { headers });
+  }
   deleteGuide(id: number): Observable<GuideModel> {
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({

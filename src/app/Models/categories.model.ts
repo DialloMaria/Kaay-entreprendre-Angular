@@ -6,8 +6,4 @@ export interface Categorie {
   updated_at?: Date;
 
 
-
-
-
-
 }
