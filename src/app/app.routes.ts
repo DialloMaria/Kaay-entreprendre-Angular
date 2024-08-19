@@ -31,6 +31,7 @@ import { RessourceListComponent } from './Components/Administrateurs/Ressources/
 
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
+    
 
 
   // Redirection par défaut vers la liste des domaines
@@ -71,6 +72,7 @@ export const routes: Routes = [
   //la route LIST-COMMENTAIRES
   {path:'commentaires',component:CommentairesGuidesListService},
   //la route AJOUT-MODIFIER
+
 
    //La route Pour Evenement
    {path:'entrepreneur/evenements',component:EvenementComponent},

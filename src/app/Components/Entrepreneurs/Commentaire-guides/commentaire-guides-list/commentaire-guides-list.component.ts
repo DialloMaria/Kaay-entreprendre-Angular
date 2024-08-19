@@ -13,7 +13,7 @@ import { Route } from '@angular/router';
   templateUrl: './commentaire-guides-list.component.html',
   styleUrls: ['./commentaire-guides-list.component.css']
 })
-export class CommentaireGuidesListComponent implements OnInit {
+export class CommentaireGuidesComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
