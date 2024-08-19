@@ -24,6 +24,7 @@ export const routes: Routes = [
 
   //la route LIST-COMMENTAIRES
   {path:'commentaires',component:CommentairesGuidesListService},
+  
   //la route AJOUT-MODIFIER
 
 ];
