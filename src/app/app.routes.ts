@@ -15,6 +15,7 @@ import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
  import { EntrepreneurGuard } from './Guard/entrepreneur.guard'; 
 import { CommentairesGuidesListService } from './Services/commentaires-guides-list.service';
+import { EvenementComponent } from './Components/Entrepreneurs/Evenement/evenement.component';
 
 
 export const routes: Routes = [
@@ -55,4 +56,7 @@ export const routes: Routes = [
   {path:'commentaires',component:CommentairesGuidesListService},
   //la route AJOUT-MODIFIER
 
+   //La route Pour Evenement 
+   {path:'entrepreneur/evenement',component:EvenementComponent}
 ];
+
