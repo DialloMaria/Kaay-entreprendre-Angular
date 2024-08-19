@@ -1,0 +1,118 @@
+
+*{
+    margin: 00;
+    padding: 00;
+    box-sizing: border-box;
+}
+
+body{
+ background: rgba(255, 255, 255, 0.95);
+}
+
+.banniere{
+ width: 100%;
+ height: 21rem;
+ background-color: #007461;
+ margin: 00  auto;
+}
+
+.banniere h1{
+    color: #E6965B;
+    font-family: 'Buenard';
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.banniere h3 {
+    color: var(--Schemes-On-Error, #FFF);
+font-family: 'Buenard';
+font-size: 1.84rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+}
+
+
+.typeEvenement{
+
+   align-items: center;
+   padding: 1rem;
+   margin: 1rem;
+
+}
+.typeEvenement h3 {
+    padding: 0.4rem 4rem;
+   background-color: rgb(60, 125, 182);
+   border-radius: solid 10rem;
+   color: var(--Schemes-Shadow, #000);
+   font-family: 'Buenard';
+   font-size: 1.3rem;
+   font-style: normal;
+   font-weight: 700;
+   line-height: normal;
+   border-radius: 10px;
+   background: var(--Schemes-On-Error, #FFF);
+   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+   }
+   .typeEvenement  .active{
+    padding: 0.4rem 05rem;
+   
+   background-color: rgb(60, 125, 182);
+   border-radius: solid 10rem;
+   border-radius: 10px;
+   background: #E6965B;
+   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+   
+   }
+
+   .listEvenement {
+    padding: 2rem;
+   margin-left: 3.5rem;
+}
+ 
+   .listEvenement .cart{
+  border-radius: 1rem;
+    width: 22rem;
+
+    border: #007461 solid 0.01rem;
+   }
+   .listEvenement .cart img{
+    height:12.38rem ;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0rem 0rem;
+   }
+   .listEvenement .cart .DetailEvenement {
+    padding: 0.5rem;
+    display: flex; 
+   }
+
+   .listEvenement .cart .DetailEvenement .dateDetailEvenement {
+    color: var(--Schemes-Shadow, #000);
+    width: 50%;
+    font-family: "DM Sans";
+    font-size: 28.429px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+   padding: 0.3rem;
+   }
+   .listEvenement .cart .DetailEvenement .DescriptDetailEvenement .detailTitre{
+    color: var(--Schemes-Shadow, #000);
+    font-family: "DM Sans";
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 24px */
+   padding: 0.3rem;
+   }
+   .listEvenement .cart .DetailEvenement .DescriptDetailEvenement .detailsparagraph{
+    color: #6A6A6A;
+    font-family: "DM Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+   }
+   
