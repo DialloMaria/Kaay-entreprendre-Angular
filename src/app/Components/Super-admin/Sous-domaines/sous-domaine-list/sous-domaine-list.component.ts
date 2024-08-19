@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { SuperAdminService } from '../../../../Services/super-admin.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sous-domaine-list',
@@ -15,13 +16,15 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
   sousDomaines: any[] = [];
   selectedSousDomaines: any[] = [];
   selectedDomaineName: string = '';
+  selectedEntrepreneurs: any[] = [];
 
-  constructor(private superAdminService: SuperAdminService) {}
+  constructor(
+    private superAdminService: SuperAdminService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Optionally, you can load default data here if needed
-    // For example, load a default domaine's sous-domaines
-    // this.loadSousDomaines(1); // Load sous-domaines for domaine with ID 1
+    this.loadSousDomaines();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -33,25 +36,33 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
   getSousDomaines(domaineId: number): void {
     this.superAdminService.loadSousDomaines(domaineId).subscribe((response: any) => {
       this.sousDomaines = response.sousDomaines;
-      console.log('Sous-domaines du domaine:', this.sousDomaines);
-      this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom
-      || '';
+      this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom || '';
       this.selectedSousDomaines = this.sousDomaines;
-        });
-
-
-
+    },
+    error => {
+      console.error('Erreur lors de la récupération des sous-domaines:', error);
+    });
   }
 
+  loadSousDomaines(): void {
+    this.superAdminService.getSousDomaines().subscribe(
+      (response: any) => {
+        this.sousDomaines = response.sousDomaines;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des sous-domaines:', error);
+      }
+    );
+  }
 
-
-
-  // Optionally, this method can be removed if not used
-  loadSousDomaines(domaineId: number): void {
-    this.superAdminService.loadSousDomaines(domaineId).subscribe((response: any) => {
-      this.selectedSousDomaines = response.sousDomaines;
-      console.log('Sous-domaines du domaine:', this.selectedSousDomaines);
-      this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom || '';
-    });
+  showEntrepreneurs(sousDomaineId: number): void {
+    this.superAdminService.getEntrepreneursBySousDomaine(sousDomaineId).subscribe(
+      (response: any) => {
+        this.selectedEntrepreneurs = response.entrepreneurs;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des entrepreneurs:', error);
+      }
+    );
   }
 }

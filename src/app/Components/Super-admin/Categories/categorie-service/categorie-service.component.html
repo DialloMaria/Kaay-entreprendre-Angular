@@ -35,29 +35,29 @@
         <div class="flex justify-between">
           <h2 class="text-lg font-semibold mb-4 md:mb-6">Domaines</h2>
 
-            <!--  -->
-  <!-- Edit/Add Mode Toggle -->
-  <div class="flex justify-between items-center">
-    <h2>{{ isEditMode ? 'Modifier le Domaine' : 'Ajouter un Domaine' }}</h2>
-  </div>
+          <!--  -->
+          <!-- Edit/Add Mode Toggle -->
+          <div class="flex justify-between items-center">
+            <h2>{{ isEditMode ? 'Modifier le Domaine' : 'Ajouter un Domaine' }}</h2>
+          </div>
 
-  <!-- Form for Adding/Editing a Domaine -->
-  <form (ngSubmit)="saveDomaine()" class="flex items-center space-x-4">
-    <!-- Hidden input for category ID, set default value -->
-    <input type="text" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
+          <!-- Form for Adding/Editing a Domaine -->
+          <form (ngSubmit)="saveDomaine()" class="flex items-center space-x-4">
+            <!-- Hidden input for category ID, set default value -->
+            <input type="text" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
 
-    <!-- Domaine Name Input -->
-    <input type="text" id="nom" [(ngModel)]="domaine.nom" name="nom" required placeholder="Ajouter un domaine"
-      class="w-full lg:max-w-xs rounded-[5px] border mt-1 px-4 h-10 border-solid border-teal-700 bg-white">
+            <!-- Domaine Name Input -->
+            <input type="text" id="nom" [(ngModel)]="domaine.nom" name="nom" required placeholder="Ajouter un domaine"
+              class="w-full lg:max-w-xs rounded-[5px] border mt-1 px-4 h-10 border-solid border-teal-700 bg-white">
 
-    <!-- Submit Button -->
-    <button type="submit" class="relative text-teal-700 flex items-center justify-center">
-      <i class="fas fa-plus-square text-5xl"></i>
-    </button>
-  </form>
+            <!-- Submit Button -->
+            <button type="submit" class="relative text-teal-700 flex items-center justify-center">
+              <i class="fas fa-plus-square text-5xl"></i>
+            </button>
+          </form>
 
 
-            <!--  -->
+          <!--  -->
 
         </div>
 
@@ -71,39 +71,38 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
               <!-- Domains -->
               <div *ngFor="let domaine of domaines" class="flex shadow-lg flex-col rounded-md h-[71px] w-full">
-                <div
-                  (click)="filterSousDomaines(domaine)"
-                  [ngClass]="{'bg-[#007461]  text-white text-2xl  ': selectedDomaine === domaine, 'bg-white': selectedDomaine !== domaine}"
-                  class="px-5 py-6 rounded-md text-center cursor-pointer"
-                >
-                  {{ domaine.nom }}
-                  <button (click)="editDomaine(domaine.id!)">Modifier</button>
-                  <button (click)="deleteDomaine(domaine.id!)">Supprimer</button>
+                <div (click)="filterSousDomaines(domaine)" [ngClass]="{
+                    'bg-[#007461] text-white text-2xl': selectedDomaine === domaine,
+                    'bg-white': selectedDomaine !== domaine
+                  }" class="px-5 py-6 rounded-md text-center cursor-pointer flex items-center justify-between">
+                  <span>{{ domaine.nom }}</span>
+                  <div class="flex space-x-2">
+                    <!-- Edit Button with Font Awesome Icon -->
+                    <button (click)="editDomaine(domaine.id!)" class="text-blue-600 hover:text-blue-800">
+                      <i class="fas fa-edit"></i>
+                    </button>
+
+                    <!-- Delete Button with Font Awesome Icon -->
+                    <button (click)="deleteDomaine(domaine.id!)" class="text-red-600 hover:text-red-800">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
+
 
             </div>
 
             <!-- Sous domaines -->
-            <app-sous-domaine-list [selectedDomaine]="selectedDomaine"></app-sous-domaine-list>
 
 
           </div>
 
           <!-- Right Content -->
-          <div class="bg-white rounded-2xl shadow-sm p-5 lg:p-10 w-full lg:w-1/4">
-            <div class="text-lg font-bold text-gray-700 mb-8">Entrepreneurs</div>
-            <div class="flex gap-5 items-center">
-              <div class="w-8 h-8 relative">
-                <img loading="lazy" src="image-url1" class="object-cover w-full h-full" />
-              </div>
-              <div class="text-sm font-bold text-gray-700">
-                <div class="leading-snug">Développement web</div>
-                <div class="mt-1 text-xs text-slate-400">Description</div>
-              </div>
-            </div>
-          </div>
+
         </div>
+        <app-sous-domaine-list [selectedDomaine]="selectedDomaine"></app-sous-domaine-list>
+
       </section>
 
 

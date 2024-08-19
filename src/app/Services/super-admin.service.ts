@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
+import { Observable } from "rxjs";
 
 
 @Injectable ({
@@ -9,9 +10,7 @@ import { apiUrl } from "./apiUrl";
 })
 
 export class SuperAdminService{
-  getSousDomaines(domaineId: number) {
-    throw new Error('Method not implemented.');
-  }
+
   // constructor(private http: HttpClient) {}
   private http = inject(HttpClient);
   @Injectable({
@@ -58,6 +57,22 @@ export class SuperAdminService{
     return this.http.get<any>(`${apiUrl}/domaines/${id}/sous-domaines`, { headers });
 
   }
+  getSousDomaines(){
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(`${apiUrl}/sous-domaines`);
+  }
+
+  getEntrepreneursBySousDomaine(sousDomaineId: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(`${apiUrl}/sous-domaines/${sousDomaineId}/entrepreneurs`);
+  }
+
 
   //       this.http.get(`http://127.0.0.1:8000/api/domaines/${domaineId}/sous-domaines`).subscribe((response: any) => {
 

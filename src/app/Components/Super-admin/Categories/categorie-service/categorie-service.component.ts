@@ -10,6 +10,8 @@ import { FormDomaineListComponent } from '../../Domaines/form-domaine-list/form-
 import { Domaine } from '../../../../Models/domaine.model';
 import { DomaineService } from '../../../../Services/domaine.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-categorie-list',
@@ -31,6 +33,8 @@ export class CategorieServiceComponent implements OnInit {
   domaine: Domaine = { nom: '', categorie_id: 0 };
   isEditMode = false;
   selectedDomaine: any = null;
+  selectedEntrepreneurs: any[] = [];
+
 
   constructor(
     private superAdminService: SuperAdminService,
@@ -140,14 +144,43 @@ export class CategorieServiceComponent implements OnInit {
     this.router.navigate(['/domaines/edit', id]);
   }
 
-  deleteDomaine(id: number): void {
-    this.domaineService.deleteDomaine(id).subscribe(() => {
-      this.getDomaines();
-    });
-  }
+
   getDomaines(): void {
     this.domaineService.getDomaines().subscribe((response: any) => {
       this.domaines = response.data; // ou selon la structure exacte de votre réponse
     });
   }
+  deleteDomaine(id: number): void {
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.domaineService.deleteDomaine(id).subscribe(
+          () => {
+            Swal.fire(
+              'Supprimé !',
+              'Le domaine a été supprimé.',
+              'success'
+            );
+            this.getDomaines(); // Refresh the list of domaines
+          },
+          error => {
+            Swal.fire(
+              'Erreur',
+              'Une erreur est survenue lors de la suppression.',
+              'error'
+            );
+          }
+        );
+      }
+    });
+  }
+
 }
