@@ -33,5 +33,6 @@ export const EntrepreneurGuard: CanActivateFn = () => {
     router.navigateByUrl('login');
     console.log('Utilisateur non connecté ou pas role.');
     return false;
+    
   }
 };
