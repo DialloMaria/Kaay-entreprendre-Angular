@@ -1,0 +1,32 @@
+<div class="success-banner">
+    <div class="content-container">
+         <!-- Message de succès -->
+      <div class="message-container">
+        <h1>Guide validé avec succès !</h1>
+        <p>Merci d'avoir suivi toutes les étapes.</p>
+      </div>
+      <!-- Image -->
+      <div class="image-container">
+        <img src="assets/images/imageGUIDE1.png" alt="Succès" />
+      </div>
+
+    </div>
+  </div>
+  <div class="temoignage-form">
+    <input type="text" [(ngModel)]="temoignage.titre" placeholder="Titre du témoignage" />
+    <textarea [(ngModel)]="temoignage.description" placeholder="Description du témoignage"></textarea>
+    <button (click)="submitTemoignage()">Ajouter Témoignage</button>
+  </div>
+  
+  <div class="temoignage-list">
+    <div class="temoignage-card" *ngFor="let temoignage of temoignages">
+      <div class="profile">
+        <img src="assets/images/default-profile.png" alt="Profil" />
+      </div>
+      <div class="temoignage-content">
+        <h3>{{ temoignage.titre }}</h3>
+        <p>{{ temoignage.description }}</p>
+      </div>
+    </div>
+  </div>
+  
