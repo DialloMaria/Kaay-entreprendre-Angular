@@ -22,8 +22,8 @@ export const AdministrationGuard: CanActivateFn = () => {
     user = { roles: [] }; // En cas d'erreur, assumez que l'utilisateur n'est pas valide
   }
 
-  console.log('User Data:', user);
-  console.log('User Roles:', user.roles);
+  // console.log('User Data:', user);
+  // console.log('User Roles:', user.roles);
 
   // Vérifiez si l'utilisateur a le rôle 'admin' ou 'super_admin'
   if (user && user.roles && user.roles.some((role: Role) => role.name === 'admin' || role.name === 'super_admin')) {
