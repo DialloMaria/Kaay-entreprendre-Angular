@@ -1,1 +1,23 @@
-<p>ressource-list works!</p>
+<!-- src/app/Components/Administrateurs/Ressources/ressource-list/ressource-list.component.html -->
+<div>
+  <h2>Guides</h2>
+  <ul>
+    <li *ngFor="let guide of guides" (click)="onGuideSelected(guide.id)">
+      {{ guide.titre }} <!-- Assurez-vous que 'titre' est un attribut de Guide -->
+    </li>
+  </ul>
+
+  <div *ngIf="filteredRessources.length > 0">
+    <h2>Ressources pour le guide sélectionné</h2>
+    <ul>
+      <li *ngFor="let ressource of filteredRessources">
+        <h3>{{ ressource.titre }}</h3>
+        <p>{{ ressource.description }}</p>
+        <!-- Ajoutez plus d'informations sur la ressource si nécessaire -->
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="filteredRessources.length === 0 && selectedGuideId !== null">
+    <p>Aucune ressource disponible pour ce guide.</p>
+  </div>
+</div>

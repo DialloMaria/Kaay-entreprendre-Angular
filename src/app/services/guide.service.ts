@@ -1,33 +1,46 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Guide } from '../models/guide.model';
+import { Ressource } from '../models/ressource.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuideService {
-  private baseUrl = 'https://ton_api_laravel_url/api/guides';  // URL de ton API
 
-  constructor(private http: HttpClient) {}
+  private guidesUrl = 'http://127.0.0.1:8000/api/guides';
+  private ressourcesUrl = 'http://127.0.0.1:8000/api/ressources';
+
+  constructor(private http: HttpClient) { }
+
+  private getHttpHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+  }
 
   getGuides(): Observable<Guide[]> {
-    return this.http.get<Guide[]>(this.baseUrl);
+    return this.http.get<Guide[]>(this.guidesUrl, { headers: this.getHttpHeaders() }).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  getGuideById(id: number): Observable<Guide> {
-    return this.http.get<Guide>(`${this.baseUrl}/${id}`);
+  getRessourcesForGuide(guideId: number): Observable<Ressource[]> {
+    return this.http.get<Ressource[]>(`${this.ressourcesUrl}?guide_id=${guideId}`, { headers: this.getHttpHeaders() }).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  createGuide(data: Guide): Observable<Guide> {
-    return this.http.post<Guide>(this.baseUrl, data);
-  }
-
-  updateGuide(id: number, data: Guide): Observable<Guide> {
-    return this.http.put<Guide>(`${this.baseUrl}/${id}`, data);
-  }
-
-  deleteGuide(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  private handleError(error: any): Observable<never> {
+    let errorMessage = 'Une erreur est survenue.';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Erreur: ${error.error.message}`;
+    } else {
+      errorMessage = `Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }

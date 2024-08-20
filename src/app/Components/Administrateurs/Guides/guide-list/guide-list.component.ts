@@ -1,68 +1,38 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';  // Importer FormsModule
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Guide } from '../../../../models/guide.model';
-import { Router } from '@angular/router';
+import { GuideService } from '../../../../services/guide.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-guide-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule],  // Ajouter FormsModule ici
   templateUrl: './guide-list.component.html',
-  styleUrls: ['./guide-list.component.css']
+  styleUrls: ['./guide-list.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class GuideListComponent {
-  public guides: Guide[] = [];
-  public comments: string[] = [];
-  public newComment: string = '';
+export class GuideListComponent implements OnInit {
+  guides: Guide[] = [];
+  @Output() guideSelected = new EventEmitter<number>();
 
-  // Déclarez la propriété resources ici
-  public resources = [
-    { title: 'Entreprenariat au Sénégal', content: 'Le lorem ipsum est, en imprimerin Le lorem ipsum est,', showContent: false },
-    { title: 'Entreprenariat au Sénégal', content: 'Le lorem ipsum est, en imprimerin Le lorem ipsum est,', showContent: false },
-    { title: 'Entreprenariat au Sénégal', content: 'Le lorem ipsum est, en imprimerin Le lorem ipsum est,', showContent: false },
-    { title: 'Entreprenariat au Sénégal', content: 'Le lorem ipsum est, en imprimerin Le lorem ipsum est,', showContent: false },
-    { title: 'Entreprenariat au Sénégal', content: 'Le lorem ipsum est, en imprimerin Le lorem ipsum est,', showContent: false },
-  ];
-
-  constructor(private router: Router) {}
+  constructor(private guideService: GuideService) {}
 
   ngOnInit(): void {
-    this.guides = [
-      {
-        id: 1,
-        titre: 'Guide: Algorithmes',
-        contenu: 'Le lorem ipsum est, en imprimerin Le lorem ipsum est, ',
-        datepublication: '2024-08-18',
-        media: 'assets/images/imageGUIDE1.png',
-        auteur: 'Auteur 1',
-        domaine_id: 1,
-        user_id: 101
+    this.loadGuides();
+  }
+
+  private loadGuides(): void {
+    this.guideService.getGuides().subscribe(
+      (response: Guide[]) => {
+        this.guides = response;
       },
-    ];
+      (error: HttpErrorResponse) => {
+        console.error('Erreur lors du chargement des guides:', error.message);
+      }
+    );
   }
 
-  public steps: string[] = ['Étape 1', 'Étape 2', 'Étape 3', 'Étape 4', 'Étape 5'];
-  public selectedStep: string | null = null;
-  public isLastStepSelected: boolean = false;
-
-  selectStep(step: string) {
-    this.selectedStep = step;
-    this.isLastStepSelected = (step === 'Étape 5');
-  }
-
-  toggleResourceContent(resource: any) {
-    resource.showContent = !resource.showContent;
-  }
-
-  completeGuide() {
-    this.router.navigate(['/guide-completed']);
-  }
-
-  addComment() {
-    if (this.newComment.trim()) {
-      this.comments.push(this.newComment);
-      this.newComment = '';
-    }
+  selectGuide(guideId: number): void {
+    this.guideSelected.emit(guideId);
   }
 }
