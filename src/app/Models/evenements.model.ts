@@ -1,5 +1,5 @@
 export interface EvenementModel {
-  id?: number | undefined;
+  id: number ;
   titre?: string;
   description?: string;
   online?: boolean;

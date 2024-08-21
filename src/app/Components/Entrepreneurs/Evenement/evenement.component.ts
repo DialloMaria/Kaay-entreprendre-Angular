@@ -3,11 +3,13 @@ import { EvenementService } from '../../../Services/evenement.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomaineService } from '../../../Services/domaine.service';
+import { RouterLink, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-evenement',
   standalone: true,
-  imports: [ CommonModule, FormsModule],
+  imports: [ CommonModule, FormsModule, RouterModule, RouterLink],
   templateUrl: './evenement.component.html',
   styleUrls: ['./evenement.component.css']
 })
@@ -22,6 +24,10 @@ export class EvenementComponent implements OnInit {
   isAddFormVisible = false;
   isUpdateFormVisible = false;
 
+  filteredEvenements: any[] = [];
+  filter: string = 'all'; // Default filter
+
+
   constructor(private evenementService: EvenementService,
     private domaineService: DomaineService// Ajoutez ce service
 
@@ -32,6 +38,7 @@ export class EvenementComponent implements OnInit {
     this.getEvenements();
     this.getDomaines(); // Récupérez les domaines au démarrage
 
+    this.loadEvents();
 
   }
 
@@ -205,5 +212,32 @@ deleteEvenement(id: number): void {
   }
 
 
+  loadEvents(): void {
+    this.evenementService.getEvenements().subscribe(events => {
+      this.evenements = events;
+      this.applyFilter(); // Apply the default filter
+    });
+  }
 
+  filterEvents(filter: string): void {
+    this.filter = filter;
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    switch (this.filter) {
+      case 'online':
+        this.filteredEvenements = this.evenements.filter(event => event.online && new Date(event.date_debut) < new Date());
+        break;
+      case 'physical':
+        this.filteredEvenements = this.evenements.filter(event => !event.online &&  new Date(event.date_debut) < new Date());
+        break;
+      case 'past':
+        this.filteredEvenements = this.evenements.filter(event => new Date(event.date_debut) < new Date());
+        break;
+      default:
+        this.filteredEvenements = this.evenements;
+        break;
+    }
+  }
 }

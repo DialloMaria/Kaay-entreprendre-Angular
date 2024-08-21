@@ -65,6 +65,25 @@ private http = inject(HttpClient);
     return this.http.delete<EvenementModel>(`${apiUrl}/evenements/${id}`, { headers });
 
   }
+  // inscription un evenement
+  registerForEvent(eventId: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post(`${apiUrl}/evenement/${eventId}/register`, null, { headers });
+  }
+
+  // désinscription un evenement
+  unsubscribeFromEvenement(id: number): Observable<any> {
+    const token = localStorage.getItem('access_token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete(`${apiUrl}/evenements/${id}/unsubscribe`, { headers });
+  }
 }
 
   // Méthode pour obtenir les statistiques
