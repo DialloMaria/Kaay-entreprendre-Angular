@@ -1,6 +1,6 @@
 <div>
   <h2>Liste des événements</h2>
-  <button (click)="openForm()">Créer un nouvel événement</button>
+  <button (click)="openForm()">Ajouter un événement</button>
 
   <table>
     <thead>
@@ -24,33 +24,72 @@
     </tbody>
   </table>
 
-  <div *ngIf="isFormVisible">
-    <h3>{{ selectedEvenement ? 'Modifier' : 'Créer' }} un événement</h3>
-    <form (ngSubmit)="selectedEvenement ? updateEvenement() : createEvenement()">
-        <label for="titre">Titre</label>
-        <input id="titre" [(ngModel)]="newEvenement.titre" name="titre" required>
+  <!-- Formulaire pour ajouter un événement -->
+  <div *ngIf="isAddFormVisible">
+    <h3>Créer un événement</h3>
+    <form (ngSubmit)="createEvenement()">
+      <label for="titre">Titre</label>
+      <input id="titre" [(ngModel)]="newEvenement.titre" name="titre" required>
 
-        <label for="description">Description</label>
-        <textarea id="description" [(ngModel)]="newEvenement.description" name="description" required></textarea>
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="newEvenement.description" name="description" required></textarea>
 
-        <label for="lieu">Lieu</label>
-        <input id="lieu" [(ngModel)]="newEvenement.lieu" name="lieu" required>
+      <label for="image">Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" name="image">
 
-        <label for="online">En ligne</label>
-        <select id="online" [(ngModel)]="newEvenement.online" name="online" required>
-            <option [value]="true">Oui</option>
-            <option [value]="false">Non</option>
-        </select>
+      <label for="online">En ligne</label>
+      <select id="online" [(ngModel)]="newEvenement.online" name="online" required>
+        <option [value]="true">Oui</option>
+        <option [value]="false">Non</option>
+      </select>
 
-        <label for="domaine_id">Domaine</label>
-        <input id="domaine_id" [(ngModel)]="newEvenement.domaine_id" name="domaine_id" required>
+      <label for="lieu">Lieu</label>
+      <input id="lieu" [(ngModel)]="newEvenement.lieu" name="lieu" required>
 
-        <label for="image">Image</label>
-        <input type="file" id="image" (change)="onFileSelected($event)" name="image">
+      <label for="domaine_id">Domaine</label>
+      <select id="domaine_id" [(ngModel)]="newEvenement.domaine_id" name="domaine_id" required>
+        <option *ngFor="let domaine of domaines" [value]="domaine.id">
+          {{ domaine.nom }}
+        </option>
+      </select>
 
-        <button type="submit">{{ selectedEvenement ? 'Mettre à jour' : 'Créer' }}</button>
-        <button type="button" (click)="closeForm()">Annuler</button>
+      <button type="submit">Créer</button>
+      <button type="button" (click)="closeForm()">Annuler</button>
     </form>
-</div>
+  </div>
 
+  <!-- Formulaire pour modifier un événement -->
+  <!-- Formulaire pour modifier un événement -->
+  <div *ngIf="isUpdateFormVisible">
+    <h3>Modifier un événement</h3>
+    <form (ngSubmit)="updateEvenement()">
+      <label for="titre">Titre</label>
+      <input id="titre" [(ngModel)]="selectedEvenement.titre" name="titre" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="selectedEvenement.description" name="description" required></textarea>
+
+      <label for="image">Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" name="image">
+
+      <label for="online">En ligne</label>
+      <select id="online" [(ngModel)]="selectedEvenement.online" name="online" required>
+        <option [value]="true">Oui</option>
+        <option [value]="false">Non</option>
+      </select>
+
+      <label for="lieu">Lieu</label>
+      <input id="lieu" [(ngModel)]="selectedEvenement.lieu" name="lieu" required>
+
+      <label for="domaine_id">Domaine</label>
+      <select id="domaine_id" [(ngModel)]="selectedEvenement.domaine_id" name="domaine_id" required>
+        <option *ngFor="let domaine of domaines" [value]="domaine.id">
+          {{ domaine.nom }}
+        </option>
+      </select>
+
+      <button type="submit">Mettre à jour</button>
+      <button type="button" (click)="closeForm()">Annuler</button>
+    </form>
+  </div>
 </div>
