@@ -3,6 +3,7 @@ import { EvenementService } from '../../../Services/evenement.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomaineService } from '../../../Services/domaine.service';
+import { EvenementModel } from '../../../Models/evenements.model';
 
 @Component({
   selector: 'app-evenement',
@@ -48,10 +49,16 @@ export class EvenementComponent implements OnInit {
 
   getEvenements(): void {
     this.evenementService.getEvenements().subscribe({
-      next: (data) => this.evenements = data,
+      next: (data) => {
+        this.evenements = data.map((evenement: EvenementModel) => ({
+          ...evenement,
+          image: evenement.image ? `http://127.0.0.1:8000/storage/${evenement.image}` : 'https://via.placeholder.com/297x110',
+        }));
+      },
       error: (err) => console.error('Erreur lors de la récupération des événements', err)
     });
   }
+
 
   // createEvenement(): void {
   //   this.evenementService.createEvenement(this.newEvenement).subscribe({
