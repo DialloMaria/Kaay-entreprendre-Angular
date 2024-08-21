@@ -7,4 +7,15 @@ export interface Ressource {
   type: string;
   guideId: number;
   createdBy: number;
+  guide?: Guide;
+}
+
+export interface Guide {
+  id: number;
+  titre: string;
+  contenu: string;
+  datepublication: string;
+  etape: number;
+  domaine_id: number;
+  ressources?: Ressource[];
 }

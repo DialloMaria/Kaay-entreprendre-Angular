@@ -1,12 +1,12 @@
-// src/app/Components/Administrateurs/Ressources/ressource-list/ressource-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RessourceService } from '../../../../services/ressource.service';
-import { Guide } from '../../../../models/guide.model'; // Assurez-vous que le chemin est correct
-import { Ressource } from '../../../../models/ressource.model'; // Assurez-vous que le chemin est correct
-import { HttpErrorResponse } from '@angular/common/http';
+import { GuideService } from '../../../../services/guide.service'; // Import the GuideService
+import { Guide } from '../../../../models/guide.model';
+import { Ressource } from '../../../../models/ressource.model';
 import { GuideListComponent } from '../../Guides/guide-list/guide-list.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-ressource-list',
@@ -18,19 +18,20 @@ import { GuideListComponent } from '../../Guides/guide-list/guide-list.component
 export class RessourceListComponent implements OnInit {
   ressources: Ressource[] = [];
   filteredRessources: Ressource[] = [];
-  guides: Guide[] = [];
   selectedGuideId: number | null = null;
+  activeAccordionId: number | null = null;
+  guides: Guide[] = [];
 
-  constructor(private ressourceService: RessourceService) {}
+  constructor(private ressourceService: RessourceService, private guideService: GuideService) { }
 
   ngOnInit(): void {
-    this.loadGuides(); // Charge les guides qui contiennent leurs ressources
+    this.loadGuides();
   }
 
   private loadGuides(): void {
-    this.ressourceService.getGuides().subscribe(
-      (response: Guide[]) => {
-        this.guides = response;
+    this.guideService.getGuides().subscribe(
+      (guides: Guide[]) => {
+        this.guides = guides;
       },
       (error: HttpErrorResponse) => {
         console.error('Erreur lors du chargement des guides:', error.message);
@@ -38,15 +39,30 @@ export class RessourceListComponent implements OnInit {
     );
   }
 
+  private loadRessources(): void {
+    if (this.selectedGuideId) {
+      this.ressourceService.getRessourcesByGuideId(this.selectedGuideId).subscribe(
+        (response: any) => {
+          this.ressources = response.data || [];
+          this.filteredRessources = this.ressources;
+        },
+        (error: HttpErrorResponse) => {
+          console.error('Erreur lors du chargement des ressources:', error.message);
+        }
+      );
+    }
+  }
+
   onGuideSelected(guideId: number): void {
     this.selectedGuideId = guideId;
-    this.ressourceService.getRessourcesByGuideId(guideId).subscribe(
-      (response: Ressource[]) => {
-        this.filteredRessources = response;
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Erreur lors du chargement des ressources:', error.message);
-      }
-    );
+    this.loadRessources();
+  }
+
+  toggleAccordion(id: number): void {
+    this.activeAccordionId = this.activeAccordionId === id ? null : id;
+  }
+
+  isActive(id: number): boolean {
+    return this.activeAccordionId === id;
   }
 }

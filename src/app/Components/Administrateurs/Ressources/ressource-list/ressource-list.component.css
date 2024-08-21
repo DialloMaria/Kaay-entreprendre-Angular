@@ -1,274 +1,77 @@
-/* Style global */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Liste des ressources */
-  h3 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-  
-  li strong {
-    font-size: 18px;
-    color: #333;
-  }
-  
-  li p {
-    margin: 5px 0;
-    color: #666;
-  }
-  
-  li a {
-    color: #007461;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    text-decoration: underline;
-  }
-  
-  button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 2px 8px;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    background-color: #ff3333;
-  }
-  
-  /* Formulaire d'ajout */
-  form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-  }
-  
-  form input[type="text"] {
-    width: calc(100% - 22px); 
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  form button[type="submit"] {
-    background-color: #218838;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  form button[type="submit"]:hover {
-    background-color: #218838;
-  }
-  
-
-  .accordion-item {
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    width: 60%;
-    margin: 0 auto; 
-  }
-  
-  .accordion-header {
-    background-color: #007461;
-    color: white;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
-  
-  .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    padding: 0 15px;
-    background-color: #f9f9f9;
-  }
-  
-  .accordion-content.active {
-    max-height: 200px; 
-    padding: 15px;
-  }
-  
-  h3{
-    color: #007461;
-
-  }
-
-  /* Button style */
-.open-popup-btn {
-    background-color: #007461;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
-  .open-popup-btn:hover {
-    background-color: #005f4f;
-  }
-  
-  /* Popup form styling */
-  .popup-form {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .popup-form.active {
-    display: flex;
-  }
-  
-  .popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .popup-content h3 {
-    margin-top: 0;
-    color: #007461;
-  }
-  
-  .popup-content form input[type="text"] {
-    width: calc(100% - 22px); 
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .popup-content form button[type="submit"] {
-    background-color: #218838;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .popup-content form button[type="submit"]:hover {
-    background-color: #1e7e34;
-  }
-  
-  /* Close button style */
-  .close-popup-btn {
-    background-color: #007461;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .close-popup-btn:hover {
-    background-color: #007461;
-  }
-  
-  /* Banner styling */
+/* Banner styling */
 .banner {
-  background-color: #007461;
-  color: white;
-  padding: 20px;
-  text-align: center; 
-  position: relative; 
+  background-color: #28a745; /* Green background color */
+  color: white; /* White text color */
+  padding: 20px; /* Padding around the banner content */
+  text-align: center; /* Center align the text */
+  position: relative; /* To position the buttons inside */
 }
 
 .banner-content {
-  max-width: 1200px;
-  margin: 0 auto; 
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto; /* Center the banner content */
 }
 
 .steps-buttons {
   display: flex;
-  justify-content: center;
-  margin-top: 10px; 
+  justify-content: center; /* Center the buttons horizontally */
+  margin-top: 10px; /* Margin between title and buttons */
 }
 
 .steps-buttons button {
-  background-color: #fff; 
-  color: #28a745; 
+  background-color: #fff; /* White background for buttons */
+  color: #28a745; /* Green text color */
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 0 5px; 
+  margin: 0 5px; /* Space between buttons */
   cursor: pointer;
 }
 
 .steps-buttons button:hover {
-  background-color: #e9ecef; 
+  background-color: #e9ecef; /* Light gray background on hover */
 }
 
 /* Popup form styling */
 .popup-form {
   display: none;
-  
+  /* Your existing styles here */
 }
 
 .popup-form.active {
   display: block;
   /* Your existing styles here */
 }
-/* Styles for active step */
-.steps-buttons button.active {
-  background-color: #FC974E;
-  color: white;
+.accordion-container {
+  width: 100%;
 }
 
-/* Styles for finish button */
-.finish-button-container {
-  margin-top: 20px;
-}
-
-.finish-button {
-  background-color: #007461;
-  color: white;
-  padding: 10px 20px;
-  border: none;
+.accordion-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
   border-radius: 5px;
-  cursor: pointer;
+  overflow: hidden;
 }
-.finish-button:hover{
-  background-color: #FC974E;
+
+.accordion-header {
+  background-color: #007461; /* Vert pour la bannière */
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.accordion-content.active {
+  display: block;
+}
+
+.accordion-header:hover {
+  background-color: #FC974E; /* Orange pour le hover */
 }
