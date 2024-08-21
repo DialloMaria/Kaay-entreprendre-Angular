@@ -45,8 +45,11 @@
 
       <label for="lieu">Lieu</label>
       <input id="lieu" [(ngModel)]="newEvenement.lieu" name="lieu" required>
+<!-- date debut -->
+       <label for="date_debut">Date début</label>
+      <input type="date" id="date_debut" [(ngModel)]="newEvenement.date_debut" name="date_debut" required>
 
-      <label for="domaine_id">Domaine</label>
+     <label for="domaine_id">Domaine</label>
       <select id="domaine_id" [(ngModel)]="newEvenement.domaine_id" name="domaine_id" required>
         <option *ngFor="let domaine of domaines" [value]="domaine.id">
           {{ domaine.nom }}
