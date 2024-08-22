@@ -38,6 +38,7 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
       this.sousDomaines = response.sousDomaines;
       this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom || '';
       this.selectedSousDomaines = this.sousDomaines;
+      console.log(this.selectedSousDomaines)
     },
     error => {
       console.error('Erreur lors de la récupération des sous-domaines:', error);
@@ -48,6 +49,7 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
     this.superAdminService.getSousDomaines().subscribe(
       (response: any) => {
         this.sousDomaines = response.sousDomaines;
+        console.log(this.sousDomaines);
       },
       error => {
         console.error('Erreur lors de la récupération des sous-domaines:', error);

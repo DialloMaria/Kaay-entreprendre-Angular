@@ -45,115 +45,175 @@
     <p>Aucun guide disponible.</p>
   </ng-template>
 
-  <!-- Modal for displaying and editing guide details -->
-  <div *ngIf="selectedGuide" class="fixed text-black inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
-      <div class="flex justify-between space-x-4">
-
+<!-- Modal for displaying and editing guide details -->
+<div *ngIf="selectedGuide" class="fixed text-black inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
+    <div class="flex justify-between space-x-4">
       <h2 class="text-xl font-semibold mb-4">Modifier Guide</h2>
       <button type="button" class="px-4 pl-36 py-2 bg-gray-200 rounded-md hover:bg-gray-300" (click)="closePopup()">Annuler</button>
+    </div>
+
+    <form (ngSubmit)="saveGuideDetails()" #guideForm="ngForm" enctype="multipart/form-data">
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-lg whitespace-nowrap rounded-md font-[275] max-w-[785px] text-neutral-400">
+
+        <!-- Titre -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="titre">Titre</label>
+          <input id="titre" [(ngModel)]="selectedGuide.titre" name="titre" type="text"
+                 class="grow px-4 py-2 text-black text-2xl bold bg-white rounded-md w-full"
+                 required #titre="ngModel">
+          <!-- Message de validation -->
+          <div *ngIf="titre.invalid && titre.touched" class="text-red-500 text-sm">
+            <div *ngIf="titre.errors?.['required']">Le titre est requis.</div>
+          </div>
+        </div>
+
       </div>
-      <form (ngSubmit)="saveGuideDetails()" enctype="multipart/form-data">
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 text-lg whitespace-nowrap rounded-md font-[275] max-w-[785px] text-neutral-400">
-          <!-- Column 1 -->
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="titre">Titre</label>
-            <input id="titre" [(ngModel)]="selectedGuide.titre" name="titre" type="text" class="grow px-4 py-2  text-black text-2xl bold bg-white rounded-md  w-full" required>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg whitespace-nowrap rounded-md font-[275] max-w-[785px] text-neutral-400">
+
+        <!-- Étape -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="etape">Étape</label>
+          <input id="etape" [(ngModel)]="selectedGuide.etape" name="etape" type="number"
+                 class="mt-1 block w-full border-gray-300 text-black text-2xl rounded-md shadow-sm"
+                 required #etape="ngModel">
+          <!-- Message de validation -->
+          <div *ngIf="etape.invalid && etape.touched" class="text-red-500 text-sm">
+            <div *ngIf="etape.errors?.['required']">L'étape est requise.</div>
           </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg whitespace-nowrap rounded-md font-[275] max-w-[785px] text-neutral-400">
 
+        <!-- Domaine ID (caché) -->
+        <input id="domaine_id" [(ngModel)]="selectedGuide.domaine_id" name="domaine_id" type="hidden" required>
 
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="etape">Étape</label>
-            <input id="etape" [(ngModel)]="selectedGuide.etape" name="etape" type="number" class="mt-1 block w-full border-gray-300  text-black text-2xl rounded-md shadow-sm" required>
-          </div>
-          <div class="mb-4">
-            <!-- <label class="block text-sm font-medium text-gray-700" for="datePublication">Date de Publication</label> -->
-            <!-- <input id="datePublication" [(ngModel)]="selectedGuide.datePublication" name="datePublication" type="date" class="grow px-4 py-2 text-black text-2xl bg-white rounded-md  w-full" required> -->
-          </div>
-
-          <div class="mb-4">
-            <!-- <label class="block text-sm font-medium text-gray-700" for="domaine_id">Domaine ID</label> -->
-            <input id="domaine_id" [(ngModel)]="selectedGuide.domaine_id" name="domaine_id" type="hidden" class="grow px-4 py-2 bg-white rounded-md  w-full" required>
-          </div>
-
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="domaine_id">{{  selectedGuide.domaine_id  }} </label>
-            <div *ngIf="selectedGuide.media" class="mt-4">
-              <img class="w-full h-auto mx-3 rounded-lg" [src]="selectedGuide.media" accept="image/*"  alt="Image du guide">
-            </div>
-
+        <!-- Media -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="domaine_id">{{ selectedGuide.domaine_id }}</label>
+          <div *ngIf="selectedGuide.media" class="mt-4">
+            <img class="w-full h-auto mx-3 rounded-lg" [src]="selectedGuide.media" accept="image/*" alt="Image du guide">
           </div>
         </div>
-        <div class="text-neutral-400">
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="contenu">Contenu</label>
-            <textarea id="contenu" [(ngModel)]="selectedGuide.contenu" name="contenu" class="mt-1 block w-full border-gray-300  text-black text-2xl rounded-md shadow-sm" required></textarea>
+      </div>
+
+      <!-- Contenu -->
+      <div class="text-neutral-400">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="contenu">Contenu</label>
+          <textarea id="contenu" [(ngModel)]="selectedGuide.contenu" name="contenu"
+                    class="mt-1 block w-full border-gray-300 text-black text-2xl rounded-md shadow-sm"
+                    required #contenu="ngModel"></textarea>
+          <!-- Message de validation -->
+          <div *ngIf="contenu.errors?.['required'] && contenu.touched" class="text-red-500 text-sm">
+            Le contenu est requis.
           </div>
         </div>
-        <div class="flex justify-between space-x-4">
-          <button type="button" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" (click)="deleteGuide()">Supprimer</button>
+      </div>
 
-          <button type="submit" class="px-4 py-2 bg-[#007461] text-white rounded-md hover:bg-[#007461c6]">Enregistrer</button>
+      <div class="flex justify-between space-x-4">
+        <button type="button" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" (click)="deleteGuide()">Supprimer</button>
+        <button type="submit" class="px-4 py-2 bg-[#007461] text-white rounded-md hover:bg-[#007461c6]" [disabled]="guideForm.invalid">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+ <!-- Form for adding a new guide -->
+<div *ngIf="isFormVisible" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
+    <h2 class="text-xl font-bold mb-4">Ajouter un Guide</h2>
+    <form (ngSubmit)="createGuide()" #newGuideForm="ngForm" enctype="multipart/form-data">
+      <!-- Grid Container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg whitespace-nowrap rounded-md font-[275] max-w-[785px] text-neutral-400">
+
+        <!-- Titre -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="titre">Titre</label>
+          <input id="titre" [(ngModel)]="newGuide.titre" name="titre" type="text"
+                 class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required #titre="ngModel">
+          <div *ngIf="titre.invalid && titre.touched" class="text-red-500 text-sm">
+            <div *ngIf="titre.errors?.['required']">Le titre est requis.</div>
+          </div>
         </div>
-        <div class="flex justify-end space-x-4 mt-4">
+
+        <!-- Étape -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="etape">Étape</label>
+          <input id="etape" [(ngModel)]="newGuide.etape" name="etape" type="number"
+                 class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required #etape="ngModel">
+          <div *ngIf="etape.invalid && etape.touched" class="text-red-500 text-sm">
+            <div *ngIf="etape.errors?.['required']">L'étape est requise.</div>
+          </div>
         </div>
-      </form>
+
+        <!-- Date de Publication -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="datePublication">Date de Publication</label>
+          <input id="datePublication" [(ngModel)]="newGuide.datePublication" name="datePublication" type="date"
+                 class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required #datePublication="ngModel">
+          <div *ngIf="datePublication.invalid && datePublication.touched" class="text-red-500 text-sm">
+            <div *ngIf="datePublication.errors?.['required']">La date de publication est requise.</div>
+          </div>
+        </div>
+
+        <!-- Media -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="media">Media</label>
+          <input id="media" (change)="onMediaChange($event)" type="file"
+                 class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full">
+        </div>
+
+  <!-- Domaine Selection -->
+<div class="mb-4">
+  <label class="block text-sm font-medium text-gray-700" for="domaine_id">Domaine</label>
+  <select id="domaine_id" [(ngModel)]="newGuide.domaine_id" name="domaine_id"
+    (change)="onDomaineChange($event)" required
+    class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full">
+    <option value="">Sélectionnez un domaine</option>
+    <option *ngFor="let domaine of domaines" [value]="domaine.id">{{ domaine.nom }}</option>
+  </select>
+  <div *ngIf="!newGuide.domaine_id" class="text-red-500 text-sm">
+    Le domaine est requis.
+  </div>
+</div>
+
+
+  <!-- Sous-Domaine Selection -->
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700" for="sous_domaine_id">Sous-Domaine</label>
+    <select id="sous_domaine_id" [(ngModel)]="newGuide.sous_domaine_id" name="sous_domaine_id" required
+      class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full"
+      #sousDomaineId="ngModel">
+      <option *ngFor="let sousDomaine of sousDomaines" [value]="sousDomaine.id">{{ sousDomaine.nom }}</option>
+    </select>
+    <div *ngIf="sousDomaineId.invalid && sousDomaineId.touched" class="text-red-500 text-sm">
+      <div *ngIf="sousDomaineId.errors?.['required']">Le sous-domaine est requis.</div>
     </div>
   </div>
 
-  <!-- Form for adding a new guide -->
-  <div *ngIf="isFormVisible" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
-      <h2 class="text-xl font-bold mb-4">Ajouter un Guide</h2>
-      <form (ngSubmit)="createGuide()">
-        <!-- Grid Container -->
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg whitespace-nowrap rounded-md font-[275] max-w-[785px] text-neutral-400">
-          <!-- Column 1 -->
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="titre">Titre</label>
-            <input id="titre" [(ngModel)]="newGuide.titre" name="titre" type="text"
-              class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required>
-          </div>
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="etape">Étape</label>
-            <input id="etape" [(ngModel)]="newGuide.etape" name="etape" type="number"
-              class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required>
-          </div>
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="datePublication">Date de Publication</label>
-            <input id="datePublication" [(ngModel)]="newGuide.datePublication" name="datePublication" type="date"
-              class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required>
-          </div>
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="media">Media</label>
-            <input id="media" (change)="onMediaChange($event)" type="file"
-              class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full">
-          </div>
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="domaine_id">Domaine ID</label>
-            <input id="domaine_id" [(ngModel)]="newGuide.domaine_id" name="domaine_id" type="number"
-              class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full" required>
-          </div>
-        </div>
+      </div>
 
-        <div class="text-neutral-400">
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700" for="contenu">Contenu</label>
-            <textarea id="contenu" [(ngModel)]="newGuide.contenu" name="contenu"
-              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
+      <!-- Contenu -->
+      <div class="text-neutral-400">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700" for="contenu">Contenu</label>
+          <textarea id="contenu" [(ngModel)]="newGuide.contenu" name="contenu"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required #contenu="ngModel"></textarea>
+          <div *ngIf="contenu.invalid && contenu.touched" class="text-red-500 text-sm">
+            <div *ngIf="contenu.errors?.['required']">Le contenu est requis.</div>
           </div>
         </div>
+      </div>
 
-        <!-- Form Actions -->
-        <div class="flex justify-end space-x-4 mt-6">
-          <button type="button" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
-            (click)="closePopup()">Annuler</button>
-          <button type="submit" class="px-4 py-2 bg-teal-800 text-white rounded-md hover:bg-teal-700">Enregistrer</button>
-        </div>
-      </form>
-    </div>
+      <!-- Form Actions -->
+      <div class="flex justify-end space-x-4 mt-6">
+        <button type="button" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300" (click)="closePopup()">Annuler</button>
+        <button type="submit" class="px-4 py-2 bg-teal-800 text-white rounded-md hover:bg-teal-700" [disabled]="newGuideForm.invalid">Enregistrer</button>
+      </div>
+    </form>
   </div>
+</div>
+
 </section>

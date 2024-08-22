@@ -62,7 +62,7 @@ export class SuperAdminService{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<any>(`${apiUrl}/sous-domaines`);
+    return this.http.get<any>(`${apiUrl}/sous-domaines`, { headers });
   }
 
   getEntrepreneursBySousDomaine(sousDomaineId: number): Observable<any> {
@@ -70,7 +70,7 @@ export class SuperAdminService{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get<any>(`${apiUrl}/sous-domaines/${sousDomaineId}/entrepreneurs`);
+    return this.http.get<any>(`${apiUrl}/sous-domaines/${sousDomaineId}/entrepreneurs`, { headers });
   }
 
 
