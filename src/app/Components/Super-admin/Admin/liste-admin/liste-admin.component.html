@@ -22,12 +22,14 @@
                 </div>
               </div>
             </div>
-            <div class="relative text-white mt-14 flex flex-col justify-center px-10 md:px-20">
+             <!-- Bouton Ajout Admin -->
+  <div class="relative text-white mt-14 flex flex-col justify-center px-10 md:px-20">
+    <i class="fas fa-plus-square text-4xl cursor-pointer" (click)="openAdminModal()"></i>
+  </div>
+</div>
 
-              <i class="fas fa-plus-square text-4xl "></i>
-            </div>
-
-          </div>
+<!-- Composant Inscription Admin -->
+<app-inscription-admin *ngIf="isAdminModalOpen" (closeModal)="closeAdminModal()"></app-inscription-admin>
         </div>
       </section>
 

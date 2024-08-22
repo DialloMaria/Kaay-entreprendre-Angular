@@ -10,13 +10,16 @@ import { CategorieServiceComponent } from './Components/Super-admin/Categories/c
 import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categories/categorie-entrepreneur/categorie-entrepreneur.component';
 import { ListeAdminComponent } from './Components/Super-admin/Admin/liste-admin/liste-admin.component';
 import { EvenementListComponent } from './Components/Super-admin/Evenements/evenement-list/evenement-list.component';
-import { ListEntrepreneurComponent } from './Components/Super-admin/Admin copy/liste-entrepreneur/liste-entrepreneur.component';
+import { ListEntrepreneurComponent } from './Components/Super-admin/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
 import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
  import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
 import { CommentairesGuidesListService } from './Services/commentaires-guides-list.service';
 import { EvenementComponent } from './Components/Entrepreneurs/Evenement/evenement.component';
 import { EvenementDetailsComponent } from './Components/Entrepreneurs/Evenement/evenement-details/evenement-details.component';
+import { ListesEntrepreneurComponent } from './Components/Administrateurs/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
+import { EvenementsListComponent } from './Components/Administrateurs/evenement-list/evenement-list.component';
+import { InscriptionAdminComponent } from './Components/Portails/authentification/inscription_admin/inscription-admin.component';
 
 
 export const routes: Routes = [
@@ -35,8 +38,14 @@ export const routes: Routes = [
   {path: 'super-admin/categories/:id', component: CategorieServiceComponent, canActivate: [AdministrationGuard]},
   {path: 'super-admin/categories/enntrpreneurs/:id', component: CategorieEntrepreneurComponent, canActivate: [AdministrationGuard]},
   {path: 'super-admin/admins', component: ListeAdminComponent, canActivate: [AdministrationGuard]},
+  {path: 'super-admin/admins/inscrire', component: InscriptionAdminComponent, canActivate: [AdministrationGuard]},
+  //
   {path: 'super-admin/entrepreneurs', component: ListEntrepreneurComponent, canActivate: [AdministrationGuard]},
   {path: 'super-admin/evenements', component: EvenementListComponent, canActivate: [AdministrationGuard]},
+
+
+  {path: 'admin/entrepreneurs', component: ListesEntrepreneurComponent, canActivate: [AdministrationGuard]},
+  {path: 'admin/evenements', component: EvenementsListComponent, canActivate: [AdministrationGuard]},
 
 
 // Redirection par défaut vers la liste des domaines

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SuperAdminLayoutComponent } from "../../layouts/super-admin-layout/super-admin-layout.component";
 import { NavbarComponent } from "../../../Administrateurs/layouts/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
+import { EntrepreneurService } from '../../../../Services/entrepreneur.service';
+import { AdminLayoutComponent } from "../../layouts/admin-layout/admin-layout.component";
 interface Entrepreneur {
   nom: string;
   prenom: string;
@@ -12,18 +13,13 @@ interface Entrepreneur {
 @Component({
   selector: 'app-categorie-list',
   standalone: true,
-  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule],
+  imports: [ NavbarComponent, CommonModule, AdminLayoutComponent],
   templateUrl: './liste-entrepreneur.component.html',
   styleUrl: './liste-entrepreneur.component.css'
 })
-export class ListEntrepreneurComponent implements OnInit {
-  entrepreneurs: Entrepreneur[] = [
-    { nom: 'Amadou', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    { nom: 'Amadou', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    { nom: 'Simplon', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    { nom: 'Amadou', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    // Add more entrepreneurs here...
-  ];
+export class ListesEntrepreneurComponent implements OnInit {
+  entrepreneurs: any[] = [];
+
 
   paginatedEntrepreneurs: Entrepreneur[] = [];
   pageSize = 2;  // Number of entrepreneurs per page
@@ -31,9 +27,20 @@ export class ListEntrepreneurComponent implements OnInit {
   totalPages = 0;
 
   ngOnInit() {
-    this.totalPages = Math.ceil(this.entrepreneurs.length / this.pageSize);
     this.updatePaginatedEntrepreneurs();
+    this.getEntrepreneurs();
+
   }
+  constructor(private entrepreneurService: EntrepreneurService) { }
+
+  getEntrepreneurs(): void {
+    this.entrepreneurService.getEntrepreneurs().subscribe(response => {
+      this.entrepreneurs = response.data || response; // Ajustez si nécessaire
+      this.totalPages = Math.ceil(this.entrepreneurs.length / this.pageSize); // Nombre total de pages
+      this.updatePaginatedEntrepreneurs();
+    });
+  }
+
 
   updatePaginatedEntrepreneurs() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
