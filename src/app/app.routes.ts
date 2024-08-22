@@ -20,6 +20,7 @@ import { EvenementDetailsComponent } from './Components/Entrepreneurs/Evenement/
 import { ListesEntrepreneurComponent } from './Components/Administrateurs/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
 import { EvenementsListComponent } from './Components/Administrateurs/evenement-list/evenement-list.component';
 import { InscriptionAdminComponent } from './Components/Portails/authentification/inscription_admin/inscription-admin.component';
+import { SuperAdminGuard } from './Guard/super-admin.guard';
 
 
 export const routes: Routes = [
@@ -29,26 +30,23 @@ export const routes: Routes = [
   {path: 'login', component: ConnexionComponent},
   {path: 'register', component: InscriptionComponent},
   {path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard]},
-  {path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [AdministrationGuard]},
+  {path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [SuperAdminGuard]},
   {path: 'dashboard/entrepreneur', component: DashboardEntrepreneurComponent, canActivate: [EntrepreneurGuard]},
 
 
-  // Super Admin
-  {path: 'super-admin/categories', component: CategorieListComponent, canActivate: [AdministrationGuard]},
-  {path: 'super-admin/categories/:id', component: CategorieServiceComponent, canActivate: [AdministrationGuard]},
-  {path: 'super-admin/categories/enntrpreneurs/:id', component: CategorieEntrepreneurComponent, canActivate: [AdministrationGuard]},
-  {path: 'super-admin/admins', component: ListeAdminComponent, canActivate: [AdministrationGuard]},
-  {path: 'super-admin/admins/inscrire', component: InscriptionAdminComponent, canActivate: [AdministrationGuard]},
-  //
-  {path: 'super-admin/entrepreneurs', component: ListEntrepreneurComponent, canActivate: [AdministrationGuard]},
-  {path: 'super-admin/evenements', component: EvenementListComponent, canActivate: [AdministrationGuard]},
+   // Super Admin
+   {path: 'super-admin/categories', component: CategorieListComponent, canActivate: [SuperAdminGuard]},
+   {path: 'super-admin/categories/:id', component: CategorieServiceComponent, canActivate: [SuperAdminGuard]},
+   {path: 'super-admin/categories/entrepreneurs/:id', component: CategorieEntrepreneurComponent, canActivate: [SuperAdminGuard]},
+   {path: 'super-admin/admins', component: ListeAdminComponent, canActivate: [SuperAdminGuard]},
+   {path: 'super-admin/admins/inscrire', component: InscriptionAdminComponent, canActivate: [SuperAdminGuard]},
+   //
+   {path: 'super-admin/entrepreneurs', component: ListEntrepreneurComponent, canActivate: [SuperAdminGuard]},
+   {path: 'super-admin/evenements', component: EvenementListComponent, canActivate: [SuperAdminGuard]},
 
-
-  {path: 'admin/entrepreneurs', component: ListesEntrepreneurComponent, canActivate: [AdministrationGuard]},
-  {path: 'admin/evenements', component: EvenementsListComponent, canActivate: [AdministrationGuard]},
-
-
-// Redirection par défaut vers la liste des domaines
+   {path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard]},
+   {path: 'admin/entrepreneurs', component: ListesEntrepreneurComponent, canActivate: [AdministrationGuard]},
+   {path: 'admin/evenements', component: EvenementsListComponent, canActivate: [AdministrationGuard]},
   { path: '', redirectTo: '/domaines', pathMatch: 'full' },
 
   // Liste des domaines
