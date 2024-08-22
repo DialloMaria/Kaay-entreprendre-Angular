@@ -65,6 +65,7 @@ export class CategorieServiceComponent implements OnInit {
         this.getDomaine(domaineId);
       }
     });
+
   }
 
   getCategoryDetails(id: number): void {
@@ -169,7 +170,15 @@ export class CategorieServiceComponent implements OnInit {
               'Le domaine a été supprimé.',
               'success'
             );
-            this.getDomaines(); // Refresh the list of domaines
+            // refresh
+
+            
+
+
+
+
+
+
           },
           error => {
             Swal.fire(

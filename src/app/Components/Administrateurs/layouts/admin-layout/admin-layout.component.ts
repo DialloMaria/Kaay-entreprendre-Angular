@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { SuperAdminLayoutComponent } from "../super-admin-layout/super-admin-layout.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-layout',
   standalone: true,
-  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule],
+  imports: [ NavbarComponent, CommonModule],
 
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'

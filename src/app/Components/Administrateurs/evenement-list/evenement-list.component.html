@@ -1,0 +1,286 @@
+<div class="flex bg-gray-100 flex-col lg:flex-row overflow-hidden">
+  <!-- sideBar -->
+  <app-admin-layout />
+  <div class="flex flex-col flex-1">
+    <!-- Nav Bar -->
+    <app-navbar />
+
+    <main class="flex-1 mx-4 md:mx-10 p-4 md:p-6">
+      <!-- Statique -->
+      <section class="my-6 md:my-10">
+        <p class="text-lg font-semibold mb-4 md:mb-6">Dashboard Admin</p>
+        <div class="flex flex-col lg:flex-row gap-6">
+          <!-- Section des entrepreneurs -->
+          <div class="bg-[#007461] w-full h-auto rounded-[20px] p-6 flex flex-col lg:flex-row items-center">
+            <div class="relative flex flex-col justify-center px-10 md:px-20">
+              <div class="text-slate-100 text-sm font-medium mb-2">Evenements total</div>
+              <div class="block ml-6 md:ml-12">
+                <div class="text-slate-100 text-[28px] md:text-[34px] font-bold mb-2">1 000</div>
+                <div class="flex items-center space-x-2">
+                  <div class="w-3.5 h-3.5 bg-orange-400 rounded-full flex justify-center items-center">
+                    <div class="w-[11px] h-[11px] bg-white rounded-full"></div>
+                  </div>
+                  <div class="text-orange-400 text-sm font-bold">Incrits</div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-4 md:gap-20 mt-4 lg:mt-0">
+              <div class="bg-slate-50 w-full sm:w-[268px] h-[97px] rounded-[20px] p-4 flex items-center space-x-4">
+                <div class="w-14 h-14 bg-orange-400 rounded-full flex justify-center items-center relative">
+                  <div class="w-7 h-7 bg-white rounded-full"></div>
+                </div>
+                <div class="flex flex-col">
+                  <div class="text-emerald-700 text-sm font-medium mb-1">Événements à venir</div>
+                  <div class="text-emerald-700 text-2xl font-bold">{{ upcomingEvents }}</div>
+                </div>
+              </div>
+              <div class="bg-slate-50 w-full sm:w-[268px] h-[97px] rounded-[20px] p-4 flex items-center space-x-4">
+                <div class="w-14 h-14 bg-orange-400 rounded-full flex justify-center items-center relative">
+                  <div class="w-7 h-7 bg-white rounded-full"></div>
+                </div>
+                <div class="flex flex-col">
+                  <div class="text-emerald-700 text-sm font-medium mb-1">Événements passés</div>
+                  <div class="text-emerald-700 text-2xl font-bold">{{ pastEvents }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </section>
+
+      <!-- Guide -->
+      <!-- Guide -->
+      <section class="guide w-full my-6 md:my-10">
+        <div class="flex flex-col lg:flex-row  gap-8">
+          <!-- Left Content -->
+          <!-- Message si aucune événement n'est disponible -->
+
+          <div class="block w-full ">
+            <div class="grid lg:w-4/4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  justify-items-center">
+              <!-- Categories -->
+              <div (click)="filterEvents('all')" [class.active]="filter === 'all'"
+                class=" flex shadow-lg flex-col rounded-md h-[71px] w-full ">
+                <div class="px-5 py-6 bg-white  text-xl rounded-md text-center">Tous les evenements</div>
+              </div>
+              <div (click)="filterEvents('past')" [class.active]="filter === 'online'"
+                class="flex shadow-lg flex-col rounded-md h-[71px] w-full ">
+                <div class="px-5 py-6 bg-white text-teal-600 text-xl rounded-md text-center">Evenements a venir</div>
+              </div>
+              <div (click)="filterEvents('past')" [class.active]="filter === 'past'"
+                class="flex shadow-lg flex-col rounded-md h-[71px] w-full ">
+                <div class="px-5 py-6 bg-white text-xl text-orange-500 rounded-md text-center">Evenement passes</div>
+              </div>
+              
+            </div>
+
+            <!--  entrepreneurs -->
+            <div class="flex flex-col gap-6 mt-12 w-full">
+              <div class="text-lg font-bold text-gray-700">Listes des entrepreneurs inscrits</div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+        <!-- Card -->
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4  bg-white shadow-xl p-10 justify-items-center">
+          <!-- Card1 -->
+          <div *ngIf="filteredEvenements.length === 0" class="w-full text-center py-4">
+            <p class="text-lg text-gray-600">Aucun événement trouvé.</p>
+          </div>
+
+          <div *ngFor="let evenement of filteredEvenements"
+            class="flex flex-col text-sm font-light text-black rounded-md max-w-full">
+            <div class="flex flex-col pb-3 w-full rounded-md bg-emerald-700 bg-opacity-10">
+              <img loading="lazy"
+              [src]="evenement.image"
+              alt="{{ evenement.titre }}"
+              class="object-contain w-full rounded-md aspect-[2.59]" />
+           <div class="flex flex-col items-start self-start m-4">
+                <div class="self-stretch text-lg font-medium">
+                  {{ evenement.titre }}
+                </div>
+                <div class="mt-2.5">{{ evenement?.date_debut | date:'dd-MMMM-yyyy ' }}</div>
+                <div class="mt-2.5"> <ng-container *ngIf="evenement?.online; else physicalLocation">
+                    <span>En ligne.</span>
+                  </ng-container>
+                  <ng-template #physicalLocation>
+                    <span>Lieu: {{ evenement?.lieu }}</span>
+                  </ng-template>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col text-sm font-light text-black rounded-md max-w-full">
+            <div class="flex flex-col pb-3 w-full rounded-md bg-emerald-700 bg-opacity-10">
+              <img loading="lazy"
+                srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b"
+                class="object-contain w-full rounded-md aspect-[2.59]" />
+              <div class="flex flex-col items-start self-start m-4">
+                <div class="self-stretch text-lg font-medium">
+                  Café de la création
+                </div>
+                <div class="mt-2.5">20-05-2024</div>
+                <div class="mt-2.5">Lieu: Dakar , Bourguiba</div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </section>
+      <!-- Formulaire pour ajouter un événement -->
+      <div *ngIf="isAddFormVisible" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+          <h3 class="text-xl font-semibold mb-6">Créer un événement</h3>
+          <form (ngSubmit)="createEvenement()" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- Colonne 1 -->
+            <div>
+              <label for="titre" class="block mb-1 font-medium">Titre</label>
+              <input id="titre" [(ngModel)]="newEvenement.titre" name="titre"
+                class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+
+            <div>
+              <label for="lieu" class="block mb-1 font-medium">Lieu</label>
+              <input id="lieu" [(ngModel)]="newEvenement.lieu" name="lieu"
+                class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+
+            <div>
+              <label for="date_debut" class="block mb-1 font-medium">Date début</label>
+              <input type="datetime-local" id="date_debut" [(ngModel)]="newEvenement.date_debut" name="date_debut"
+                class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+
+            <div>
+              <label for="online" class="block mb-1 font-medium">En ligne</label>
+              <select id="online" [(ngModel)]="newEvenement.online" name="online"
+                class="w-full p-2 border border-gray-300 rounded" required>
+                <option [value]="true">Oui</option>
+                <option [value]="false">Non</option>
+              </select>
+            </div>
+
+            <!-- Colonne 2 -->
+            <div class="sm:col-span-2">
+              <label for="description" class="block mb-1 font-medium">Description</label>
+              <textarea id="description" [(ngModel)]="newEvenement.description" name="description"
+                class="w-full p-2 border border-gray-300 rounded" required></textarea>
+            </div>
+
+            <div>
+              <label for="image" class="block mb-1 font-medium">Image</label>
+              <input type="file" id="image" (change)="onFileSelected($event)" name="image"
+                class="w-full p-2 border border-gray-300 rounded">
+            </div>
+
+            <div>
+              <label for="domaine_id" class="block mb-1 font-medium">Domaine</label>
+              <select id="domaine_id" [(ngModel)]="newEvenement.domaine_id" name="domaine_id"
+                class="w-full p-2 border border-gray-300 rounded" required>
+                <option *ngFor="let domaine of domaines" [value]="domaine.id">
+                  {{ domaine.nom }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Boutons -->
+            <div class="sm:col-span-2 flex justify-end mt-4">
+              <button type="submit"
+                class="bg-blue-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-blue-600 mr-2">Créer</button>
+              <button type="button"
+                class="bg-gray-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-gray-600"
+                (click)="closeForm()">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Formulaire pour modifier un événement -->
+      <!-- Formulaire pour modifier un événement -->
+      <div *ngIf="isUpdateFormVisible"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+          <h3 class="text-xl font-semibold mb-6">Modifier un événement</h3>
+          <form (ngSubmit)="updateEvenement()" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- Colonne 1 -->
+            <div>
+              <label for="titre" class="block mb-1 font-medium">Titre</label>
+              <input id="titre" [(ngModel)]="selectedEvenement.titre" name="titre"
+                class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+
+            <div>
+              <label for="lieu" class="block mb-1 font-medium">Lieu</label>
+              <input id="lieu" [(ngModel)]="selectedEvenement.lieu" name="lieu"
+                class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+
+            <div>
+              <label for="date_debut" class="block mb-1 font-medium">Date début</label>
+              <input type="date" id="date_debut" [(ngModel)]="selectedEvenement.date_debut" name="date_debut"
+                class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+
+            <div>
+              <label for="online" class="block mb-1 font-medium">En ligne</label>
+              <select id="online" [(ngModel)]="selectedEvenement.online" name="online"
+                class="w-full p-2 border border-gray-300 rounded" required>
+                <option [value]="true">Oui</option>
+                <option [value]="false">Non</option>
+              </select>
+            </div>
+
+            <!-- Colonne 2 -->
+            <div class="sm:col-span-2">
+              <label for="description" class="block mb-1 font-medium">Description</label>
+              <textarea id="description" [(ngModel)]="selectedEvenement.description" name="description"
+                class="w-full p-2 border border-gray-300 rounded" required></textarea>
+            </div>
+
+            <div>
+              <label for="image" class="block mb-1 font-medium">Image</label>
+              <input type="file" id="image" (change)="onFileSelected($event)" name="image"
+                class="w-full p-2 border border-gray-300 rounded">
+            </div>
+
+            <div>
+              <label for="domaine_id" class="block mb-1 font-medium">Domaine</label>
+              <select id="domaine_id" [(ngModel)]="selectedEvenement.domaine_id" name="domaine_id"
+                class="w-full p-2 border border-gray-300 rounded" required>
+                <option *ngFor="let domaine of domaines" [value]="domaine.id">
+                  {{ domaine.nom }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Boutons -->
+            <div class="sm:col-span-2 flex justify-end mt-4">
+              <button type="submit"
+                class="bg-blue-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-blue-600 mr-2">Mettre à
+                jour</button>
+              <button type="button"
+                class="bg-gray-500 text-white font-semibold py-2 px-4 rounded shadow hover:bg-gray-600"
+                (click)="closeForm()">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    </main>
+  </div>
+</div>

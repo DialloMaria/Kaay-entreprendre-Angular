@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GuideService } from '../../../../Services/guide.service';
 import { GuideModel } from '../../../../Models/guides.model';
 import { FormsModule } from '@angular/forms';
-import { Domaine } from '../../../../Models/domaine.model';
-import { DomaineService } from '../../../../Services/domaine.service';
-import { SuperAdminService } from '../../../../Services/super-admin.service';
+
 import { SousDomaineService } from '../../../../Services/sous-domaine.service';
 import { SousDomaineModel } from '../../../../Models/sous-domaines.model';
 
@@ -14,7 +12,7 @@ import { SousDomaineModel } from '../../../../Models/sous-domaines.model';
 
 
 @Component({
-  selector: 'app-guide-list',
+  selector: 'app-guide-dash',
   standalone: true,
   imports: [CommonModule, FormsModule, ], // Add necessary Angular modules here
   templateUrl: './guide-list.component.html',
