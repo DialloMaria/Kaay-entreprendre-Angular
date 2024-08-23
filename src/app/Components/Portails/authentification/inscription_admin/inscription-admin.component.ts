@@ -61,20 +61,20 @@ export class InscriptionComponent implements OnInit {
 
 
 
-  // registerAdmin() {
-  //   if (this.registrationForm.valid) {
-  //     const userObject = this.registrationForm.value;
-  //     this.authService.registerAdmin(userObject).subscribe(
-  //       (response: any) => {
-  //         console.log(response);
-  //         this.router.navigate(['/login']);
-  //       },
-  //       (error) => {
-  //         console.error('Erreur lors de l\'inscription:', error);
-  //       }
-  //     );
-  //   } else {
-  //     console.error('Le formulaire est invalide.');
-  //   }
-  // }
+  registerAdmin() {
+    if (this.registrationForm.valid) {
+      const userObject = this.registrationForm.value;
+      this.authService.registerAdmin(userObject).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.error('Erreur lors de l\'inscription:', error);
+        }
+      );
+    } else {
+      console.error('Le formulaire est invalide.');
+    }
+  }
 }

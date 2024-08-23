@@ -14,6 +14,7 @@ import { EvenementListComponent } from './Components/Super-admin/Evenements/even
 import { ListEntrepreneurComponent } from './Components/Super-admin/Admin copy/liste-entrepreneur/liste-entrepreneur.component';
 import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
+import { InscritDomaineComponent } from './Components/Entrepreneurs/inscrit-domaine/inscrit-domaine.component';
 
 export const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -45,4 +46,7 @@ export const routes: Routes = [
  // Modification d'un domaine existant
   { path: 'domaines/edit/:id', component: FormDomaineListComponent },
 
+
+
+  {path:'entrepreneurInscript/domaine',component:InscritDomaineComponent}
 ];
