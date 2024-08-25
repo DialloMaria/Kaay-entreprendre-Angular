@@ -1,0 +1,54 @@
+.category-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+  }
+  .category-item {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    color: rgba(63, 61, 61, 0.741);
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .category-item:hover,
+  .category-item:focus,
+  .category-item.selected {
+    border: #FC974E solid 1px; 
+     color: #006666;
+    border-color: #006666;
+  }
+  
+ 
+  
+  .category-item span {
+    font-family: Buenard;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  
+  .icon-placeholder {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #FC974E;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+
+  .category-item span {
+    /* TITRE PRINCIPAL */
+font-family: Buenard;
+font-size: 2rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }

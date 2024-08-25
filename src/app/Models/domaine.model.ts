@@ -1,5 +1,5 @@
 export interface Domaine {
-  id?: number;
+  id?: number ;
   nom?: string;
   created_by?: number;
   modified_by?: number;

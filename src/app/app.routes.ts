@@ -15,6 +15,7 @@ import { ListEntrepreneurComponent } from './Components/Super-admin/Admin copy/l
 import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
 import { InscritDomaineComponent } from './Components/Entrepreneurs/inscrit-domaine/inscrit-domaine.component';
+import { CategorieComponent } from './Components/Entrepreneurs/categorie/categorie.component';
 
 export const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -47,6 +48,8 @@ export const routes: Routes = [
   { path: 'domaines/edit/:id', component: FormDomaineListComponent },
 
 
+// la route pour s'ncrire dans une domaine
+  {path:'entrepreneurInscript/domaine',component:InscritDomaineComponent},
 
-  {path:'entrepreneurInscript/domaine',component:InscritDomaineComponent}
+
 ];
