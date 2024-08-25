@@ -37,7 +37,7 @@ export const routes: Routes = [
 
 
 // Redirection par défaut vers la liste des domaines
-  { path: '', redirectTo: '/domaines', pathMatch: 'full' },
+  // { path: '', redirectTo: '/domaines', pathMatch: 'full' },
 
   // Liste des domaines
   { path: 'domaines', component: DomaineListComponent },
@@ -65,3 +65,4 @@ export const routes: Routes = [
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
 ];
+                         
