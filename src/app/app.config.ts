@@ -7,7 +7,9 @@ import { provideHttpClient,withFetch } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(),
+  providers: [
+    provideRouter(routes),
+     provideClientHydration(),
     provideHttpClient(),
 
 

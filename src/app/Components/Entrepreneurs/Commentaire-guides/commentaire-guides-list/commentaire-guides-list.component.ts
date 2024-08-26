@@ -6,10 +6,11 @@ import { CommentairesGuidesList } from '../../../../Models/commentaires-guides-l
 import { AuthService } from '../../../../Services/auth.service';
 import { Router } from '@angular/router';
 import { Route } from '@angular/router';
+import { NavbarEntrepreneurComponent } from '../../layout/navbar-entrepreneur/navbar-entrepreneur.component';
 @Component({
   selector: 'app-commentaire-guides',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,NavbarEntrepreneurComponent],
   templateUrl: './commentaire-guides-list.component.html',
   styleUrls: ['./commentaire-guides-list.component.css']
 })
