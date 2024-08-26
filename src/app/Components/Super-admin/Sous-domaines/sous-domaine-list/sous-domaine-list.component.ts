@@ -93,12 +93,28 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
   }
 
   saveSousDomaine(): void {
+    const userString = localStorage.getItem('user');
+    let userId: string | null = null;
+
+    if (userString) {
+      try {
+        const user = JSON.parse(userString);
+        userId = user.id;
+      } catch (error) {
+        console.error('Erreur lors du parsing du JSON:', error);
+      }
+    }
+
+    if (!userId) {
+      console.error('Aucun ID utilisateur trouvé dans le localStorage');
+      return;
+    }
     const currentUserId = this.authService.getSpecialisations();
     console.log('Current User ID:', currentUserId);  // Log l'ID utilisateur
     console.log('SousDomaine avant envoi:', this.sousDomaine);  // Log les données du sous-domaine
 
     if (this.isEditMode) {
-        this.sousDomaine.modified_by = currentUserId;
+        this.sousDomaine.modified_by = userId;
         this.sousDomaineService.updateSousDomaine(this.sousDomaine.id!, this.sousDomaine).subscribe(() => {
             this.getSousDomaines(this.selectedDomaine.id);
             console.log("Sous-domaine mis à jour avec succès");
@@ -106,7 +122,7 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
             console.error('Erreur lors de la mise à jour:', error);
         });
     } else {
-        this.sousDomaine.created_by = currentUserId;
+        this.sousDomaine.created_by = userId;
         this.sousDomaineService.createSousDomaine(this.sousDomaine).subscribe(() => {
             this.getSousDomaines(this.selectedDomaine.id);
             console.log("Sous-domaine ajouté avec succès");

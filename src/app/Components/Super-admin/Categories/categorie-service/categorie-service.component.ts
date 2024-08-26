@@ -104,8 +104,11 @@ export class CategorieServiceComponent implements OnInit {
   }
 
   saveDomaine(): void {
-    if (this.domaine.categorie_id === 0) {
-      console.error('Categorie ID is not set.');
+    // Automatically assign the category ID before saving
+    if (this.category && this.category.id) {
+      this.domaine.categorie_id = this.category.id;
+    } else {
+      console.error('Category ID is not set. Unable to save domain.');
       return;
     }
 
@@ -139,6 +142,8 @@ export class CategorieServiceComponent implements OnInit {
       );
     }
   }
+
+
 
   filterSousDomaines(domaine: any): void {
     this.selectedDomaine = domaine;

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { SousDomaineService } from './sous-domaine.service';
 
-import { SousDomaineService } from './services/sous-domaine.service';
 
 describe('SousDomaineService', () => {
   let service: SousDomaineService;
@@ -14,3 +14,5 @@ describe('SousDomaineService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+

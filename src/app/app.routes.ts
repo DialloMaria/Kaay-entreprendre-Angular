@@ -13,6 +13,7 @@ import { CategorieServiceComponent } from './Components/Super-admin/Categories/c
 import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categories/categorie-entrepreneur/categorie-entrepreneur.component';
 import { ListeAdminComponent } from './Components/Super-admin/Admin/liste-admin/liste-admin.component';
 import { EvenementListComponent } from './Components/Super-admin/Evenements/evenement-list/evenement-list.component';
+import { AccueilComponent } from './Components/Entrepreneurs/accueil/accueil.component';
 import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
 import { CommentairesGuidesListService } from './Services/commentaires-guides-list.service';
@@ -52,6 +53,11 @@ export const routes: Routes = [
    {path: 'super-admin/entrepreneurs', component: ListEntrepreneurComponent, canActivate: [SuperAdminGuard]},
    {path: 'super-admin/evenements', component: EvenementListComponent, canActivate: [SuperAdminGuard]},
 
+
+// Redirection par défaut vers la liste des domaines
+  // { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+
+  { path: 'accueil', component: AccueilComponent },
    {path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard, SuperAdminGuard]},
    {path: 'admin/entrepreneurs', component: ListesEntrepreneurComponent, canActivate: [AdministrationGuard]},
    {path: 'admin/evenements', component: EvenementsListComponent, canActivate: [AdministrationGuard]},
