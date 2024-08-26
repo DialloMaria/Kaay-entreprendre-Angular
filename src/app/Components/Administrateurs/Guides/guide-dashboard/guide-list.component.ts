@@ -14,7 +14,7 @@ import { DomaineService } from '../../../../Services/domaine.service';
   templateUrl: './guide-list.component.html',
   styleUrls: ['./guide-list.component.css']
 })
-export class GuideListComponent implements OnInit {
+export class GuideListDashComponent implements OnInit {
   guides: GuideModel[] = [];
   selectedGuide?: GuideModel;
   showCreateForm = false;

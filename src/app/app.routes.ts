@@ -26,6 +26,8 @@ import { SuperAdminGuard } from './Guard/super-admin.guard';
 import { InscritDomaineComponent } from './Components/Entrepreneurs/inscrit-domaine/inscrit-domaine.component';
 import { CategorieComponent } from './Components/Entrepreneurs/categorie/categorie.component';
 import { ListEntrepreneurComponent } from './Components/Super-admin/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
+import { GuideListComponent } from './Components/Administrateurs/Guides/guide-list/guide-list.component';
+import { RessourceListComponent } from './Components/Administrateurs/Ressources/ressource-list/ressource-list.component';
 
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
@@ -93,6 +95,19 @@ export const routes: Routes = [
   { path: 'sousdomaines/new', component: SousDomaineListComponent },
   { path: 'sousomaines/edit/:id', component: FormDomaineListComponent },
 
+
+   // Guides
+  { path: '', component: GuideListComponent },
+  { path: 'guides', component: GuideListComponent },
+  // { path: 'guides/add', component: GuideAddComponent },
+  // { path: 'guides/edit/:id', component: GuideEditComponent },
+  // { path: 'guides/detail/:id', component: GuideDetailComponent },
+  // { path: 'guide-completed', component: GuideCompletedComponent },
+
+  // Resources
+  { path: 'resources', component: RessourceListComponent },
+  // { path: 'resources/edit/:id', component: ResourceEditComponent, canActivate: [AdministrationGuard] },
+  // { path: 'resources/detail/:id', component: ResourceDetailComponent, canActivate: [AdministrationGuard] },
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
 ];
