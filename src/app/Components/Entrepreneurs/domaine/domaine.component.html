@@ -1,0 +1,12 @@
+<div class="container ">
+    <h3 class="titreType text-center mt-4 text-success ">Les Domaines </h3>
+<div class="d-flex justify-center  ">
+    <ul class="list-unstyled d-flex flex-wrap align-items-center gap-2">
+        <li *ngFor="let domaine of domaines" (click)="onSelectDomaine(domaine.id)">
+          <button class="btn btn-outline-custom rounded-pill">
+            {{ domaine.nom }}
+          </button>
+        </li>
+      </ul>
+</div>    
+</div>

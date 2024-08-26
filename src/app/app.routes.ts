@@ -21,6 +21,8 @@ import { ListesEntrepreneurComponent } from './Components/Administrateurs/Entrep
 import { EvenementsListComponent } from './Components/Administrateurs/evenement-list/evenement-list.component';
 import { InscriptionAdminComponent } from './Components/Portails/authentification/inscription_admin/inscription-admin.component';
 
+import { InscritDomaineComponent } from './Components/Entrepreneurs/inscrit-domaine/inscrit-domaine.component';
+import { CategorieComponent } from './Components/Entrepreneurs/categorie/categorie.component';
 
 export const routes: Routes = [
 
@@ -68,7 +70,12 @@ export const routes: Routes = [
 
    //La route Pour Evenement
    {path:'entrepreneur/evenements',component:EvenementComponent},
-   {path:'entrepreneur/evenements/:id',component:EvenementDetailsComponent}
+   {path:'entrepreneur/evenements/:id',component:EvenementDetailsComponent},
+
+
+// la route pour s'ncrire dans une domaine
+  {path:'entrepreneurInscript/domaine',component:InscritDomaineComponent},
+
 
 ];
 

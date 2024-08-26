@@ -1,0 +1,10 @@
+<ul class="category-list d-flex justify-center gap-4 mt-4">
+    <li *ngFor="let categorie of categories" 
+        (click)="onSelectCategorie(categorie.id)" 
+        class="category-item" 
+        [ngClass]="{'selected': selectedCategorieId === categorie.id}">
+      <div class="icon-placeholder"></div>
+      <span class="titre">{{ categorie.nom }}</span>
+    </li>
+  </ul>
+  

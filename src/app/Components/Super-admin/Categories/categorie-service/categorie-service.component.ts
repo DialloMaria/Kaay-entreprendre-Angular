@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SousDomaineListComponent } from '../../Sous-domaines/sous-domaine-list/sous-domaine-list.component';
-import { FormDomaineListComponent } from '../../Domaines/form-domaine-list/form-domaine-list.component';
+
 import { Domaine } from '../../../../Models/domaine.model';
 import { DomaineService } from '../../../../Services/domaine.service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { FormDomaineListComponent } from '../../Domaines/form-domaine-list/form-domaine-list.component';
 
 
 @Component({

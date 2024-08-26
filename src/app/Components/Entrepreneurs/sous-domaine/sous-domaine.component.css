@@ -1,0 +1,68 @@
+/* entrepreneur.component.css */
+.list-unstyled {
+    margin: 4rem 8rem;
+    padding: 1rem;
+  }
+  .cart{
+    border-radius: 1rem;
+    border: #007461 0.1rem solid;
+    padding: 0.3rem;
+  }
+.tag {
+    background-color: #ffffff;
+    color: #00796b;
+    border: 1px solid #00796b;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin: 5px;
+    display: inline-block;
+  }
+  
+  .card {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .card-img-top {
+    height: 16.5rem;
+    width: 35%;
+    object-fit: cover;
+    border-radius: 1rem ;
+  }
+  
+  .btn-inscribe {
+    background-color: #ffa500;
+    border: none;
+    color: white;
+    border-radius: 1.2rem;
+  float:right;
+  margin: 0.5rem;
+  float: inline-end;
+  }
+  .titreType{
+    color: #007461;
+
+/* TITRE PRINCIPAL */
+font-family: Buenard;
+font-size: 2.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+  .titreSousDomaine{
+    font-family: Montserrat;
+font-size: 1.7rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-align: center;
+margin: 0.5rem;
+  }
+  .description{
+    margin: 0.3rem;
+    font-family: Poppins;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
