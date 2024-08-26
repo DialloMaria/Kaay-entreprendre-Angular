@@ -1,12 +1,12 @@
-// src/app/models/guide.model.ts
-import { Ressource } from './ressource.model';
-
 export interface Guide {
   id: number;
   titre: string;
   contenu: string;
-  datepublication: string;
   etape: number;
   domaine_id: number;
-  ressources?: Ressource[];
+  created_by: number;
+  modified_by?: number;
+  deleted_at?: string;
+  created_at: string;
+  updated_at: string;
 }

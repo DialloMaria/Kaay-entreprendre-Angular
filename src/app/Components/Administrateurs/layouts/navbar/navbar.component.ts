@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   user: any;
   ngOnInit(): void {
-    const userString = localStorage.getItem('user');
+      const userString = localStorage.getItem('user');
     this.user = userString? JSON.parse(userString) : { username: '', roles: [] };
     this.initializeSidebarToggle();
 
