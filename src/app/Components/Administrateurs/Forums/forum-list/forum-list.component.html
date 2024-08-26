@@ -5,7 +5,8 @@
   </div>
   
   <!-- Liste des forums sous forme de cartes -->
-  <div *ngFor="let forum of forums" class="forum-card">
+  <div *ngIf="(forums$ | async)?.length === 0">Aucun forum disponible</div>
+  <div *ngFor="let forum of (forums$ | async)" class="forum-card">
     <h2>{{ forum.titre }}</h2>
     <p>{{ forum.description }}</p>
     <a [routerLink]="['/forums', forum.id, 'messages']">Voir les messages</a>

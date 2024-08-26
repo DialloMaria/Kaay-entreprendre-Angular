@@ -1,27 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Importez CommonModule
+import { HttpClientModule } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Forum } from './../../../../forum.model'; 
+import { ForumService } from './../../../../services/forum.service';
 
 @Component({
   selector: 'app-forum-list',
   standalone: true,
-  imports: [RouterModule, CommonModule], 
+  imports: [CommonModule, RouterModule, HttpClientModule],
   templateUrl: './forum-list.component.html',
   styleUrls: ['./forum-list.component.css']
 })
 export class ForumListComponent implements OnInit {
-  forums: any[] = [
-    { id: 1, titre: 'Forum 1', description: 'Description du Forum 1' },
-    { id: 2, titre: 'Forum 2', description: 'Description du Forum 2' },
-    { id: 3, titre: 'Forum 3', description: 'Description du Forum 3' }
-  ];
+  forums$: Observable<Forum[]> = of([]);
 
-  constructor() {}
+  constructor(private forumService: ForumService) {}
 
   ngOnInit(): void {
-    // Initialisation manuelle des forums pour test
-    // this.forumService.getForums().subscribe((data: any[]) => {
-    //   this.forums = data;
-    // });
+    this.loadForums();
+  }
+
+  loadForums(): void {
+    this.forums$ = this.forumService.getForums().pipe(
+      catchError((error) => {
+        console.error('Erreur lors de la récupération des forums', error);
+        return of([]);
+      })
+    );
   }
 }

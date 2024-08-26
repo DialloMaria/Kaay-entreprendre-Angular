@@ -1,32 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Forum } from './../forum.model'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ForumService {
-  private apiUrl = 'http://votre-api-url/forums'; 
+  private apiUrl = 'http://127.0.0.1:8000/api/forums';
 
   constructor(private http: HttpClient) {}
 
-  getForums(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  getForum(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
-  }
-
-  createForum(forum: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, forum);
-  }
-
-  updateForum(id: number, forum: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, forum);
-  }
-
-  deleteForum(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  getForums(): Observable<Forum[]> {
+    return this.http.get<Forum[]>(this.apiUrl);
   }
 }
+
+
