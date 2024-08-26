@@ -1,0 +1,25 @@
+<h3 class="text-center m-2 titreType">Les sous-domaines</h3>
+<div class="row list-unstyled">
+  <div *ngFor="let sousDomaine of sousDomaines" class="col-md-6 mb-4">
+    <div class="d-flex gap-8 cart">
+      <img *ngIf="sousDomaine.image" [src]="sousDomaine.image" class="card-img-top" alt="{{ sousDomaine.nom }}">
+      <div class="card-body">
+        <h1 class="titreSousDomaine">{{ sousDomaine.nom }}</h1>
+        <p class="description">{{ sousDomaine.description }}</p>
+        <button (click)="inscrireSousDomaine(sousDomaine.id)" class="btn btn-inscribe">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noSousDomaines>
+  <p>Aucun sous-domaine disponible pour ce domaine.</p>
+</ng-template>
+
+<!-- <div *ngIf="inscriptionMessage" class="alert alert-success">
+  {{ inscriptionMessage }}
+</div>
+
+<div *ngIf="inscriptionError" class="alert alert-danger">
+  {{ inscriptionError }}
+</div> -->

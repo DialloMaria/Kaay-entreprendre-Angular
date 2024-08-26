@@ -1,0 +1,133 @@
+[33mcommit e19012a5a8b2d47011c8b145566d7bcc53f9bba1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDomaineInscriptEntrepreneur[m[33m)[m
+Author: Amadou Barro <barroama23@gmail.com>
+Date:   Mon Aug 19 18:56:47 2024 +0000
+
+    reglage du conglit
+
+[33mcommit 274f21851ec05557492dfd82c774b820c4665d35[m[33m ([m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 4da4428 c922fe8
+Author: Souley97 <138885614+Souley97@users.noreply.github.com>
+Date:   Sat Aug 17 17:15:20 2024 +0000
+
+    Merge pull request #1 from DialloMaria/souleymane
+    
+    Souleymane
+
+[33mcommit c922fe85db49b973de69aac325b2b93effcd05eb[m[33m ([m[1;31morigin/souleymane[m[33m)[m
+Merge: 20216c6 4da4428
+Author: Souley97 <138885614+Souley97@users.noreply.github.com>
+Date:   Sat Aug 17 17:15:13 2024 +0000
+
+    Merge branch 'develop' into souleymane
+
+[33mcommit 20216c67581616a96e5c2c8b44b3dc808f01cb4d[m
+Author: souleymane97 <souleymane9700@gmail.com>
+Date:   Sat Aug 17 16:38:27 2024 +0000
+
+    feet:  Integration dashboard admin et super admin ainsi que les layouts
+
+[33mcommit 2a54db7705ee9e68bab24627d6710e9a45a66310[m
+Author: souleymane97 <souleymane9700@gmail.com>
+Date:   Sat Aug 17 09:24:55 2024 +0000
+
+    feat: recupertion l'information utilisateur qui connecte
+
+[33mcommit 9bac14fac41d4c115c707da742d441f4ccece5b5[m
+Author: souleymane97 <souleymane9700@gmail.com>
+Date:   Sat Aug 17 07:44:33 2024 +0000
+
+    feat: Configuration des guards et redirection des utilisateurs
+    
+    - Mise en place de `AdministrationGuard` pour restreindre l'accès aux routes en fonction des rôles des utilisateurs.
+    - Ajout de la vérification des rôles pour s'assurer que l'utilisateur possède les rôles 'admin' ou 'super_admin' avant d'autoriser l'accès.
+    - Ajout de la redirection vers la page de connexion pour les utilisateurs non autorisés.
+
+[33mcommit 4da442864a5580746f57472344df225728a2bee2[m[33m ([m[1;32mmain[m[33m)[m
+Author: Amadou Barro <barroama23@gmail.com>
+Date:   Fri Aug 16 07:38:02 2024 +0000
+
+     Mise a jour du Configuaration
+
+[33mcommit 34af63f23082449bd8be76b8e42aa638751823a9[m
+Author: souleymane97 <souleymane9700@gmail.com>
+Date:   Fri Aug 16 02:10:03 2024 +0000
+
+    feat: developpement partie inscription et connexion
+
+[33mcommit edb146b3b0746911f04f04e39d62a82ffde9d026[m
+Author: souleymane97 <souleymane9700@gmail.com>
+Date:   Fri Aug 16 00:26:12 2024 +0000
+
+    configration tailwind css
+
+[33mcommit 088b8c59f064d0ff0c6b7a6c95ea0b534d56eb8c[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:33:24 2024 +0000
+
+    Ajout du composant Liste des guides  pour les administrateurs
+
+[33mcommit 5ae1dad806aac504a86c89b9dba34810dd8cb620[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:32:39 2024 +0000
+
+    Ajout du composant Liste des forums pour les administrateurs
+
+[33mcommit a14dd6a97cea790b7f6477049f6a873e1ac3df5e[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:30:43 2024 +0000
+
+    Ajout du composant Liste des Sous-domaines pour le Super-admin
+
+[33mcommit f90266f8a6075d4db8a6d4f82e686c6852b25ac3[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:30:28 2024 +0000
+
+    Ajout du composant Liste des Rôles pour le Super-admin
+
+[33mcommit b1e4e5b24ab0fd73bdb13380ff3d06b04c82e38f[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:30:01 2024 +0000
+
+    Ajout du composant Liste des Événements pour le Super-admin
+
+[33mcommit e34ef9bcd72ed9503bf5b80b19f77f0c9ae05629[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:29:43 2024 +0000
+
+    Ajout du composant Liste des Domaines pour le Super-admin
+
+[33mcommit 595db1d5023b977a1715a93ee4ab27c9c383e482[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:29:18 2024 +0000
+
+    Ajout du composant Liste des Catégories pour le Super-admin
+
+[33mcommit da0b71d81ead6f186cca046a7beb0fc075fa0c27[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 21:28:58 2024 +0000
+
+    Ajout du composant Mise à jour des Profils pour les Portails
+
+[33mcommit 046a9e7874560c16cfd12dc76556066765b987f1[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 19:33:02 2024 +0000
+
+    Ajout du composant Liste des Messages Forum pour les Entrepreneurs
+
+[33mcommit e4dca8b445edbe4c677de1d3013d33f54080ea5b[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 19:32:32 2024 +0000
+
+    Ajout du composant Liste des Commentaires des Guides pour les Entrepreneurs
+
+[33mcommit b0675e2db9afe6479d5bbe6037394558ddac77b9[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Thu Aug 15 19:21:18 2024 +0000
+
+    Ajout du composant Liste des Ressources pour les Administrateurs
+
+[33mcommit 321bef7f768920af957663496a091375bdbbae95[m
+Author: DialloMaria <diallomariam0715@gmail.com>
+Date:   Wed Aug 14 18:47:12 2024 +0000
+
+    initial commit
