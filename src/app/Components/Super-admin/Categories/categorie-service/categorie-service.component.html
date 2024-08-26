@@ -44,7 +44,7 @@
           <!-- Form for Adding/Editing a Domaine -->
           <form (ngSubmit)="saveDomaine()" class="flex items-center space-x-4">
             <!-- Hidden input for category ID, set default value -->
-            <input type="text" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
+            <input type="hidden" [(ngModel)]="domaine.categorie_id" name="categorie_id" required>
 
             <!-- Domaine Name Input -->
             <input type="text" id="nom" [(ngModel)]="domaine.nom" name="nom" required placeholder="Ajouter un domaine"
