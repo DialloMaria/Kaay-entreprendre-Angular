@@ -1,9 +1,7 @@
-// src/app/services/ressource.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { Guide } from '../models/guide.model';
 import { Ressource } from '../models/ressource.model';
 
@@ -22,11 +20,13 @@ export class RessourceService {
       // 'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
     });
   }
+
   getRessourcesByGuideId(guideId: number): Observable<Ressource[]> {
     return this.http.get<Ressource[]>(`${this.ressourcesUrl}?guideId=${guideId}`, { headers: this.getHttpHeaders() }).pipe(
       catchError(this.handleError)
     );
   }
+
   getRessources(): Observable<Ressource[]> {
     return this.http.get<Ressource[]>(this.ressourcesUrl, { headers: this.getHttpHeaders() }).pipe(
       catchError(this.handleError)

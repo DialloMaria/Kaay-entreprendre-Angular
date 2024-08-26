@@ -1,0 +1,30 @@
+<form [formGroup]="addRessourceForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="titre">Titre :</label>
+      <input id="titre" formControlName="titre">
+    </div>
+    <div>
+      <label for="description">Description :</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+    <div>
+      <label for="lien">Lien :</label>
+      <input id="lien" formControlName="lien">
+    </div>
+    <div>
+      <label for="type">Type :</label>
+      <input id="type" formControlName="type">
+    </div>
+    <div>
+      <label for="guideId">Guide :</label>
+      <select id="guideId" formControlName="guideId">
+        <option *ngFor="let guide of guides" [value]="guide.id">{{ guide.titre }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="createdBy">Créé par :</label>
+      <input id="createdBy" formControlName="createdBy" type="number">
+    </div>
+    <button type="submit">Ajouter</button>
+  </form>
+  

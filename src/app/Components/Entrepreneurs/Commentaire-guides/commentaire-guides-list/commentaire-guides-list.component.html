@@ -1,1 +1,14 @@
-<p>commentaire-guides-list works!</p>
+<!-- src/app/components/Administrateurs/Guides/commentaire-guides-list/commentaire-guides-list.component.html -->
+<div *ngIf="guideId">
+    <h3>Commentaires</h3>
+  
+    <div *ngFor="let commentaire of commentaires">
+      <p>{{ commentaire.contenu }} - <em>par {{ commentaire.created_by }}</em></p>
+    </div>
+  
+    <form (ngSubmit)="ajouterCommentaire()">
+      <textarea [(ngModel)]="nouveauCommentaire.contenu" name="contenu" required></textarea>
+      <button type="submit">Ajouter Commentaire</button>
+    </form>
+  </div>
+  
