@@ -10,8 +10,7 @@ import { FormDomaineListComponent } from '../../Domaines/form-domaine-list/form-
 import { Domaine } from '../../../../Models/domaine.model';
 import { DomaineService } from '../../../../Services/domaine.service';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
-
+import Swal, { SweetAlertResult } from 'sweetalert2'; // Fixed import
 
 @Component({
   selector: 'app-categorie-list',
@@ -135,7 +134,6 @@ export class CategorieServiceComponent implements OnInit {
     }
   }
 
-
   filterSousDomaines(domaine: any): void {
     this.selectedDomaine = domaine;
   }
@@ -144,12 +142,12 @@ export class CategorieServiceComponent implements OnInit {
     this.router.navigate(['/domaines/edit', id]);
   }
 
-
   getDomaines(): void {
     this.domaineService.getDomaines().subscribe((response: any) => {
       this.domaines = response.data; // ou selon la structure exacte de votre réponse
     });
   }
+
   deleteDomaine(id: number): void {
     Swal.fire({
       title: 'Êtes-vous sûr ?',
@@ -160,7 +158,7 @@ export class CategorieServiceComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Oui, supprimer !',
       cancelButtonText: 'Annuler'
-    }).then((result) => {
+    }).then((result: SweetAlertResult) => {
       if (result.isConfirmed) {
         this.domaineService.deleteDomaine(id).subscribe(
           () => {
@@ -182,5 +180,4 @@ export class CategorieServiceComponent implements OnInit {
       }
     });
   }
-
 }
