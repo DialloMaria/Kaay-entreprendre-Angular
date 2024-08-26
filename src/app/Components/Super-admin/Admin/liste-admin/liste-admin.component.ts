@@ -2,38 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { SuperAdminLayoutComponent } from "../../layouts/super-admin-layout/super-admin-layout.component";
 import { NavbarComponent } from "../../../Administrateurs/layouts/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
+import { AdminService } from '../../../../Services/admin.service';
+import { FormGroup } from '@angular/forms';
+import { InscriptionAdminComponent } from "../../../Portails/authentification/inscription_admin/inscription-admin.component";
 interface Entrepreneur {
-  nom: string;
-  prenom: string;
-  telephone: string;
-  email: string;
-  adresse: string;
+  nom?: string;
+  prenom?: string;
+  telephone?: string;
+  email?: string;
+  adresse?: string;
 }
 @Component({
   selector: 'app-categorie-list',
   standalone: true,
-  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule],
+  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule, InscriptionAdminComponent],
   templateUrl: './liste-admin.component.html',
   styleUrl: './liste-admin.component.css'
 })
 export class ListeAdminComponent implements OnInit {
-  entrepreneurs: Entrepreneur[] = [
-    { nom: 'Amadou', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    { nom: 'Amadou', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    { nom: 'Simplon', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    { nom: 'Amadou', prenom: 'Barro', telephone: '77 000 00 00', email: 'email.com', adresse: 'Dakar, Pikine' },
-    // Add more entrepreneurs here...
-  ];
-
+  entrepreneurs: any[] = [];
   paginatedEntrepreneurs: Entrepreneur[] = [];
+  isAdminModalOpen = false;
+  registrationForm: FormGroup | undefined;
+
+
   pageSize = 2;  // Number of entrepreneurs per page
   currentPage = 1;
   totalPages = 0;
 
   ngOnInit() {
-    this.totalPages = Math.ceil(this.entrepreneurs.length / this.pageSize);
     this.updatePaginatedEntrepreneurs();
+    this.getAdmins();
+
   }
+  constructor(private entrepreneurService: AdminService) { }
+
+  getAdmins(): void {
+    this.entrepreneurService.getAdmins().subscribe(response => {
+      this.entrepreneurs = response.data || response; // Ajustez si nécessaire
+      this.totalPages = Math.ceil(this.entrepreneurs.length / this.pageSize); // Nombre total de pages
+      this.updatePaginatedEntrepreneurs();
+    });
+  }
+
 
   updatePaginatedEntrepreneurs() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
@@ -46,4 +57,13 @@ export class ListeAdminComponent implements OnInit {
     this.currentPage = page;
     this.updatePaginatedEntrepreneurs();
   }
+
+  openAdminModal() {
+    this.isAdminModalOpen = true;
+  }
+
+  closeAdminModal() {
+    this.isAdminModalOpen = false;
+  }
+
 }

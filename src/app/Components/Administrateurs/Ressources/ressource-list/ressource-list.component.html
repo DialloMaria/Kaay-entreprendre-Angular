@@ -1,1 +1,17 @@
-<p>ressource-list works!</p>
+<app-guide-list (guideSelected)="onGuideSelected($event)"></app-guide-list>
+
+<div *ngIf="filteredRessources.length > 0" class="accordion-container">
+  <div *ngFor="let ressource of filteredRessources" class="accordion-item">
+    <div class="accordion-header" (click)="toggleAccordion(ressource.id)">
+      <h3>{{ ressource.titre }}</h3>
+    </div>
+    <div class="accordion-content" [ngClass]="{'active': isActive(ressource.id)}">
+      <p>{{ ressource.description }}</p>
+      <a [href]="ressource.lien" target="_blank">{{ ressource.lien }}</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="filteredRessources.length === 0">
+  <p>Aucune ressource trouvée pour ce guide.</p>
+</div>

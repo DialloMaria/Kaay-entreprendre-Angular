@@ -1,0 +1,35 @@
+.list-unstyled {
+    margin: 0;
+    padding: 1rem;
+  }
+  .titreType{
+    color: #007461;
+
+/* TITRE PRINCIPAL */
+font-family: Buenard;
+font-size: 2.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+  .btn-outline-custom {
+    color: #006666;
+    background-color: transparent;
+    border: 1px solid #006666;
+    ;
+    padding: 0.55rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline-custom:hover, 
+  .btn-outline-custom:focus {
+    color: #fff;
+    background-color: #FC974E;
+    border-color: #006666;
+  }
+  
+  .btn-outline-custom:active {
+    background-color: #01070b;
+    border-color: #00070b;
+  }

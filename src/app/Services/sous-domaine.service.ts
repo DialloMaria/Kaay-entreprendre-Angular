@@ -18,7 +18,7 @@ export class SousDomaineService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<SousDomaine[]>(`${apiUrl}/sousdomaines`, { headers });
+    return this.http.get<SousDomaine[]>(`${apiUrl}/sous-domaines`, { headers });
   }
 
   // Méthode pour récupérer un sous-domaine spécifique par son ID

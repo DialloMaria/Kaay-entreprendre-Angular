@@ -1,0 +1,95 @@
+<div>
+  <h2>Liste des événements</h2>
+  <button (click)="openForm()">Ajouter un événement</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Lieu</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evenement of evenements">
+        <td>{{ evenement.titre }}</td>
+        <td>{{ evenement.description }}</td>
+        <td>{{ evenement.lieu }}</td>
+        <td>
+          <button (click)="openForm(evenement)">Modifier</button>
+          <button (click)="deleteEvenement(evenement.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Formulaire pour ajouter un événement -->
+  <div *ngIf="isAddFormVisible">
+    <h3>Créer un événement</h3>
+    <form (ngSubmit)="createEvenement()">
+      <label for="titre">Titre</label>
+      <input id="titre" [(ngModel)]="newEvenement.titre" name="titre" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="newEvenement.description" name="description" required></textarea>
+
+      <label for="image">Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" name="image">
+
+      <label for="online">En ligne</label>
+      <select id="online" [(ngModel)]="newEvenement.online" name="online" required>
+        <option [value]="true">Oui</option>
+        <option [value]="false">Non</option>
+      </select>
+
+      <label for="lieu">Lieu</label>
+      <input id="lieu" [(ngModel)]="newEvenement.lieu" name="lieu" required>
+
+      <label for="domaine_id">Domaine</label>
+      <select id="domaine_id" [(ngModel)]="newEvenement.domaine_id" name="domaine_id" required>
+        <option *ngFor="let domaine of domaines" [value]="domaine.id">
+          {{ domaine.nom }}
+        </option>
+      </select>
+
+      <button type="submit">Créer</button>
+      <button type="button" (click)="closeForm()">Annuler</button>
+    </form>
+  </div>
+
+  <!-- Formulaire pour modifier un événement -->
+  <!-- Formulaire pour modifier un événement -->
+  <div *ngIf="isUpdateFormVisible">
+    <h3>Modifier un événement</h3>
+    <form (ngSubmit)="updateEvenement()">
+      <label for="titre">Titre</label>
+      <input id="titre" [(ngModel)]="selectedEvenement.titre" name="titre" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="selectedEvenement.description" name="description" required></textarea>
+
+      <label for="image">Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" name="image">
+
+      <label for="online">En ligne</label>
+      <select id="online" [(ngModel)]="selectedEvenement.online" name="online" required>
+        <option [value]="true">Oui</option>
+        <option [value]="false">Non</option>
+      </select>
+
+      <label for="lieu">Lieu</label>
+      <input id="lieu" [(ngModel)]="selectedEvenement.lieu" name="lieu" required>
+
+      <label for="domaine_id">Domaine</label>
+      <select id="domaine_id" [(ngModel)]="selectedEvenement.domaine_id" name="domaine_id" required>
+        <option *ngFor="let domaine of domaines" [value]="domaine.id">
+          {{ domaine.nom }}
+        </option>
+      </select>
+
+      <button type="submit">Mettre à jour</button>
+      <button type="button" (click)="closeForm()">Annuler</button>
+    </form>
+  </div>
+</div>

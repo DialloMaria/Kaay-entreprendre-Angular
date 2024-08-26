@@ -1,0 +1,87 @@
+<div class="flex font-Buenard flex-col items-center">
+  <!-- Section de l'entête de l'événement -->
+  <div *ngIf="evenement" class="flex flex-wrap gap-4 pb-16 w-full bg-emerald-700 max-md:pl-5 max-md:max-w-full">
+    <div class="flex max-md:flex-col w-full justify-between">
+
+      <!-- Images latérales pour les grands écrans -->
+      <div class="flex-col self-start m-9 hidden lg:flex md:d-none">
+        <img loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/de07c2dcdbf61b00c0df063ea350c8ebc1671388e11c8194795f219ed6340b55?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b"
+          class="object-contain aspect-[0.91] w-[62px]" />
+        <img loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/85fae9f9b92410a39ca8f2605f0c18c100f2f7d9932e6dae9808bad646f13b26?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b"
+          class="object-contain self-end mt-48 aspect-[0.87] max-md:mt-10" />
+      </div>
+      <!-- fonr famili  -->
+
+      <!-- Titre de l'événement et bouton d'inscription -->
+      <div class="flex flex-col w-full font-Buenar items-center mt-24 mx-40 max-md:w-full">
+        <div class="flex justify-center flex-col items-center text-4xl text-white mt-10 mx-4 max-md:mt-6 max-md:w-full">
+          <div class="bg-orange-400 h-[3px] w-full max-md:mr-0.5"></div>
+          <div class="mt-4  font-Buenard text-center">
+            {{ evenement.titre }}
+          </div>
+          <div class="mt-16">
+            <button
+            class="bg-orange-400 text-white font-semibold py-2 px-6 rounded shadow-lg hover:bg-orange-500"
+            (click)="registerForEvent(evenement.id)">
+            S'inscrire
+          </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image principale pour les grands écrans -->
+      <div class="relative hidden lg:flex md:d-none flex-col grow pb-3.5 min-h-[414px] max-md:max-w-full">
+        <img loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/e5087fe7afc1f8a60ad1f58345a4e42c2b44b2c6f0d7352f2a109814b45f0e41?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b"
+          class="object-contain grow max-md:max-w-full" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Informations sur l'événement (date, heure, lieu) -->
+  <div class="w-4/5 min-h-36 flex border-1 border-l-orange-400 border-b-orange-400 items-center bg-white rounded-tr-3xl rounded-bl-3xl shadow max-md:w-full -mt-14">
+    <div class="container px-28 py-4 mx-auto flex items-center justify-between space-x-4 max-md:flex-col">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid bg-green-800 rounded-full text-white p-2 fa-location-dot"></i>
+        <span>{{ evenement?.created_at | date: 'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid bg-green-800 rounded-full text-white p-2 fa-location-dot"></i>
+        <span>{{ evenement?.created_at | date: 'HH:mm' }}</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid bg-green-800 rounded-full text-white p-2 fa-location-dot"></i>
+        <!-- Conditional rendering based on the event's online status -->
+        <ng-container *ngIf="evenement?.online; else physicalLocation">
+          <span>Cet événement se déroulera en ligne.</span>
+        </ng-container>
+        <ng-template #physicalLocation>
+          <span>Lieu: {{ evenement?.lieu }}</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+<!-- bouton  retour -->
+
+  <!-- Description de l'événement -->
+  <div class="container mx-auto py-8 px-6 text-gray-700">
+    <div class="flex justify-between">
+
+      <h2 class="text-2xl font-bold">À propos de cet événement</h2>
+      <div class="flex justify-center max-md:w-full">
+        <a  [routerLink]="['/entrepreneur/evenements']"
+          class="bg-orange-400 text-white font-semibold py-2 px-6 rounded shadow-lg hover:bg-orange-500"
+          >
+          Retour à la liste des événements
+      </a>
+      </div>
+
+    </div>
+
+    <p class="mt-4">
+      {{ evenement?.description }}
+    </p>
+  </div>
+</div>

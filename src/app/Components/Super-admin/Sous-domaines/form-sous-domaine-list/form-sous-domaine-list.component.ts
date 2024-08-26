@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SousDomaineService } from '../../../../Services/sous-domaine.service';
 import { SousDomaine } from '../../../../Models/SousDomaine.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SousDomaineService } from '../../../../Services/sous-domaine.service';
 
 @Component({
   selector: 'app-sous-domaine-form',

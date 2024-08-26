@@ -31,8 +31,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
+
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -87,6 +88,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
+
               }
             ],
             "styles": [
@@ -99,7 +101,7 @@
     }
   },
   "cli": {
-    "analytics": "d78e2fb4-88b9-4b80-b922-759b48e46955"
-
+    "analytics": "eb7d987b-3764-44d8-9829-e3e9469deeb8"
   }
+
 }

@@ -2,11 +2,11 @@ import { AuthService } from './../../../../Services/auth.service';
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { SuperAdminService } from '../../../../Services/super-admin.service';
-import { SousDomaineService } from './../../../../Services/sous-domaine.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SousDomaineFormComponent } from "../form-sous-domaine-list/form-sous-domaine-list.component";
 import Swal from 'sweetalert2';
+import { SousDomaineService } from '../../../../Services/sous-domaine.service';
 
 @Component({
   selector: 'app-sous-domaine-list',
@@ -23,6 +23,8 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
   selectedDomaineName: string = '';
   selectedEntrepreneurs: any[] = [];
 
+
+
   isAddModalOpen: boolean = false;
   isEditMode: boolean = false;
   sousDomaine: any = { nom: '', description: '', domaine_id: 0 };
@@ -33,8 +35,11 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
     private router: Router,
     private authService: AuthService
   ) {}
-
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.sousDomaineService.getSousDomaines().subscribe(data => {
+      this.sousDomaines = data;
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedDomaine'] && this.selectedDomaine) {
@@ -47,10 +52,23 @@ export class SousDomaineListComponent implements OnInit, OnChanges {
       this.sousDomaines = response.sousDomaines;
       this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom || '';
       this.selectedSousDomaines = this.sousDomaines;
+      console.log(this.selectedSousDomaines)
     },
     error => {
       console.error('Erreur lors de la récupération des sous-domaines:', error);
     });
+  }
+
+  loadSousDomaines(): void {
+    this.superAdminService.getSousDomaines().subscribe(
+      (response: any) => {
+        this.sousDomaines = response.sousDomaines;
+        console.log(this.sousDomaines);
+      },
+      error => {
+        console.error('Erreur lors de la récupération des sous-domaines:', error);
+      }
+    );
   }
 
   showEntrepreneurs(sousDomaineId: number): void {

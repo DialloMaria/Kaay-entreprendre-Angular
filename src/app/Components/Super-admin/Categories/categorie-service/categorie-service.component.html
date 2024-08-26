@@ -70,7 +70,7 @@
           <div class="block w-full lg:w-3/4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
               <!-- Domains -->
-              <div *ngFor="let domaine of domaines" class="flex shadow-lg flex-col rounded-md h-[71px] w-full">
+              <div *ngFor="let domaine of domaines" class=" ">
                 <div (click)="filterSousDomaines(domaine)" [ngClass]="{
                     'bg-[#007461] text-white text-2xl': selectedDomaine === domaine,
                     'bg-white': selectedDomaine !== domaine

@@ -1,0 +1,47 @@
+/* Conteneur pour les étapes */
+.step-container {
+  display: flex;
+  overflow-x: auto; /* Ajoute un défilement horizontal si nécessaire */
+  padding: 10px;
+}
+
+/* Style pour chaque étape */
+.step {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Espacement entre les étapes */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex-shrink: 0; /* Empêche les éléments de se réduire */
+}
+
+.step:hover {
+  background-color: #e0f7fa; /* Couleur d'arrière-plan pour le survol */
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #00796b; /* Couleur pour les numéros */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h3 {
+  margin: 0;
+  font-size: 18px;
+}

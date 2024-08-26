@@ -1,0 +1,89 @@
+<header class="flex shadow-lg justify-between items-center bg-white p-4 text-black">
+  <h1 class="text-xl ml-10">Logo Kaay</h1>
+  <div class=" items-center flex ">
+    <a href="#" class="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+      ACCUEIL
+    </a>
+    <a href="#" class="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+      Guides
+    </a>
+    <a href="#" class="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+      Evenements
+    </a>
+    <a href="#" class="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+      Forums
+    </a>
+  </div>
+  <div class="flex items-center space-x-4 mr-12">
+
+
+    <button class=" border-green-700 rounded-full border px-5  py-2">
+      <a href="">Amadou Barro</a>
+
+    </button>
+  </div>
+
+</header>
+
+<div class="banniere ">
+  <h1 class="text-center p-5">Evenements pour les entrepreneurs</h1>
+  <h3 class="text-center p-3">Vous pouvez faire la rencontre de smeilleures experts Réservez votre place pour les
+    prochaines sessions dès maintenant !</h3>
+</div>
+<main class="flex-1 mx-6 md:mx-12 lg:mx-24 p-4 md:p-6">
+  <!-- Container principal -->
+  <div class="container mx-auto">
+    <div class="container mx-auto typeEvenement">
+      <!-- Grille responsive pour les filtres -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 justify-center mb-6">
+        <div class="flex items-center justify-center">
+          <h3 (click)="filterEvents('all')" [class.active]="filter === 'all'">Toutes</h3>
+        </div>
+        <div class="flex items-center justify-center">
+          <h3 (click)="filterEvents('online')" [class.active]="filter === 'online'">En ligne</h3>
+        </div>
+        <div class="flex items-center justify-center">
+          <h3 (click)="filterEvents('physical')" [class.active]="filter === 'physical'">Physiques</h3>
+        </div>
+        <div class="flex items-center justify-center">
+          <h3 (click)="filterEvents('past')" [class.active]="filter === 'past'">Événements Passés</h3>
+        </div>
+      </div>
+    </div>
+
+          <!-- Message si aucune événement n'est disponible -->
+          <div *ngIf="filteredEvenements.length === 0" class="w-full text-center py-4">
+            <p class="text-lg text-gray-600">Aucun événement trouvé.</p>
+          </div>
+
+
+    <!-- Grille des événements -->
+    <div class="grid listEvenement grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-center mb-6">
+      <div *ngFor="let evenement of filteredEvenements" class="cart shadow-2xl d-flex flex-column">
+        <img
+          src="https://img.freepik.com/photos-premium/table-nappe-verte-nappe-blanche-nappe-verte_1034058-101465.jpg?ga=GA1.1.1167424097.1724063612&semt=ais_hybrid"
+          alt="">
+        <div class="DetailEvenement">
+          <div class="dateDetailEvenement">
+            <span>{{ evenement?.created_at | date:'MMMM ' }}</span><br>
+            <span>{{ evenement?.created_at | date:'dd ' }}</span>
+          </div>
+          <div class="DescriptDetailEvenement">
+            <a [routerLink]="['/entrepreneur/evenements', evenement.id]">
+              <h4 class="detailTitre">{{ evenement.titre }}</h4>
+            </a>
+            <p class="detailsParagraph">{{ evenement.description }}</p>
+          </div>
+        </div>
+        <div class="flex m-10">
+          <ng-container *ngIf="evenement?.online; else physicalLocation">
+            <span>En ligne.</span>
+          </ng-container>
+          <ng-template #physicalLocation>
+            <span>Lieu: {{ evenement?.lieu }}</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,77 @@
+/* Banner styling */
+.banner {
+  background-color: #28a745; /* Green background color */
+  color: white; /* White text color */
+  padding: 20px; /* Padding around the banner content */
+  text-align: center; /* Center align the text */
+  position: relative; /* To position the buttons inside */
+}
+
+.banner-content {
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto; /* Center the banner content */
+}
+
+.steps-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  margin-top: 10px; /* Margin between title and buttons */
+}
+
+.steps-buttons button {
+  background-color: #fff; /* White background for buttons */
+  color: #28a745; /* Green text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0 5px; /* Space between buttons */
+  cursor: pointer;
+}
+
+.steps-buttons button:hover {
+  background-color: #e9ecef; /* Light gray background on hover */
+}
+
+/* Popup form styling */
+.popup-form {
+  display: none;
+  /* Your existing styles here */
+}
+
+.popup-form.active {
+  display: block;
+  /* Your existing styles here */
+}
+.accordion-container {
+  width: 100%;
+}
+
+.accordion-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  background-color: #007461; /* Vert pour la bannière */
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.accordion-content.active {
+  display: block;
+}
+
+.accordion-header:hover {
+  background-color: #FC974E; /* Orange pour le hover */
+}

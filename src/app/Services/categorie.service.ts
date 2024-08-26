@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Categorie } from '../Models/categories.model';
 import { apiUrl } from "./apiUrl";
+import { Domaine } from '../Models/domaine.model';
 
 
 @Injectable({
@@ -72,6 +73,7 @@ private http = inject(HttpClient);
     return this.http.delete<Categorie>(`${apiUrl}/categories/${id}`, { headers });
 
   }
+  
 }
 
   // Méthode pour obtenir les statistiques

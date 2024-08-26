@@ -1,1 +1,9 @@
-<p>guide-list works!</p>
+<div class="step-container">
+  <div *ngFor="let guide of guides" (click)="selectGuide(guide.id)" class="step">
+    <div class="step-number">{{ guide.id }}</div>
+    <div class="step-content">
+      <h3>{{ guide.titre }}</h3>
+      <!-- Vous pouvez ajouter plus d'informations sur le guide ici -->
+    </div>
+  </div>
+</div>

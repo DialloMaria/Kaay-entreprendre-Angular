@@ -31,13 +31,7 @@ export class DomaineListComponent  implements OnInit {
     // }
   }
 
-  // getDomaines(): void {
-  //   this.domaineService.getDomaines().subscribe((data: Domaine[]) => {
-  //     this.domaines = data;
-  //     console.log(this.domaines);
-
-  //    });
-  // }
+ 
 
   getDomaines(): void {
     this.domaineService.getDomaines().subscribe((response: any) => {

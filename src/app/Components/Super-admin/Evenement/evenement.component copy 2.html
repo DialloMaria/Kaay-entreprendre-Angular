@@ -1,0 +1,56 @@
+<div>
+  <h2>Liste des événements</h2>
+  <button (click)="openForm()">Créer un nouvel événement</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Lieu</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evenement of evenements">
+        <td>{{ evenement.titre }}</td>
+        <td>{{ evenement.description }}</td>
+        <td>{{ evenement.lieu }}</td>
+        <td>
+          <button (click)="openForm(evenement)">Modifier</button>
+          <button (click)="deleteEvenement(evenement.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="isFormVisible">
+    <h3>{{ selectedEvenement ? 'Modifier' : 'Créer' }} un événement</h3>
+    <form (ngSubmit)="selectedEvenement ? updateEvenement() : createEvenement()">
+        <label for="titre">Titre</label>
+        <input id="titre" [(ngModel)]="newEvenement.titre" name="titre" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="newEvenement.description" name="description" required></textarea>
+
+        <label for="lieu">Lieu</label>
+        <input id="lieu" [(ngModel)]="newEvenement.lieu" name="lieu" required>
+
+        <label for="online">En ligne</label>
+        <select id="online" [(ngModel)]="newEvenement.online" name="online" required>
+            <option [value]="true">Oui</option>
+            <option [value]="false">Non</option>
+        </select>
+
+        <label for="domaine_id">Domaine</label>
+        <input id="domaine_id" [(ngModel)]="newEvenement.domaine_id" name="domaine_id" required>
+
+        <label for="image">Image</label>
+        <input type="file" id="image" (change)="onFileSelected($event)" name="image">
+
+        <button type="submit">{{ selectedEvenement ? 'Mettre à jour' : 'Créer' }}</button>
+        <button type="button" (click)="closeForm()">Annuler</button>
+    </form>
+</div>
+
+</div>

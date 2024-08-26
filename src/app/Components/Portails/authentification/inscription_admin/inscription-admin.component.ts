@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -6,19 +6,20 @@ import { AuthService } from '../../../../Services/auth.service';
 import { DomaineModel } from '../../../../Models/domaines.model';
 
 @Component({
-  selector: 'app-inscription',
+  selector: 'app-inscription-admin',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './inscription-admin.component.html',
   styleUrls: ['./inscription-admin.component.css']
 })
-export class InscriptionComponent implements OnInit {
+export class InscriptionAdminComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
   registrationForm: FormGroup;
   domaines: DomaineModel[] = []; // Utiliser le type Domaine
+  isAdminModalOpen = false;
 
 
   constructor() {
@@ -35,17 +36,7 @@ export class InscriptionComponent implements OnInit {
   }
 
 
-  // ngOnInit(): void {
-  //   this.authService.getSpecialisations().subscribe(
-  //     (data: DomaineModel[]) => {
-  //       console.log('Domaines chargés:', data);
-  //       this.domaines = data;
-  //     },
-  //     (error) => {
-  //       console.error('Erreur lors du chargement des domaines:', error);
-  //     }
-  //   );
-  // }
+
   ngOnInit(): void {
     this.authService.getSpecialisations().subscribe(
       (response: any) => {
@@ -61,20 +52,27 @@ export class InscriptionComponent implements OnInit {
 
 
 
-  // registerAdmin() {
-  //   if (this.registrationForm.valid) {
-  //     const userObject = this.registrationForm.value;
-  //     this.authService.registerAdmin(userObject).subscribe(
-  //       (response: any) => {
-  //         console.log(response);
-  //         this.router.navigate(['/login']);
-  //       },
-  //       (error) => {
-  //         console.error('Erreur lors de l\'inscription:', error);
-  //       }
-  //     );
-  //   } else {
-  //     console.error('Le formulaire est invalide.');
-  //   }
-  // }
+  registerAdmin() {
+    if (this.registrationForm.valid) {
+      const userObject = this.registrationForm.value;
+      this.authService.registerAdmin(userObject).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.closeAdminModal(); // Ferme la modalité après l'inscription
+        },
+        (error) => {
+          console.error('Erreur lors de l\'inscription:', error);
+        }
+      );
+    } else {
+      console.error('Le formulaire est invalide.');
+    }
+  }
+  @Output() closeModal = new EventEmitter<void>();
+
+  closeAdminModal() {
+    this.closeModal.emit();
+  }
+
+
 }
