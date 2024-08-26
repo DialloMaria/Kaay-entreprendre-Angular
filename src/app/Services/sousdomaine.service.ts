@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SousdomaineService  {
+export class SousdomaineService    {
 // constructor(private http: HttpClient) {}
 private http = inject(HttpClient);
 @Injectable({

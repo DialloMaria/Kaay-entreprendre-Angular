@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { sousdomaine } from '../../../Models/sousdomaines.model';
-import { SousdomaineService } from '../../../Services/sousdomaine.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { SousdomaineService } from '../../../Services/sousdomaine.service';
 
 
 @Component({

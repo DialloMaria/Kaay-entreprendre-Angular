@@ -5,15 +5,16 @@ import { AdministrationGuard } from './Guard/administration-guard';
 import { DashboardAdminComponent } from './Components/Administrateurs/dashboard-admin/dashboard-admin.component';
 import { DashboardSuperAdminComponent } from './Components/Super-admin/dashboard-super-admin/dashboard-super-admin.component';
 import { DashboardEntrepreneurComponent } from './Components/Entrepreneurs/dashboard-entrepreneur/dashboard-entrepreneur.component';
+
+import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
+import { SousDomaineListComponent } from './Components/Super-admin/Sous-domaines/sous-domaine-list/sous-domaine-list.component';
 import { CategorieListComponent } from './Components/Super-admin/Categories/categorie-list/categorie-list.component';
 import { CategorieServiceComponent } from './Components/Super-admin/Categories/categorie-service/categorie-service.component';
 import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categories/categorie-entrepreneur/categorie-entrepreneur.component';
 import { ListeAdminComponent } from './Components/Super-admin/Admin/liste-admin/liste-admin.component';
 import { EvenementListComponent } from './Components/Super-admin/Evenements/evenement-list/evenement-list.component';
-import { ListEntrepreneurComponent } from './Components/Super-admin/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
 import { DomaineListComponent } from './Components/Super-admin/Domaines/domaine-list/domaine-list.component';
 import { FormDomaineListComponent } from './Components/Super-admin/Domaines/form-domaine-list/form-domaine-list.component';
- import { EntrepreneurGuard } from './Guard/entrepreneur.guard';
 import { CommentairesGuidesListService } from './Services/commentaires-guides-list.service';
 import { EvenementComponent } from './Components/Entrepreneurs/Evenement/evenement.component';
 import { EvenementDetailsComponent } from './Components/Entrepreneurs/Evenement/evenement-details/evenement-details.component';
@@ -23,10 +24,13 @@ import { InscriptionAdminComponent } from './Components/Portails/authentificatio
 
 import { InscritDomaineComponent } from './Components/Entrepreneurs/inscrit-domaine/inscrit-domaine.component';
 import { CategorieComponent } from './Components/Entrepreneurs/categorie/categorie.component';
+import { ListEntrepreneurComponent } from './Components/Super-admin/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
 
+// Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
 
 
+  // Redirection par défaut vers la liste des domaines
   // {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
   {path: 'login', component: ConnexionComponent},
   {path: 'register', component: InscriptionComponent},
@@ -51,15 +55,15 @@ export const routes: Routes = [
 
 
 // Redirection par défaut vers la liste des domaines
-  { path: '', redirectTo: '/domaines', pathMatch: 'full' },
+  // { path: '', redirectTo: '/domaines', pathMatch: 'full' },
 
   // Liste des domaines
   { path: 'domaines', component: DomaineListComponent },
 
- // Ajout d'un nouveau domaine
+  // Ajout d'un nouveau domaine
   { path: 'domaines/new', component: FormDomaineListComponent },
 
- // Modification d'un domaine existant
+  // Modification d'un domaine existant
   { path: 'domaines/edit/:id', component: FormDomaineListComponent },
   // {path: 'admin', component: AdministrationComponent, canActivate: [AdministrationGuard]},
   // {path: '**', component: PageNotFoundComponent}
@@ -77,5 +81,20 @@ export const routes: Routes = [
   {path:'entrepreneurInscript/domaine',component:InscritDomaineComponent},
 
 
-];
+  // Authentification
+  { path: 'login', component: ConnexionComponent },
+  { path: 'register', component: InscriptionComponent },
 
+  // Dashboards avec des gardes pour sécuriser les routes
+  { path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard] },
+  { path: 'dashboard/super-admin', component: DashboardSuperAdminComponent, canActivate: [AdministrationGuard] },
+  { path: 'dashboard/entrepreneur', component: DashboardEntrepreneurComponent, canActivate: [EntrepreneurGuard] },
+
+
+  { path: 'sousdomaines', component: SousDomaineListComponent },
+  { path: 'sousdomaines/new', component: SousDomaineListComponent },
+  { path: 'sousomaines/edit/:id', component: FormDomaineListComponent },
+
+  // Vous pouvez également ajouter une route pour la page 404 ici si besoin
+  // { path: '**', component: PageNotFoundComponent }
+];
