@@ -25,25 +25,36 @@ export class MessageForumListComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.forumId = +id; // Convertir en nombre
-      this.messageService.getMessages(this.forumId).subscribe((data: any[]) => {
-        this.messages = data;
-      });
+      this.loadMessages();
     } else {
       console.error('Forum ID is missing in the route parameters');
     }
   }
 
+  loadMessages(): void {
+    const storedMessages = localStorage.getItem(`forum_${this.forumId}_messages`);
+    this.messages = storedMessages ? JSON.parse(storedMessages) : [];
+  }
+
   sendMessage(): void {
     if (this.newMessage.trim()) {
       const message = {
-        forumId: this.forumId,
+        forum_id: this.forumId,
         contenu: this.newMessage,
         nom: 'Utilisateur' 
       };
       this.messageService.sendMessage(message).subscribe(() => {
         this.messages.push(message);
         this.newMessage = '';
+        this.saveMessageToLocalStorage(message);
       });
     }
+  }
+
+  saveMessageToLocalStorage(message: any): void {
+    const storedMessages = localStorage.getItem(`forum_${this.forumId}_messages`);
+    const messages = storedMessages ? JSON.parse(storedMessages) : [];
+    messages.push(message);
+    localStorage.setItem(`forum_${this.forumId}_messages`, JSON.stringify(messages));
   }
 }

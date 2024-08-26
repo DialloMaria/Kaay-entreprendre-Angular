@@ -6,16 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MessageService {
-  private apiUrl = 'http://votre-api-url/messages'; 
+  private apiUrl = 'http://127.0.0.1:8000/api/messages'; 
 
   constructor(private http: HttpClient) {}
 
-  // Méthode pour obtenir les messages d'un forum spécifique
   getMessages(forumId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}?forumId=${forumId}`);
   }
 
-  // Méthode pour envoyer un nouveau message
   sendMessage(message: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, message);
   }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Forum } from './../forum.model'; 
+import { Forum } from './../forum.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class ForumService {
   constructor(private http: HttpClient) {}
 
   getForums(): Observable<Forum[]> {
-    return this.http.get<Forum[]>(this.apiUrl);
+    return this.http.get<{ message: string; data: Forum[] }>(this.apiUrl).pipe(
+      map(response => response.data) 
+    );
   }
 }
-
-
+  

@@ -2,13 +2,35 @@
 <div class="banner">
     <h1>Bienvenue sur le Forum</h1>
     <p>Découvrez les forums disponibles et engagez-vous dans les discussions.</p>
-  </div>
-  
-  <!-- Liste des forums sous forme de cartes -->
-  <div *ngIf="(forums$ | async)?.length === 0">Aucun forum disponible</div>
-  <div *ngFor="let forum of (forums$ | async)" class="forum-card">
-    <h2>{{ forum.titre }}</h2>
-    <p>{{ forum.description }}</p>
-    <a [routerLink]="['/forums', forum.id, 'messages']">Voir les messages</a>
-  </div>
-  
+</div>
+
+<!-- Liste des forums  -->
+<div *ngIf="(forums$ | async)?.length === 0">Aucun forum disponible</div>
+<div *ngFor="let forum of (forums$ | async)" class="forum-card">
+    <h2>{{ forum?.titre }}</h2>
+    <p>{{ forum?.description }}</p>
+    <p>Nombre de messages: {{ forum?.nombre_de_message }}</p>
+    <p>Nombre de vues: {{ forum?.nombre_de_vue }}</p>
+    <p>Date de création: {{ forum?.dateCreation | date }}</p>
+    <a [routerLink]="['/messages-forum', forum?.id]">Voir les messages du forum</a>
+
+    <!-- Formulaire pour ajouter un message -->
+    <div class="message-form">
+        <textarea [(ngModel)]="newMessage[forum.id]" placeholder="Écrivez votre message ici..."></textarea>
+        <button (click)="sendMessage(forum.id)">Envoyer</button>
+    </div>
+
+    <!-- Liste des messages pour ce forum -->
+    <div *ngIf="getMessagesForForum(forum.id).length > 0; else noMessages">
+        <ul>
+            <li *ngFor="let message of getMessagesForForum(forum.id)">
+                <h3>{{ message?.nom }}</h3>
+                <p>Créé par: {{ message?.creator?.nom }} {{ message?.creator?.prenom }}</p>
+                <p>Date: {{ message?.created_at | date }}</p>
+            </li>
+        </ul>
+    </div>
+    <ng-template #noMessages>
+        <p>Aucun message trouvé pour ce forum.</p>
+    </ng-template>
+</div>

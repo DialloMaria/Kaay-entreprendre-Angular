@@ -1,9 +1,10 @@
 /* Style pour la bannière */
 .banner {
-    background-color: #f5f5f5; /* Couleur de fond de la bannière */
+    background-color: #007461; 
     padding: 20px;
     text-align: center;
     margin-bottom: 20px;
+    color: #E6965B;
   }
   
   .banner h1 {
@@ -27,11 +28,12 @@
   
   .forum-card h2 {
     margin-top: 0;
+    color: #d88b60;
   }
   
   .forum-card a {
     text-decoration: none;
-    color: #007bff;
+    color: #E6965B;
     font-weight: bold;
   }
   
@@ -39,3 +41,37 @@
     text-decoration: underline;
   }
   
+  /* Styles pour le formulaire d'ajout de message */
+.message-form {
+  border: 2px solid #E6965B; /* Bordure de couleur #E6965B */
+  border-radius: 8px; /* Coins arrondis */
+  padding: 10px; /* Espacement interne */
+  margin-top: 10px; /* Espacement au-dessus */
+  background-color: #f9f9f9; /* Fond clair pour le formulaire */
+}
+
+.message-form textarea {
+  width: 100%; /* Prend toute la largeur du conteneur */
+  height: 100px; /* Hauteur de la zone de texte */
+  border: none; /* Retirer la bordure par défaut */
+  border-radius: 4px; /* Coins arrondis */
+  padding: 8px; /* Espacement interne */
+  box-sizing: border-box; /* Inclut la bordure et le padding dans la largeur totale */
+  font-size: 14px; /* Taille de la police */
+  resize: vertical; /* Permet de redimensionner verticalement */
+}
+
+.message-form button {
+  background-color: #E6965B; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte du bouton */
+  border: none; /* Retirer la bordure par défaut */
+  border-radius: 4px; /* Coins arrondis */
+  padding: 10px 15px; /* Espacement interne du bouton */
+  margin-top: 10px; /* Espacement au-dessus */
+  cursor: pointer; /* Curseur pointer sur le bouton */
+  font-size: 14px; /* Taille de la police */
+}
+
+.message-form button:hover {
+  background-color: #d88b60; /* Couleur de fond au survol */
+}
