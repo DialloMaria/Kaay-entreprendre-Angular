@@ -1,0 +1,32 @@
+<!-- Add/Edit Sous-Domaine Modal -->
+<div *ngIf="isAddModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+    <h2 class="text-lg font-bold mb-4">{{ isEditMode ? 'Modifier le Sous-Domaine' : 'Ajouter un Sous-Domaine' }}</h2>
+
+    <form (ngSubmit)="saveSousDomaine()">
+      <div class="mb-4">
+        <label for="nom" class="block text-sm font-bold mb-2">Nom:</label>
+        <input type="text" id="nom" [(ngModel)]="sousDomaine.nom" name="nom" required class="border rounded p-2 w-full">
+      </div>
+
+      <div class="mb-4">
+        <label for="description" class="block text-sm font-bold mb-2">Description:</label>
+        <textarea id="description" [(ngModel)]="sousDomaine.description" name="description" required class="border rounded p-2 w-full"></textarea>
+      </div>
+
+      <div class="mb-4">
+        <input type="hidden" id="domaine" [(ngModel)]="sousDomaine.domaine_id" name="domaine_id" required class="border rounded p-2 w-full">
+      </div>
+
+      <div class="mb-4">
+        <label for="image" class="block text-sm font-bold mb-2">Image URL:</label>
+        <input type="text" id="image" [(ngModel)]="sousDomaine.image" name="image" class="border rounded p-2 w-full">
+      </div>
+
+      <div class="flex justify-end">
+        <button type="button" (click)="closeAddSousDomaineModal()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Annuler</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">{{ isEditMode ? 'Modifier' : 'Ajouter' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

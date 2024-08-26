@@ -12,7 +12,8 @@ import { DomaineService } from '../../../../Services/domaine.service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { FormDomaineListComponent } from '../../Domaines/form-domaine-list/form-domaine-list.component';
-
+import { AuthService } from '../../../../Services/auth.service';
+import { SousDomaineService } from '../../../../Services/sous-domaine.service';
 
 @Component({
   selector: 'app-categorie-list',
@@ -35,13 +36,19 @@ export class CategorieServiceComponent implements OnInit {
   isEditMode = false;
   selectedDomaine: any = null;
   selectedEntrepreneurs: any[] = [];
-
+  sousDomaines: any[] = [];
+  selectedSousDomaines: any[] = [];
+  selectedDomaineName: string = '';
+  isAddModalOpen: boolean = false;
+  sousDomaine: any = { nom: '', description: '', domaine_id: 0 };
 
   constructor(
     private superAdminService: SuperAdminService,
     private domaineService: DomaineService,
+    private sousDomaineService: SousDomaineService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +74,9 @@ export class CategorieServiceComponent implements OnInit {
       }
     });
 
+    this.sousDomaineService.getSousDomaines().subscribe(data => {
+      this.sousDomaines = data;
+    });
   }
 
   getCategoryDetails(id: number): void {
@@ -94,18 +104,15 @@ export class CategorieServiceComponent implements OnInit {
   }
 
   saveDomaine(): void {
-    // Ensure domaine.categorie_id is set
     if (this.domaine.categorie_id === 0) {
       console.error('Categorie ID is not set.');
       return;
     }
 
     if (this.isEditMode) {
-      // Update existing domaine
       if (this.domaine.id) {
         this.domaineService.updateDomaine(this.domaine.id, this.domaine).subscribe(
           () => {
-            // Redirect to the category page
             this.router.navigate(['/super-admin/categories', this.domaine.categorie_id]);
           },
           error => {
@@ -116,19 +123,15 @@ export class CategorieServiceComponent implements OnInit {
         console.error('Domaine ID is undefined, cannot update domain');
       }
     } else {
-      // Create new domaine
       this.domaineService.createDomaine(this.domaine).subscribe(
         (response: any) => {
-          const createdDomaineId = response.id; // Adjust this based on your API response
+          const createdDomaineId = response.id;
           if (createdDomaineId) {
-            // Redirect to the newly created domain page
             this.router.navigate(['/domaines', createdDomaineId]);
           } else {
             console.error('Failed to retrieve the ID of the newly created domain');
           }
-          // reset form
           this.domaine = { nom: '', categorie_id: 0 };
-
         },
         error => {
           console.error('Failed to create domain', error);
@@ -136,7 +139,6 @@ export class CategorieServiceComponent implements OnInit {
       );
     }
   }
-
 
   filterSousDomaines(domaine: any): void {
     this.selectedDomaine = domaine;
@@ -146,12 +148,12 @@ export class CategorieServiceComponent implements OnInit {
     this.router.navigate(['/domaines/edit', id]);
   }
 
-
   getDomaines(): void {
     this.domaineService.getDomaines().subscribe((response: any) => {
-      this.domaines = response.data; // ou selon la structure exacte de votre réponse
+      this.domaines = response.data;
     });
   }
+
   deleteDomaine(id: number): void {
     Swal.fire({
       title: 'Êtes-vous sûr ?',
@@ -171,15 +173,7 @@ export class CategorieServiceComponent implements OnInit {
               'Le domaine a été supprimé.',
               'success'
             );
-            // refresh
-
-            
-
-
-
-
-
-
+            this.getDomaines();
           },
           error => {
             Swal.fire(
@@ -193,4 +187,90 @@ export class CategorieServiceComponent implements OnInit {
     });
   }
 
+  getSousDomaines(domaineId: number): void {
+    this.superAdminService.loadSousDomaines(domaineId).subscribe(
+      (response: any) => {
+        this.sousDomaines = response.sousDomaines;
+        this.selectedDomaineName = this.domaines.find(d => d.id === domaineId)?.nom || '';
+        this.selectedSousDomaines = this.sousDomaines;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des sous-domaines:', error);
+      }
+    );
+  }
+
+  showEntrepreneurs(sousDomaineId: number): void {
+    this.superAdminService.getEntrepreneursBySousDomaine(sousDomaineId).subscribe(
+      (response: any) => {
+        this.selectedEntrepreneurs = response.entrepreneurs;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des entrepreneurs:', error);
+      }
+    );
+  }
+
+  openAddSousDomaineModal(): void {
+    this.isAddModalOpen = true;
+    this.sousDomaine = { nom: '', description: '', domaine_id: this.selectedDomaine.id };
+  }
+
+  closeAddSousDomaineModal(): void {
+    this.isAddModalOpen = false;
+  }
+
+  saveSousDomaine(): void {
+    this.sousDomaineService.createSousDomaine(this.sousDomaine).subscribe(
+      () => {
+        Swal.fire('Sous-domaine ajouté avec succès !');
+        this.getSousDomaines(this.selectedDomaine.id);
+        this.closeAddSousDomaineModal();
+      },
+      error => {
+        console.error('Erreur lors de l\'ajout du sous-domaine :', error);
+      }
+    );
+  }
+  editSousDomaine(sousDomaine: any): void {
+    this.sousDomaine = { ...sousDomaine };
+    this.isEditMode = true;
+    this.isAddModalOpen = true;
+  }
+  toggleEditMode(): void {
+    this.isEditMode = !this.isEditMode;
+  }
+
+  deleteSousDomaine(id: number): void {
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.sousDomaineService.deleteSousDomaine(id).subscribe(
+          () => {
+            Swal.fire(
+              'Supprimé !',
+              'Le sous-domaine a été supprimé.',
+              'success'
+            );
+            this.getSousDomaines(this.selectedDomaine.id);
+          },
+          error => {
+            Swal.fire(
+              'Erreur',
+              'Une erreur est survenue lors de la suppression.',
+              'error'
+            );
+          }
+        );
+      }
+    });
+  }
 }
