@@ -15,6 +15,7 @@ import { CategorieEntrepreneurComponent } from './Components/Super-admin/Categor
 import { ListeAdminComponent } from './Components/Super-admin/Admin/liste-admin/liste-admin.component';
 import { EvenementListComponent } from './Components/Super-admin/Evenements/evenement-list/evenement-list.component';
 import { ListEntrepreneurComponent } from './Components/Super-admin/Admin copy/liste-entrepreneur/liste-entrepreneur.component';
+import { AccueilComponent } from './Components/Entrepreneurs/accueil/accueil.component';
 
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
@@ -37,7 +38,9 @@ export const routes: Routes = [
 
 
 // Redirection par défaut vers la liste des domaines
-  // { path: '', redirectTo: '/domaines', pathMatch: 'full' },
+  // { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+
+  { path: 'accueil', component: AccueilComponent },
 
   // Liste des domaines
   { path: 'domaines', component: DomaineListComponent },
@@ -65,4 +68,3 @@ export const routes: Routes = [
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
 ];
-                         
