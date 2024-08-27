@@ -1,19 +1,18 @@
 
-<app-navbar-entrepreneur> </app-navbar-entrepreneur>
+
 
 <div class="container">
-    <app-categorie 
-      [categories]="categories" 
+    <app-categorie
+      [categories]="categories"
       (categorieSelected)="onCategorieSelected($event)">
     </app-categorie>
-  
-    <app-domaine 
-      [categorieId]="selectedCategorieId !== null ? selectedCategorieId : 0" 
+
+    <app-domaine
+      [categorieId]="selectedCategorieId !== null ? selectedCategorieId : 0"
       (domaineSelected)="onDomaineSelected($event)">
     </app-domaine>
-  
-    <app-sous-domaine 
+
+    <app-sous-domaine
       [domaineId]="selectedDomaineId !== null ? selectedDomaineId : 0">
     </app-sous-domaine>
   </div>
-  
