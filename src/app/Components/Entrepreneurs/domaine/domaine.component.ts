@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from
 import { Domaine } from '../../../Models/domaine.model';
 import { DomaineService } from '../../../Services/domaine.service';
 import { CommonModule } from '@angular/common';
+import { NavbarEntrepreneurComponent } from '../layout/navbar-entrepreneur/navbar-entrepreneur.component';
 
 @Component({
   selector: 'app-domaine',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,NavbarEntrepreneurComponent],
   providers: [DomaineService],
   templateUrl: './domaine.component.html',
   styleUrls: ['./domaine.component.css']

@@ -4,13 +4,14 @@ import { Guide } from '../../../../models/guide.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { GuideService } from '../../../../Services/guide.service';
+import { NavbarEntrepreneurComponent } from '../../../Entrepreneurs/layout/navbar-entrepreneur/navbar-entrepreneur.component';
 
 @Component({
   selector: 'app-guide-list',
   templateUrl: './guide-list.component.html',
   styleUrls: ['./guide-list.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule,NavbarEntrepreneurComponent]
 })
 export class GuideListComponent implements OnInit {
   guides: Guide[] = [];

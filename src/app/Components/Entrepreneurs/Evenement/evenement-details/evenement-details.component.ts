@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 
 import Swal from 'sweetalert2';
+import { NavbarEntrepreneurComponent } from '../../layout/navbar-entrepreneur/navbar-entrepreneur.component';
 
 @Component({
   selector: 'app-evenement-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,NavbarEntrepreneurComponent],
   templateUrl: './evenement-details.component.html',
   styleUrl: './evenement-details.component.css'
 })
