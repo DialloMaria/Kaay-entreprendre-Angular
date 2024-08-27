@@ -1,46 +1,50 @@
 <!-- Bannière de bienvenue -->
 <div class="banner">
-    <h1>Bienvenue sur le Forum</h1>
-    <p>Découvrez les forums disponibles et engagez-vous dans les discussions.</p>
-</div>
-
-<!-- Liste des forums -->
-<div *ngIf="(forums$ | async)?.length === 0">Aucun forum disponible</div>
-<div *ngFor="let forum of (forums$ | async)" class="forum-card">
+    <img src="assets/images/image.jpg" alt="Bannière" class="banner-image">
+    <div class="banner-text">
+      <h1>Bienvenue sur le Forum</h1>
+      <p>Découvrez les forums disponibles et engagez-vous dans les discussions.</p>
+    </div>
+  </div>
+  
+  <!-- Liste des forums -->
+  <div *ngIf="(forums$ | async)?.length === 0">Aucun forum disponible</div>
+  <div *ngFor="let forum of (forums$ | async)" class="forum-card">
     <h2>{{ forum?.titre }}</h2>
     <p>{{ forum?.description }}</p>
     <p>Nombre de messages: {{ forum?.nombre_de_message }}</p>
     <p>Nombre de vues: {{ forum?.nombre_de_vue }}</p>
     <p>Date de création: {{ forum?.dateCreation | date }}</p>
     <a (click)="loadMessages(forum.id)">Voir les messages du forum</a>
-
+  
     <!-- Formulaire pour ajouter un message -->
     <div class="message-form">
-        <textarea [(ngModel)]="newMessage[forum.id]" placeholder="Écrivez votre message ici..."></textarea>
-        <button (click)="sendMessage(forum.id)">Envoyer</button>
+      <textarea [(ngModel)]="newMessage[forum.id]" placeholder="Écrivez votre message ici..."></textarea>
+      <button (click)="sendMessage(forum.id)">Envoyer</button>
     </div>
-
+  
     <!-- Liste des messages pour ce forum -->
     <div *ngIf="(messages[forum.id]?.length ?? 0) > 0; else noMessages">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Créé par</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let message of getMessagesForForum(forum.id)">
-                    <td>{{ message?.nom }}</td>
-                    <td>{{ message?.creator?.nom }} {{ message?.creator?.prenom }}</td>
-                    <td>{{ message?.created_at | date }}</td>
-                </tr>
-            </tbody>
-        </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Créé par</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let message of messages[forum.id]">
+            <td>{{ message?.nom }}</td>
+            <td>{{ message?.creator?.nom }} {{ message?.creator?.prenom }}</td>
+            <td>{{ message?.created_at | date }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    
+  
     <ng-template #noMessages>
-        <p>Aucun message trouvé pour ce forum.</p>
+      <p>Aucun message trouvé pour ce forum.</p>
     </ng-template>
-</div>
+  </div>
+  

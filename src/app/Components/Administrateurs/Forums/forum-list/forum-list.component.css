@@ -7,6 +7,15 @@
     color: #E6965B;
   }
   
+.banner-image {
+  max-width: 150px; /* Ajustez selon vos besoins */
+  margin-right: 20px; /* Espace entre l'image et le texte */
+}
+
+.banner-text {
+  max-width: calc(100% - 170px); /* Ajuste la largeur du texte pour qu'il occupe l'espace restant */
+}
+
   .banner h1 {
     margin: 0;
     font-size: 2em;

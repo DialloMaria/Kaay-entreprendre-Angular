@@ -10,8 +10,8 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
-  getMessages(forumId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?forumId=${forumId}`);
+  getMessages(forumId: number): Observable<{ message: string, data: any[] }> {
+    return this.http.get<{ message: string, data: any[] }>(`${this.apiUrl}?forumId=${forumId}`);
   }
 
   sendMessage(message: any): Observable<any> {

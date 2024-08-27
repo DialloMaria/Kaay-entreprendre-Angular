@@ -46,10 +46,11 @@ export class ForumListComponent implements OnInit {
     this.messageService.getMessages(forumId).subscribe(
       (response) => {
         console.log('Réponse reçue:', response);
-        if (Array.isArray(response)) {
-          this.messages[forumId] = response;
+        // Vérifiez si 'data' est un tableau
+        if (response && Array.isArray(response.data)) {
+          this.messages[forumId] = response.data;
         } else {
-          console.warn('La réponse n\'est pas un tableau:', response);
+          console.warn('La réponse n\'a pas la structure attendue:', response);
           this.messages[forumId] = [];
         }
       },
@@ -58,7 +59,7 @@ export class ForumListComponent implements OnInit {
       }
     );
   }
-
+  
   sendMessage(forumId: number): void {
     const messageContent = this.newMessage[forumId];
     const userId = 1; // Remplacez ceci par l'ID de l'utilisateur connecté
