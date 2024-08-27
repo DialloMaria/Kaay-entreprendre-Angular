@@ -122,10 +122,12 @@
                   <ng-template #physicalLocation>
                     <span>Lieu: {{ evenement?.lieu }}</span>
                   </ng-template>
+               
                 </div>
                 <button (click)="openForm(evenement)">Modifier</button>
                 <button (click)="deleteEvenement(evenement.id)">Supprimer</button>
-
+              
+                <a  routerLink="/listInscritEvent">Personne Incrit</a>
               </div>
             </div>
           </div>

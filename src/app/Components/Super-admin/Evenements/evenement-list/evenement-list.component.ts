@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { EvenementService } from '../../../../Services/evenement.service';
 import { DomaineService } from '../../../../Services/domaine.service';
 import { EvenementModel } from '../../../../Models/evenements.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-evenement-list',
   standalone: true,
-  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule, FormsModule],
+  imports: [SuperAdminLayoutComponent, NavbarComponent, CommonModule, FormsModule,RouterLink],
   templateUrl: './evenement-list.component.html',
   styleUrl: './evenement-list.component.css'
 })

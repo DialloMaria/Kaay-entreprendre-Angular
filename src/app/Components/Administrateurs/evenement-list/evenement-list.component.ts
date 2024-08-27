@@ -48,8 +48,6 @@ export class EvenementsListComponent  implements OnInit {
     this.getEvenements();
     this.getDomaines(); // Récupérez les domaines au démarrage
     this.loadEvents();
-
-
   }
 
   getDomaines(): void {

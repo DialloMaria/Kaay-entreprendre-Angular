@@ -30,6 +30,9 @@ import { GuideListComponent } from './Components/Administrateurs/Guides/guide-li
 import { RessourceListComponent } from './Components/Administrateurs/Ressources/ressource-list/ressource-list.component';
 import { TemoignagesComponent } from './Components/Entrepreneurs/temoignages/temoignages.component';
 
+import { ListeInscritComponent } from './Components/Super-admin/Evenements/liste-inscrit/liste-inscrit.component';
+
+
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
     
@@ -106,14 +109,22 @@ export const routes: Routes = [
   // { path: 'guides/edit/:id', component: GuideEditComponent },
   // { path: 'guides/detail/:id', component: GuideDetailComponent },
   // { path: 'guide-completed', component: GuideCompletedComponent },
-
   // Resources
+
   { path: 'resources', component: RessourceListComponent },
+
   // { path: 'resources/edit/:id', component: ResourceEditComponent, canActivate: [AdministrationGuard] },
   // { path: 'resources/detail/:id', component: ResourceDetailComponent, canActivate: [AdministrationGuard] },
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
 
   //route Temoignages 
-  { path:'entrepreneurTemoignages',   component:TemoignagesComponent}
+  { path:'entrepreneurTemoignages',   component:TemoignagesComponent},
+
+  //route Temoignages 
+
+  { path:'entrepreneurTemoignages',   component:TemoignagesComponent},
+  //la Route pour les personnes inscrit a une evenement 
+  { path:'listInscritEvent', component:ListeInscritComponent}
+
 ];

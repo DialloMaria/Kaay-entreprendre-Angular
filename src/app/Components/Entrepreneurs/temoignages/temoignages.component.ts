@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';  // Ajout pour les formulaires
 import { Temoignage } from '../../../Models/temoignages.model';
 import { TemoignagesService } from '../../../Services/temoignages.service';
-
 @Component({
   selector: 'app-temoignages',
   standalone: true,
@@ -52,7 +51,6 @@ export class TemoignagesComponent implements OnInit {
       );
     }
   }
-
   deleteTemoignage(id: number): void {
     this.temoignageService.deleteTemoignage(id).subscribe(
       () => this.loadTemoignages(),
