@@ -4,7 +4,7 @@
     <p>Découvrez les forums disponibles et engagez-vous dans les discussions.</p>
 </div>
 
-<!-- Liste des forums  -->
+<!-- Liste des forums -->
 <div *ngIf="(forums$ | async)?.length === 0">Aucun forum disponible</div>
 <div *ngFor="let forum of (forums$ | async)" class="forum-card">
     <h2>{{ forum?.titre }}</h2>
@@ -12,7 +12,7 @@
     <p>Nombre de messages: {{ forum?.nombre_de_message }}</p>
     <p>Nombre de vues: {{ forum?.nombre_de_vue }}</p>
     <p>Date de création: {{ forum?.dateCreation | date }}</p>
-    <a [routerLink]="['/messages-forum', forum?.id]">Voir les messages du forum</a>
+    <a (click)="loadMessages(forum.id)">Voir les messages du forum</a>
 
     <!-- Formulaire pour ajouter un message -->
     <div class="message-form">
@@ -21,15 +21,25 @@
     </div>
 
     <!-- Liste des messages pour ce forum -->
-    <div *ngIf="getMessagesForForum(forum.id).length > 0; else noMessages">
-        <ul>
-            <li *ngFor="let message of getMessagesForForum(forum.id)">
-                <h3>{{ message?.nom }}</h3>
-                <p>Créé par: {{ message?.creator?.nom }} {{ message?.creator?.prenom }}</p>
-                <p>Date: {{ message?.created_at | date }}</p>
-            </li>
-        </ul>
+    <div *ngIf="(messages[forum.id]?.length ?? 0) > 0; else noMessages">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Créé par</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let message of getMessagesForForum(forum.id)">
+                    <td>{{ message?.nom }}</td>
+                    <td>{{ message?.creator?.nom }} {{ message?.creator?.prenom }}</td>
+                    <td>{{ message?.created_at | date }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    
     <ng-template #noMessages>
         <p>Aucun message trouvé pour ce forum.</p>
     </ng-template>

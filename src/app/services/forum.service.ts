@@ -14,7 +14,7 @@ export class ForumService {
 
   getForums(): Observable<Forum[]> {
     return this.http.get<{ message: string; data: Forum[] }>(this.apiUrl).pipe(
-      map(response => response.data) 
+      map(response => response.data)
     );
   }
 }

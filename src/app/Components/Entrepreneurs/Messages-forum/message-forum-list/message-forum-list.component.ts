@@ -1,60 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { MessageService } from '../../../../services/message.service';
 
 @Component({
   selector: 'app-message-forum-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './message-forum-list.component.html',
   styleUrls: ['./message-forum-list.component.css']
 })
 export class MessageForumListComponent implements OnInit {
-  messages: any[] = [];
-  forumId!: number;
-  newMessage: string = '';
+  forumId: string | null = null;
+  messages: any[] = []; // Assurez-vous de définir correctement le type des messages
 
-  constructor(
-    private route: ActivatedRoute,
-    private messageService: MessageService
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.forumId = +id; // Convertir en nombre
-      this.loadMessages();
-    } else {
-      console.error('Forum ID is missing in the route parameters');
-    }
+    // Récupérer le forumId depuis les paramètres de route
+    this.route.paramMap.subscribe(params => {
+      this.forumId = params.get('forumId');
+      if (this.forumId) {
+        console.log(`Forum ID from route: ${this.forumId}`);
+        // Vous pouvez maintenant utiliser le forumId pour récupérer les messages
+        this.loadMessages(this.forumId);
+      } else {
+        console.error('Forum ID is missing in the route parameters');
+      }
+    });
   }
 
-  loadMessages(): void {
-    const storedMessages = localStorage.getItem(`forum_${this.forumId}_messages`);
-    this.messages = storedMessages ? JSON.parse(storedMessages) : [];
-  }
-
-  sendMessage(): void {
-    if (this.newMessage.trim()) {
-      const message = {
-        forum_id: this.forumId,
-        contenu: this.newMessage,
-        nom: 'Utilisateur' 
-      };
-      this.messageService.sendMessage(message).subscribe(() => {
-        this.messages.push(message);
-        this.newMessage = '';
-        this.saveMessageToLocalStorage(message);
-      });
-    }
-  }
-
-  saveMessageToLocalStorage(message: any): void {
-    const storedMessages = localStorage.getItem(`forum_${this.forumId}_messages`);
-    const messages = storedMessages ? JSON.parse(storedMessages) : [];
-    messages.push(message);
-    localStorage.setItem(`forum_${this.forumId}_messages`, JSON.stringify(messages));
+  loadMessages(forumId: string): void {
+    // Implémentez ici la logique pour charger les messages depuis l'API
   }
 }
