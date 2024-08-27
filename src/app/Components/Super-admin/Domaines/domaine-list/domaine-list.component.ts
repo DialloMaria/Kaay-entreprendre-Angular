@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common'; // Importer CommonModule
 import { DomaineService } from '../../../../Services/domaine.service';
 
 
+
 @Component({
   selector: 'app-domaine-list',
   standalone: true,
@@ -31,7 +32,7 @@ export class DomaineListComponent  implements OnInit {
     // }
   }
 
- 
+
 
   getDomaines(): void {
     this.domaineService.getDomaines().subscribe((response: any) => {

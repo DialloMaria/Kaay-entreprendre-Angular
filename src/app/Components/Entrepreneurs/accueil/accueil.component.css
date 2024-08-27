@@ -6,8 +6,9 @@
 }
 
 body {
-  font-family: 'Buenard', serif;
+  /* font-family: 'Buenard', serif; */
   line-height: 1.6;
+  font-family: 'Inria Serif', serif;
 
 }
 
@@ -70,6 +71,7 @@ nav {
   border: 2px solid #0e6251;
   background-color: transparent;
   color: #0e6251;
+  border-radius: 25px;
 }
 
 .btn-outline:hover {
@@ -81,6 +83,7 @@ nav {
   background-color: #0e6251;
   color: #fff;
   border: none;
+  border-radius: 25px;
 }
 
 .btn-primary:hover {
@@ -122,12 +125,13 @@ nav {
   align-items: center; /* Center content vertically */
   justify-content: space-between; /* Space between text and image */
   text-align: left;
-  /* background-image: url('assets/images/Desktop8.png'); Use the background image */
+  /* background-image: url('assets/images/Desktop8.png'); */
+  background-image: url('../../../../assets/images/Desktop8.png');
   background-position: right center; /* Align the image to the right */
   background-repeat: no-repeat; /* Ensure the image doesn't repeat */
   background-size: contain; /* Adjust image size to fit within the section */
   margin-left: 20px;
-  /* background-image: url(assets/images/Desktop8.png); */
+  /* background-image: url('../../../../assets/images/.png'); */
 }
 
 .hero-content {
@@ -314,18 +318,12 @@ gap: 20px; /* Espace entre l'image et le texte */
   }
 }
 
-
-/* Services Section */
 /* Services Section Styles */
-/* Services Section Styles */
-/* CSS */
 .services-section {
   padding: 60px 0;
   background-color: #f9f9f9;
-  /* background-image: url(assets/images/patternpad-2024-08-13-12-32-15.png); */
-  background-repeat: no-repeat;
   max-width: 100%;
-  opacity: 0.3;
+  opacity: 0.9;
 }
 
 .card-container {
@@ -333,60 +331,73 @@ gap: 20px; /* Espace entre l'image et le texte */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  gap: 200px; /* Réduit l'espace entre les cartes */
-
-
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
 .card {
   background-color: #ffffff;
-  padding: 20px; /* Réduit le padding des cartes */
-  border-radius: 10px; /* Réduit le rayon des coins */
-  width: 45%; /* Ajuste la largeur pour deux cartes côte à côte */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  /* background-image: url(assets/images/patternpad-2024-08-13-12-32-15.png); */
-  background-repeat: no-repeat;
-  /* opacity: 1.5 ;   */
-  box-shadow: 45px;
-
-
-  /* Vertically center content */
+  padding: 30px;
+  border-radius: 15px;
+  width: 45%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Aligne le titre et le texte en haut et bas */
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-header {
   display: flex;
-  /* align-items: center; */
-  margin-bottom: 15px; /* Réduit l'espace sous le titre */
+  align-items: center; /* Aligne verticalement l'icône et le titre */
+  margin-bottom: 20px;
 }
 
 .card-icon {
-  width: 50px; /* Réduit la taille de l'icône */
-  height: 50px; /* Réduit la taille de l'icône */
-  background-color: #007461; /* Couleur de l'icône */
+  width: 60px;
+  height: 60px;
+  background-color: #007461;
   border-radius: 50%;
-  margin-right: 10px; /* Réduit l'espace entre l'icône et le titre */
+  margin-right: 15px;
 }
 
 .card-header h2 {
-  font-size: 1.8rem; /* Réduit la taille du titre */
+  font-size: 2rem;
   color: #333;
-  font-family: 'Buenard', serif; /* Police du titre */
+  font-family: 'Buenard', serif;
   margin: 0;
 }
 
 .card-text {
-  font-size: 1.3rem; /* Réduit la taille du texte */
+  font-size: 1.2rem;
   color: #555;
   line-height: 1.6;
-  /* text-align: center; Centre le texte horizontalement */
-  /* margin-top: auto; Assure que le texte est aligné en bas de la carte */
-  margin-left:50px ;
+  margin-bottom: 20px;
 }
 
+.card-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007461;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  align-self: flex-start; /* Aligne le bouton à gauche */
+}
+
+.card-button:hover {
+  background-color: #005f4f;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -399,6 +410,8 @@ gap: 20px; /* Espace entre l'image et le texte */
       width: 100%;
   }
 }
+
+
 /* Accompagnement Section Styles */
 .accompaniment-section {
   display: flex;
