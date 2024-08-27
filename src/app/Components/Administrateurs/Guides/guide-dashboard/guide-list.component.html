@@ -166,7 +166,7 @@
         </div>
 
   <!-- Domaine Selection -->
-<div class="mb-4">
+<!-- <div class="mb-4">
   <label class="block text-sm font-medium text-gray-700" for="domaine_id">Domaine</label>
   <select id="domaine_id" [(ngModel)]="newGuide.domaine_id" name="domaine_id"
     (change)="onDomaineChange($event)" required
@@ -177,13 +177,13 @@
   <div *ngIf="!newGuide.domaine_id" class="text-red-500 text-sm">
     Le domaine est requis.
   </div>
-</div>
+</div> -->
 
 
   <!-- Sous-Domaine Selection -->
   <div class="mb-4">
     <label class="block text-sm font-medium text-gray-700" for="sous_domaine_id">Sous-Domaine</label>
-    <select id="sous_domaine_id" [(ngModel)]="newGuide.sous_domaine_id" name="sous_domaine_id" required
+    <select id="domaine_id" [(ngModel)]="newGuide.domaine_id" name="domaine_id" required
       class="grow px-4 py-2 bg-white rounded-md border-1 border-teal-800 w-full"
       #sousDomaineId="ngModel">
       <option *ngFor="let sousDomaine of sousDomaines" [value]="sousDomaine.id">{{ sousDomaine.nom }}</option>

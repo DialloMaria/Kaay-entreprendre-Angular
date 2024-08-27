@@ -1,0 +1,45 @@
+<div class="container ">
+    <h1 class="text-center mb-4">Témoignages</h1>
+    
+    <!-- Formulaire de création -->
+    <form *ngIf="!selectedTemoignage" (ngSubmit)="createTemoignage()" class="col-8 m-auto">
+      <div class="mb-3">
+        <input [(ngModel)]="newTitre" name="titre" type="text" class="form-control" placeholder="Titre" required>
+      </div>
+      <div class="mb-3">
+        <textarea [(ngModel)]="newDescription" name="description" class="form-control" rows="3" placeholder="Description" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary form-control">Envoyer</button>
+    </form>
+  
+    <!-- Formulaire d'édition -->
+    <form *ngIf="selectedTemoignage" (ngSubmit)="updateTemoignage()" class="col-8 m-auto mt-4">
+      <div class="mb-3">
+        <input [(ngModel)]="newTitre" name="titre" type="text" class="form-control" placeholder="Titre" required>
+      </div>
+      <div class="mb-3">
+        <textarea [(ngModel)]="newDescription" name="description" class="form-control" rows="3" placeholder="Description" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success form-control">Mettre à jour</button>
+      <button type="button" (click)="cancelEdit()" class="btn btn-secondary form-control mt-2">Annuler</button>
+    </form>
+  
+    <!-- Liste des témoignages -->
+    <div class="row mt-5">
+      <div class="col-md-4" *ngFor="let temoignage of temoignages">
+        <div class="card mb-4 p-2">
+          <img src="https://img.freepik.com/vecteurs-libre/illustration-caricature-dessinee-main_23-2149831825.jpg" class="card-img-top rounded-circle mx-auto d-block mt-3" alt="Profile picture" style="width: 150px; height: 150px;">
+          <div class="card-body text-center">
+            <h5 class="card-title m-1">{{ temoignage.titre }}</h5>
+            <p class="card-text m-1">{{ temoignage.description }}</p>
+            <p class="text-black text-right m-2">{{ temoignage.created_at | date:'dd MMM yyyy' }}</p>
+            <div class="d-flex justify-content-end mt-3 gap-2">
+              <button (click)="editTemoignage(temoignage)" class="btn btn-outline-primary">Modifier</button>
+              <button (click)="deleteTemoignage(temoignage.id!)" class="btn btn-outline-danger">Supprimer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

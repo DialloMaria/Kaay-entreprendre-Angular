@@ -78,9 +78,9 @@
                   <span>{{ domaine.nom }}</span>
                   <div class="flex space-x-2">
                     <!-- Edit Button with Font Awesome Icon -->
-                    <button (click)="editDomaine(domaine.id!)" class="text-blue-600 hover:text-blue-800">
+                    <!-- <button (click)="editDomaine(domaine.id!)" class="text-blue-600 hover:text-blue-800">
                       <i class="fas fa-edit"></i>
-                    </button>
+                    </button> -->
 
                     <!-- Delete Button with Font Awesome Icon -->
                     <button (click)="deleteDomaine(domaine.id!)" class="text-red-600 hover:text-red-800">
@@ -104,6 +104,7 @@
         <app-sous-domaine-list [selectedDomaine]="selectedDomaine"></app-sous-domaine-list>
 
       </section>
+
     </main>
   </div>
 </div>

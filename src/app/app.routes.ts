@@ -30,9 +30,11 @@ import { ListEntrepreneurComponent } from './Components/Super-admin/Entrepreneur
 import { GuideListComponent } from './Components/Administrateurs/Guides/guide-list/guide-list.component';
 import { RessourceListComponent } from './Components/Administrateurs/Ressources/ressource-list/ressource-list.component';
 import { RessourceFormComponent } from './Components/Administrateurs/Ressources/ressource-form/ressource-form.component';
+import { TemoignagesComponent } from './Components/Entrepreneurs/temoignages/temoignages.component';
 
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
+
 
 
   // Redirection par défaut vers la liste des domaines
@@ -56,7 +58,7 @@ export const routes: Routes = [
 
 
 // Redirection par défaut vers la liste des domaines
-  // { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
 
   { path: 'accueil', component: AccueilComponent },
    {path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard, SuperAdminGuard]},
@@ -65,7 +67,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/domaines', pathMatch: 'full' },
 
   // Liste des domaines
-  { path: 'domaines', component: DomaineListComponent },
+  // { path: 'domaines', component: DomaineListComponent },
 
   // Ajout d'un nouveau domaine
   { path: 'domaines/new', component: FormDomaineListComponent },
@@ -78,6 +80,7 @@ export const routes: Routes = [
   //la route LIST-COMMENTAIRES
   {path:'commentaires',component:CommentairesGuidesListService},
   //la route AJOUT-MODIFIER
+
 
    //La route Pour Evenement
    {path:'entrepreneur/evenements',component:EvenementComponent},
@@ -119,4 +122,7 @@ export const routes: Routes = [
   // { path: 'resources/detail/:id', component: ResourceDetailComponent, canActivate: [AdministrationGuard] },
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin
   // { path: '**', component: PageNotFoundComponent }
+
+  //route Temoignages
+  { path:'entrepreneurTemoignages',   component:TemoignagesComponent}
 ];

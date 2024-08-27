@@ -1,0 +1,31 @@
+<header class="flex shadow-lg justify-between items-center bg-white p-4 text-black">
+    <h1 class="text-xl ml-10">Logo Kaay</h1>
+    <div class=" items-center flex ">
+      <a routerLink="['/domaines']" class="flex items-center py-6 px-4 font-bold hover:text-green-700 rounded">
+        ACCUEIL
+      </a>
+
+      <!--  [routerLink]="['/entrepreneur/evenements']"-->
+      <a [routerLink]="['/guides']" class="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+        Guides
+      </a>
+      <a [routerLink]="['/entrepreneur/evenements']" class="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+        Evenements
+      </a>
+      <a [routerLink]="['/guides']" classclass="flex items-center py-6 px-4  bold hover:text-green-700 rounded">
+        Forums
+      </a>
+    </div>
+    <div class="flex items-center space-x-4 mr-12">
+
+      <button class=" border-green-700 rounded-full border px-5  py-2">
+        <a href="">  {{ user?.prenom }} {{ user?.nom }} </a>
+
+      </button>
+      <button class=" border-green-700 rounded-full border px-5  py-2">
+        <a href="" (click)="logout()"> Deconnexion </a>
+
+      </button>
+    </div>
+
+  </header>

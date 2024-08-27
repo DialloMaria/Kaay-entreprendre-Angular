@@ -1,4 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { AuthService } from '../../../../Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-super-admin-layout',
@@ -13,6 +15,7 @@ export class SuperAdminLayoutComponent implements AfterViewInit {
     this.activeMenu();
 
   }
+  constructor(private authService: AuthService, private router: Router) {}
 
   activeMenu() {
     // Sélectionne tous les liens de navigation
@@ -30,7 +33,24 @@ export class SuperAdminLayoutComponent implements AfterViewInit {
         });
     });
   }
+  logout() {
+    this.authService.logout().subscribe(
+      (response: any) => {
+        console.log('Déconnexion réussie:', response);
 
+        // Supprimer les données de l'utilisateur et le token du localStorage
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user');
 
+        // Rediriger vers la page de connexion après la déconnexion
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Erreur lors de la déconnexion:', error);
+      }
+    );
+  }
 }
+
+
 

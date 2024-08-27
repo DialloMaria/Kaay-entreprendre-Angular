@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DomaineService } from '../../../Services/domaine.service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { NavbarEntrepreneurComponent } from '../layout/navbar-entrepreneur/navbar-entrepreneur.component';
 
 
 @Component({
   selector: 'app-evenement',
   standalone: true,
-  imports: [ CommonModule, FormsModule, RouterModule, RouterLink],
+  imports: [ CommonModule, FormsModule, RouterModule, RouterLink,NavbarEntrepreneurComponent],
   templateUrl: './evenement.component.html',
   styleUrls: ['./evenement.component.css']
 })
