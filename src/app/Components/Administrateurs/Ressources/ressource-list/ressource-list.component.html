@@ -1,33 +1,24 @@
-<div *ngFor="let step of getSteps()">
-  <h2>Étape {{ step }}</h2>
-  <ul>
-    <li *ngFor="let guide of guidesByStep[step]">
-      <button (click)="selectGuide(guide.id)">
-        {{ guide.titre }}
-      </button>
-      <div *ngIf="selectedGuideId === guide.id">
-        <div *ngFor="let ressource of filteredRessources">
-          <div (click)="toggleAccordion(ressource.id)">
-            <h3>{{ ressource.titre }}</h3>
-            <p *ngIf="isActive(ressource.id)">{{ ressource.description }}</p>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+<div *ngIf="ressources.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Lien</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ressource of ressources">
+        <td>{{ ressource.id }}</td>
+        <td>{{ ressource.titre }}</td>
+        <td>{{ ressource.description }}</td>
+        <td><a [href]="ressource.lien" target="_blank">{{ ressource.lien }}</a></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- Affichage des domaines -->
-<div *ngIf="domaines.length > 0">
-  <h2>Domaines</h2>
-  <ul>
-    <li *ngFor="let domaine of domaines">
-      <h3>{{ domaine.id }}</h3>
-      <ul>
-        <li *ngFor="let guide of domaine.guides">
-          {{ guide.titre }}
-        </li>
-      </ul>
-    </li>
-  </ul>
+<div *ngIf="ressources.length === 0">
+  <p>Aucune ressource trouvée pour ce guide.</p>
 </div>

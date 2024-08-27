@@ -1,51 +1,52 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Guide } from '../../../../models/guide.model';
-import { HttpErrorResponse } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { GuideService } from '../../../../Services/guide.service';
+import { Guide } from '../../../../models/guide.model';
+import { CommonModule } from '@angular/common';
+import { RessourceListComponent } from '../../Ressources/ressource-list/ressource-list.component';
+import { Ressource } from '../../../../models/ressource.model';
+import { RessourceService } from '../../../../Services/ressource.service';
 
 @Component({
   selector: 'app-guide-list',
   templateUrl: './guide-list.component.html',
   styleUrls: ['./guide-list.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RessourceListComponent]
 })
 export class GuideListComponent implements OnInit {
-  guidesByStep: { [step: string]: Guide[] } = {}; // Dictionnaire pour stocker les guides par étape
-  @Output() guideSelected = new EventEmitter<number>();
+  guides: Guide[] = [];
+  selectedGuideId: number | null = null;
+  filteredRessources: Ressource[] = [];
 
-  constructor(private guideService: GuideService) {}
+  constructor(
+    private guideService: GuideService,
+    private ressourceService: RessourceService
+  ) {}
 
   ngOnInit(): void {
     this.loadGuides();
   }
 
   private loadGuides(): void {
-    this.guideService.getGuides().subscribe(
-      (guides: Guide[]) => {
-        this.groupGuidesByStep(guides);
+    this.guideService.getGuides().subscribe({
+      next: (guides: Guide[]) => {
+        this.guides = guides;
+        console.log('Guides:', this.guides);
       },
-      (error: HttpErrorResponse) => {
+      error: (error) => {
         console.error('Erreur lors du chargement des guides:', error.message);
       }
-    );
-  }
-
-  private groupGuidesByStep(guides: Guide[]): void {
-    guides.forEach((guide) => {
-      if (!this.guidesByStep[guide.etape]) {
-        this.guidesByStep[guide.etape] = [];
-      }
-      this.guidesByStep[guide.etape].push(guide);
     });
   }
+  onGuideSelected(guideId: number): void {
+    this.selectedGuideId = guideId;
+    this.ressourceService.getRessourcesByGuide(guideId).subscribe(
+      (ressources: Ressource[]) => { // Fonction de rappel pour 'next'
+        this.filteredRessources = ressources;
+        console.log('Ressources:', this.filteredRessources);
+      },
 
-  selectGuide(guideId: number): void {
-    this.guideSelected.emit(guideId);
-  }
-  getSteps(): string[] {
-    return Object.keys(this.guidesByStep);
+    );
   }
 
 }

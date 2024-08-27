@@ -177,12 +177,12 @@ updateEvenement(): void {
     const formData = new FormData();
     formData.append('titre', this.selectedEvenement.titre || '');
     formData.append('description', this.selectedEvenement.description || '');
-    if (this.selectedEvenement.image && this.selectedEvenement.image instanceof File) {
-      formData.append('image', this.selectedEvenement.image);
-    }
+    // if (this.selectedEvenement.image && this.selectedEvenement.image instanceof File) {
+    //   formData.append('image', this.selectedEvenement.image);
+    // }
     formData.append('online', this.selectedEvenement.online ? '1' : '0');
     formData.append('lieu', this.selectedEvenement.lieu || '');
-    formData.append('date_debut', this.newEvenement.date_debut || '');
+    // formData.append('date_debut', this.newEvenement.date_debut || '');
 
     formData.append('domaine_id', this.selectedEvenement.domaine_id?.toString() || '');
     formData.append('created_by', userId);

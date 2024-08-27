@@ -29,6 +29,7 @@ import { CategorieComponent } from './Components/Entrepreneurs/categorie/categor
 import { ListEntrepreneurComponent } from './Components/Super-admin/Entrepreneurs/liste-entrepreneur/liste-entrepreneur.component';
 import { GuideListComponent } from './Components/Administrateurs/Guides/guide-list/guide-list.component';
 import { RessourceListComponent } from './Components/Administrateurs/Ressources/ressource-list/ressource-list.component';
+import { RessourceFormComponent } from './Components/Administrateurs/Ressources/ressource-form/ressource-form.component';
 
 // Combinez toutes les routes en un seul tableau
 export const routes: Routes = [
@@ -112,6 +113,8 @@ export const routes: Routes = [
 
   // Resources
   { path: 'resources', component: RessourceListComponent },
+  { path: 'resources/form', component: RessourceFormComponent },
+  { path: 'resources/form/:id', component: RessourceFormComponent },
   // { path: 'resources/edit/:id', component: ResourceEditComponent, canActivate: [AdministrationGuard] },
   // { path: 'resources/detail/:id', component: ResourceDetailComponent, canActivate: [AdministrationGuard] },
   // Vous pouvez également ajouter une route pour la page 404 ici si besoin

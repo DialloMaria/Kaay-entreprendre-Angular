@@ -1,5 +1,7 @@
+import { Ressource } from "./ressources.model";
+
 export interface GuideModel {
-  id?: number;
+  id?: number ;
   titre?: string;
   contenu?: string;
   etape?: string;
@@ -8,5 +10,7 @@ export interface GuideModel {
   domaine_id?: number;
   sous_domaine_id?: number; // Ajoutez cette ligne si nécessaire
   created_by?: number;
+  ressources?: Ressource[];
+
   modified_by?: number;
 }

@@ -1,12 +1,13 @@
-<div class="step-container">
-  <div *ngFor="let step of getSteps()" class="step-group">
-    <h2>Étape {{ step }}</h2>
-    <div *ngFor="let guide of guidesByStep[step]" (click)="selectGuide(guide.id)" class="step">
-      <div class="step-number">{{ guide.id }}</div>
-      <div class="step-content">
-        <h3>{{ guide.titre }}</h3>
-        <!-- Ajoutez plus d'informations sur le guide ici si nécessaire -->
-      </div>
-    </div>
-  </div>
+<!-- Liste des guides -->
+<div class="guide-list">
+  <ul>
+    <li *ngFor="let guide of guides">
+      <button (click)="onGuideSelected(guide.id)">
+        {{ guide.titre }}
+      </button>
+    </li>
+  </ul>
 </div>
+
+<!-- Affichage des ressources pour le guide sélectionné -->
+<app-ressource-list [ressources]="filteredRessources"></app-ressource-list>
