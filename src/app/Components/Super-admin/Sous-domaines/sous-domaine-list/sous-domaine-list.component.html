@@ -3,25 +3,36 @@
 <div class="flex flex-col lg:flex-row justify-between mt-10 gap-8">
 
   <!-- Left Content -->
-  <div class="block w-full lg:w-3/4 bg-white rounded-2xl shadow-sm p-5 md:p-6 lg:p-10">
-    <div class="text-lg font-bold text-gray-700 mb-8">Entrepreneurs</div>
-    <div *ngIf="selectedEntrepreneurs.length > 0">
-      <ul>
-        <li *ngFor="let entrepreneur of selectedEntrepreneurs" class="flex items-center space-x-4 mb-4">
-          <!-- Image de l'entrepreneur -->
-          <div class="w-8 h-8 relative">
-            <img loading="lazy" [src]="entrepreneur.image ? 'storage/' + entrepreneur.image : 'default-image-url.jpg'"
-                 alt="{{ entrepreneur.nom }}" class="object-cover w-full h-full rounded-full" />
-          </div>
-          <!-- Informations de l'entrepreneur -->
-          <div class="text-sm font-bold text-gray-700">
-            <div class="leading-snug">{{ entrepreneur.nom }}</div>
-            <div class="mt-1 text-xs text-slate-400">{{ entrepreneur.email }}</div>
-          </div>
-        </li>
-      </ul>
+    <!-- Entrepreneurs List -->
+    <!-- <div class="bg-white rounded-2xl shadow-sm p-5 md:p-6 lg:p-10 flex-1">
+
+    </div> -->
+    <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+      <table class="w-full table-fixed">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Nom complet</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Email</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Spécialisation</th>
+            <!-- <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Status</th> -->
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr *ngFor="let entrepreneur of selectedEntrepreneurs">
+            <td class="py-4 px-6 border-b border-gray-200">{{ entrepreneur.nom }} {{ entrepreneur.prenom }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate">{{ entrepreneur.email }}</td>
+            <td class="py-4 px-6 border-b border-gray-200">{{ entrepreneur.specialisation }}</td>
+            <!-- <td class="py-4 px-6 border-b border-gray-200">
+                <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs">Active</span>
+            </td> -->
+          </tr>
+          <!-- Message lorsque aucun entrepreneur n'est sélectionné -->
+          <tr *ngIf="selectedEntrepreneurs.length === 0">
+            <td colspan="3" class="py-4 px-6 text-center text-gray-500">Aucun entrepreneur trouvé</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
 
   <!-- Right Content -->
   <div class="bg-white rounded-2xl shadow-sm p-5 lg:p-10 w-full lg:w-1/4">
@@ -31,7 +42,7 @@
           <div class="text-lg font-bold text-gray-700">Sous domaine de {{ selectedDomaineName }}</div>
 
           <!-- ICONE QUi NOUS PERMET D'AJOUTER UN SOUS DOMAINE  -->
-          <a class="text-teal-700 text-5xl cursor-pointer z-50" (click)="openAddSousDomaineModal()">
+          <a class="text-teal-700 text-5xl cursor-pointer ml-5 z-50" (click)="openAddSousDomaineModal()">
             <i class="fas fa-plus-square"></i>
           </a>
         </div>
@@ -39,8 +50,12 @@
 <div *ngIf="isAddModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
   <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
     <h2 class="text-lg font-bold mb-4">{{ isEditMode ? 'Modifier le Sous-Domaine' : 'Ajouter un Sous-Domaine' }}</h2>
+      <!-- forme mediapart -->
 
-    <form (ngSubmit)="saveSousDomaine()">
+
+
+    <form (ngSubmit)="saveSousDomaine() ">
+
       <div class="mb-4">
         <label for="nom" class="block text-sm font-bold mb-2">Nom:</label>
         <input type="text" id="nom" [(ngModel)]="sousDomaine.nom" name="nom" required class="border rounded p-2 w-full">
@@ -57,7 +72,7 @@
 
       <div class="mb-4">
         <label for="image" class="block text-sm font-bold mb-2">Image URL:</label>
-        <input type="text" id="image" [(ngModel)]="sousDomaine.image" name="image" class="border rounded p-2 w-full">
+        <input type="file" id="image" [(ngModel)]="sousDomaine.image" name="image" class="border rounded p-2 w-full">
       </div>
 
       <div class="flex justify-end">

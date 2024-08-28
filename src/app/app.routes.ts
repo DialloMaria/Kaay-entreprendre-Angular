@@ -64,7 +64,6 @@ export const routes: Routes = [
    {path: 'dashboard/admin', component: DashboardAdminComponent, canActivate: [AdministrationGuard, SuperAdminGuard]},
    {path: 'admin/entrepreneurs', component: ListesEntrepreneurComponent, canActivate: [AdministrationGuard]},
    {path: 'admin/evenements', component: EvenementsListComponent, canActivate: [AdministrationGuard]},
-  { path: '', redirectTo: '/domaines', pathMatch: 'full' },
 
   // Liste des domaines
   // { path: 'domaines', component: DomaineListComponent },

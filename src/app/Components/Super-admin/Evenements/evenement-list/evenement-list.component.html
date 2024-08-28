@@ -107,10 +107,14 @@
           <div *ngFor="let evenement of filteredEvenements"
             class="flex flex-col text-sm font-light text-black rounded-md max-w-full">
             <div class="flex flex-col pb-3 w-full rounded-md bg-emerald-700 bg-opacity-10">
-              <img loading="lazy"
+              <!-- <img loading="lazy"
               [src]="evenement.image"
               alt="{{ evenement.titre }}"
+              class="object-contain w-full rounded-md aspect-[2.59]" /> -->
+              <img loading="lazy"
+              srcset="https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/10ca3b9a540cdd1781d067b39a93277feda153db4a8aefe264154a34f16fd86b?placeholderIfAbsent=true&apiKey=5a4129e8dacc4e7b95518ebfcb6a026b"
               class="object-contain w-full rounded-md aspect-[2.59]" />
+            
            <div class="flex flex-col items-start self-start m-4">
                 <div class="self-stretch text-lg font-medium">
                   {{ evenement.titre }}

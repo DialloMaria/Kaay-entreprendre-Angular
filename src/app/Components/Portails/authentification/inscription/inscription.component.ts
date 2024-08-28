@@ -78,7 +78,7 @@ export class InscriptionComponent implements OnInit {
           this.authService.login(loginObject).subscribe(
             (loginResponse: any) => {
               console.log('Connexion réussie:', loginResponse);
-              this.router.navigate(['/dashboard/admin']);
+              this.router.navigate(['/login']);
             },
             (loginError) => {
               console.error('Erreur lors de la connexion:', loginError);

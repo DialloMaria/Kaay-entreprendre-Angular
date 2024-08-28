@@ -23,7 +23,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
-               "glob": "*/",
+<<<<<<< HEAD
+                "glob": "**/*",
     "input": "src/assets",
     "output": "/assets"
               }
@@ -90,7 +91,8 @@
             "assets": [
               {
 
-               "glob": "*/",
+
+                "glob": "**/*",
     "input": "src/assets",
     "output": "/assets"
               }
